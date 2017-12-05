@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:title="EDUCATION"
+            />
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="EMERGENCIES" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="MEDICAL" />
+        <item
+            android:id="@+id/nav_manage"
+            android:title="ANIMALS" />
+        <item
+            android:id="@+id/childrens"
+            android:title="CHILDRENS" />
+        <item
+            android:id="@+id/sports"
+            android:title="SPORTS" />
+        <item
+            android:id="@+id/memorials"
+            android:title="MEMORIALS" />
+        <item
+            android:id="@+id/community"
+            android:title="COMMUNITY" />
+        <item
+            android:id="@+id/elderly"
+            android:title="ELDERLY" />
+        <item
+            android:id="@+id/artsandmedia"
+            android:title="ARTS &amp; MEDIA" />
+    </group>
+
+
+
+</menu>

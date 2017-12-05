@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">UniversalThought</string>
+    <string name="title_activity_mian_drawer">MianDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_education">EDUCATION</string>
+    <string name="nav_item_emergencies">EMERGENCIES</string>
+    <string name="nav_item_medicals">MEDICAL</string>
+    <string name="nav_item_animals">ANIMALS</string>
+    <string name="nav_item_childrens">CHILDREN</string>
+    <string name="nav_item_sports">SPORTS</string>
+    <string name="nav_item_memorials">MEMORIALS</string>
+    <string name="nav_item_community">COMMUNITY</string>
+    <string name="nav_item_elderly">ELDERLY</string>
+    <string name="nav_item_artsandmedia">ARTS &amp; MEDIA</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_education</item>
+        <item>@string/nav_item_emergencies</item>
+        <item>@string/nav_item_medicals</item>
+        <item>@string/nav_item_animals</item>
+        <item>@string/nav_item_childrens</item>
+        <item>@string/nav_item_sports</item>
+        <item>@string/nav_item_memorials</item>
+        <item>@string/nav_item_community</item>
+        <item>@string/nav_item_elderly</item>
+        <item>@string/nav_item_artsandmedia</item>
+    </string-array>
+
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
 </resources>
