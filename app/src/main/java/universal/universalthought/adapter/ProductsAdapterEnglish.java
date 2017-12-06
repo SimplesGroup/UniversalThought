@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,16 +25,17 @@ public class ProductsAdapterEnglish extends RecyclerView.Adapter<ProductsAdapter
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, count,quantity;
-        public ImageView thumbnail, overflow;
+        public TextView quantity;
+        public ImageView thumbnail;
+        Button overflow;
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.profile);
-            count = (TextView) view.findViewById(R.id.count);
+         //   title = (TextView) view.findViewById(R.id.profile);
+           // count = (TextView) view.findViewById(R.id.count);
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+            overflow = (Button) view.findViewById(R.id.overflow);
         }
     }
 
@@ -56,8 +58,8 @@ public class ProductsAdapterEnglish extends RecyclerView.Adapter<ProductsAdapter
         String splash = "fonts/LATO-MEDIUM.TTF";
 ////        final Typeface tf = Typeface.createFromAsset(mContext.getAssets(), splash);
         final ProductEnglish productEnglish = productEnglishList.get(position);
-        holder.title.setText(productEnglish.getPname());
-        holder.count.setText("Rs." + productEnglish.getPprice());
+       // holder.title.setText(productEnglish.getPname());
+       // holder.count.setText("Rs." + productEnglish.getPprice());
         holder.quantity.setText(productEnglish.getPquantity());
         // loading album cover using Glide library
         Glide.with(mContext).load(productEnglish.getPimage()).into(holder.thumbnail);

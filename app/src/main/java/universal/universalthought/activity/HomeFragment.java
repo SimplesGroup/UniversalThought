@@ -127,31 +127,31 @@ public class HomeFragment extends Fragment {
 
     private void prepareAlbums() {
         int[] covers = new int[]{
-                R.drawable.fennelseeds,
-                R.drawable.asafoetida,
-                R.drawable.redchillipowder,
-                R.drawable.blackcardamom,
-                R.drawable.whitepepper,
-                R.drawable.blackpepper};
+                R.drawable.imageone,
+                R.drawable.imagetwo,
+                R.drawable.imagethree,
+                R.drawable.imagefour,
+                R.drawable.imageone,
+                R.drawable.imagetwo};
 
 
 
-        ProductEnglish a = new ProductEnglish("Fennel Seeds", "250", covers[0],"per kilogram");
+        ProductEnglish a = new ProductEnglish("Fennel Seeds", "250", covers[0],"Help India's rural graduates achieve their dreams");
         productEnglishList.add(a);
 
-        a = new ProductEnglish("Asafoetida", "250", covers[1],"per kilogram");
+        a = new ProductEnglish("Asafoetida", "250", covers[1],"Help India's rural graduates achieve their dreams");
         productEnglishList.add(a);
 
-        a = new ProductEnglish("Red Chilli Powder", "150", covers[2],"per kilogram");
+        a = new ProductEnglish("Red Chilli Powder", "150", covers[2],"Help India's rural graduates achieve their dreams");
         productEnglishList.add(a);
 
-        a = new ProductEnglish("Black Cardamon", "540", covers[3],"per kilogram");
+        a = new ProductEnglish("Black Cardamon", "540", covers[3],"Help India's rural graduates achieve their dreams");
         productEnglishList.add(a);
 
-        a = new ProductEnglish("White Pepper", "14", covers[4],"per kilogram");
+        a = new ProductEnglish("White Pepper", "14", covers[4],"Help India's rural graduates achieve their dreams");
         productEnglishList.add(a);
 
-        a = new ProductEnglish("Black Pepper", "1", covers[5],"per kilogram");
+        a = new ProductEnglish("Black Pepper", "1", covers[5],"Help India's rural graduates achieve their dreams");
         productEnglishList.add(a);
 
         adapter.notifyDataSetChanged();
