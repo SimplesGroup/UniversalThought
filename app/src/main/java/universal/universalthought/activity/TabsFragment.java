@@ -23,6 +23,7 @@ public class TabsFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     FeedViewPagerAdapter adapter;
+    int pos = 2;
 
     public TabsFragment() {
         // Required empty public constructor
@@ -46,6 +47,32 @@ public class TabsFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabsFromPagerAdapter(adapter);
         setupViewPager(viewPager);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        Bundle bundle =  getArguments();
+
+        String text= bundle.getString("pos");
+     //   String text= "5";
+        if(pos==0){
+
+        }else {
+            viewPager.setCurrentItem(Integer.parseInt(text));
+        }
 
         // Inflate the layout for this fragment
         return rootView;

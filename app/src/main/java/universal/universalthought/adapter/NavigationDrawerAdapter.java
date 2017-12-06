@@ -2,6 +2,12 @@ package universal.universalthought.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 import universal.universalthought.R;
+import universal.universalthought.activity.TabsFragment;
 import universal.universalthought.model.NavDrawerItem;
 
 
@@ -39,9 +46,29 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         NavDrawerItem current = data.get(position);
         holder.title.setText(current.getTitle());
+ holder.title.setOnClickListener(new View.OnClickListener() {
+     @Override
+     public void onClick(View v) {
+
+         Fragment fragment = null;
+         fragment = new TabsFragment();
+         FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+         fragmentTransaction.replace(R.id.container_body, fragment);
+         fragmentTransaction.commit();
+         Bundle b = new Bundle();
+         String pos = String.valueOf(position);
+         b.putString("pos", pos);
+         fragment.setArguments(b);
+
+
+
+     }
+ });
+
     }
 
     @Override

@@ -28,6 +28,36 @@
         android:background="#cc0505"
         android:layout_below="@id/nav_header_container"
         android:layout_marginTop="0dp" />
-
-
+    <RelativeLayout
+        android:id="@+id/close_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#cc0505"
+        android:layout_marginBottom="1dp"
+        android:layout_alignParentBottom="true"
+        >
+    <Button
+        android:id="@+id/closeprofile"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerInParent="true"
+android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@mipmap/close" />
+    <TextView
+        android:id="@+id/profile_text_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="10dp"
+        android:text="Close"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:layout_below="@id/closeprofile"
+        android:layout_centerInParent="true"
+        />
+    </RelativeLayout>
 </RelativeLayout>

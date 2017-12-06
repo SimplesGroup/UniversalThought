@@ -17,6 +17,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +41,9 @@ public class FragmentDrawer extends Fragment {
     private View containerView;
     private static String[] titles = null;
     private FragmentDrawerListener drawerListener;
+    RelativeLayout closelayout;
+    Button btnclose;
+    TextView txtclose;
 
     public FragmentDrawer() {
 
@@ -73,7 +80,9 @@ public class FragmentDrawer extends Fragment {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
-
+          closelayout = (RelativeLayout) layout.findViewById(R.id.close_layout);
+        btnclose = (Button) layout.findViewById(R.id.closeprofile);
+        txtclose = (TextView) layout.findViewById(R.id.profile_text_close);
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -89,6 +98,33 @@ public class FragmentDrawer extends Fragment {
 
             }
         }));
+
+        closelayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = 0;
+                drawerListener.onDrawerItemSelected(v, position);
+                mDrawerLayout.closeDrawer(containerView);
+            }
+        });
+
+        btnclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = 0;
+                drawerListener.onDrawerItemSelected(v, position);
+                mDrawerLayout.closeDrawer(containerView);
+            }
+        });
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = 0;
+                drawerListener.onDrawerItemSelected(v, position);
+                mDrawerLayout.closeDrawer(containerView);
+            }
+        });
 
         return layout;
     }
