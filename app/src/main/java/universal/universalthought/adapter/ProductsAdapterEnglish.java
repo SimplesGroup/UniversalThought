@@ -1,7 +1,9 @@
 package universal.universalthought.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import universal.universalthought.Detailpage;
 import universal.universalthought.R;
 import universal.universalthought.model.ProductEnglish;
 
@@ -70,17 +73,17 @@ public class ProductsAdapterEnglish extends RecyclerView.Adapter<ProductsAdapter
                 showPopupMenu(holder.overflow);
             }
         });*/
-        /*holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext,ProductDetailsEnglish.class);
+                Intent i = new Intent(mContext,Detailpage.class);
 
-                i.putExtra("TITLE", productEnglish.getPname());
+               // i.putExtra("TITLE", productEnglish.getPname());
 
-                Log.e("TITLEEEE", productEnglish.getPname());
+               // Log.e("TITLEEEE", productEnglish.getPname());
                 mContext.startActivity(i);
             }
-        });*/
+        });
 
        // holder.title.setTypeface(tf);
        // holder.count.setTypeface(tf);

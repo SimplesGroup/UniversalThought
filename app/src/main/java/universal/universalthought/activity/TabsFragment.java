@@ -38,7 +38,7 @@ public class TabsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_tabs, container, false);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         viewPager.setOffscreenPageLimit(1);
 
@@ -47,7 +47,7 @@ public class TabsFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabsFromPagerAdapter(adapter);
         setupViewPager(viewPager);
-
+        setupTabIcons();
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -77,6 +77,16 @@ public class TabsFragment extends Fragment {
         // Inflate the layout for this fragment
         return rootView;
     }
+
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(R.drawable.fundraiser);
+        tabLayout.getTabAt(1).setIcon(R.drawable.fundraiser);
+        tabLayout.getTabAt(2).setIcon(R.drawable.fundraiser);
+    }
+
+
+
     private void setupViewPager(ViewPager viewPager) {
         FeedViewPagerAdapter adapter = new FeedViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new MessagesFragment(), "EDUCATION");
