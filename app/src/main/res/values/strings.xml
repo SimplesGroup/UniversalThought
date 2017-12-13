@@ -39,4 +39,32 @@
     <string name="title_messages">Messages</string>
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
+    <string name="eg">Eg:."Help Hari fight cancer"</string>
+    <string name="cat">Please note: for all medical related causes, choose Medical and not Children or Emergencies.</string>
+    <string name="fundname">You want this link to be shared by your friends and family. Make it easy for them to remember! Just mentioning the beneficiarys name should do the trick. </string>
+
+    <array name="amount">
+        <item>"Rs"</item>
+        <item>"$"</item>
+    </array>
+
+    <array name="category">
+        <item>"Animals"</item>
+        <item>"Arts &amp; media"</item>
+        <item>"Childrens"</item>
+        <item>"Community"</item>
+        <item>"Education"</item>
+        <item>"Elderly"</item>
+        <item>"Emergencies"</item>
+        <item>"Environment"</item>
+        <item>"Human Rights"</item>
+        <item>"Medical"</item>
+        <item>"Memorials"</item>
+        <item>"Others"</item>
+        <item>"Rural Development"</item>
+        <item>"Social Entrepreneurship"</item>
+        <item>"Sports"</item>
+        <item>"Technology"</item>
+        <item>"Women"</item>
+    </array>
 </resources>

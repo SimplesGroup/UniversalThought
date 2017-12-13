@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+
+        android:layout_gravity="center">
+
+        <Button
+            android:id ="@+id/push_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="1"
+            android:textColor="#C22400"
+            android:layout_marginLeft="35dp"
+            android:background="@drawable/roundbutton"
+            android:padding="15dp"
+            />
+        <View
+            android:layout_width="80dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="21dp"
+            android:background="#dedbdb" />
+        <Button
+            android:id ="@+id/two_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="2"
+            android:textColor="#C22400"
+            android:background="@drawable/grayroundmaterial"
+            android:padding="15dp"
+            />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="21dp"
+            android:background="#dedbdb" />
+        <Button
+            android:id ="@+id/three_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="3"
+            android:textColor="#C22400"
+            android:background="@drawable/grayroundmaterial"
+            android:padding="15dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp"
+
+        android:gravity="center">
+        <TextView
+            android:id ="@+id/txt_one"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Basic Infromation"
+            android:padding="15dp"
+            android:textColor="#C22400"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:id ="@+id/txt_two"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="Fundraisers details"
+            android:layout_weight="1"
+            android:padding="15dp"
+            />
+
+
+        <TextView
+            android:id ="@+id/txt_three"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="OtherDetails"
+            android:layout_weight="1"
+            android:padding="15dp"
+            />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:focusableInTouchMode="true"
+>
+
+        <TextView
+            android:id="@+id/txt_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:text="Basic information"
+            android:textColor="#000000"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="5dp"
+            android:background="#f1eaea" />
+
+        <TextView
+            android:id="@+id/txt_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Full name *"
+            android:textColor="#000000"/>
+
+        <EditText
+            android:id="@+id/edt_frgtpswd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/boxborder"
+            android:padding="10dp"
+            android:textSize="12dp" />
+
+
+        <TextView
+            android:id="@+id/txt_amnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Amount you want to raise *"
+            android:textColor="#000000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:padding="6dp"
+                android:background="@drawable/boxborder"
+                android:entries="@array/amount" />
+
+
+            <EditText
+                android:id="@+id/edt_ambt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boxborder"
+                android:padding="10dp"
+                android:inputType="number"
+                android:layout_marginLeft="5dp"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Title of your fundraiser *"
+            android:textColor="#000000"/>
+
+        <EditText
+            android:id="@+id/edt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/boxborder"
+            android:padding="10dp"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/txt_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="12dp"
+            android:text="Start with a verb, and include the beneficiary's name and cause."
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/txt_example"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="12dp"
+            android:text="@string/eg"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/txt_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Category *"
+            android:textColor="#000000"/>
+
+        <Spinner
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/boxborder"
+            android:entries="@array/category" />
+        <TextView
+            android:id="@+id/txt_e"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="12dp"
+            android:text="@string/cat"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/txt_funds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Who are you raising funds for? *"
+            android:textColor="#000000"/>
+        <RadioGroup
+            android:id="@+id/rgOpinion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <RadioButton
+                android:id="@+id/radiobtnexclnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Individual/Group">
+            </RadioButton>
+            <RadioButton
+                android:id="@+id/radiobtngood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NGO">
+            </RadioButton>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_benificary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Beneficiary name *"
+            android:textColor="#000000"/>
+
+        <EditText
+            android:id="@+id/edt_benificary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/boxborder"
+            android:padding="10dp"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="25dp"
+            android:background="#C22400"
+            android:paddingBottom="2dp"
+            android:textAllCaps="false"
+            android:text="Save and continue"
+            android:textColor="#ffffff" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="0dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="12dp"
+                android:text="If you do not wish to continue with this campaign,"
+                android:layout_marginLeft="15dp"
+                />
+            <TextView
+                android:id="@+id/click_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:text="Click Here"
+                android:textAllCaps="false"
+                android:layout_marginLeft="5dp"
+                android:textColor="#b70707"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

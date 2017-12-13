@@ -43,7 +43,7 @@ public class Detailpage extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail_page);
-title=(TextView)findViewById(R.id.title_item);
+        title=(TextView)findViewById(R.id.title_item);
         total_cost=(TextView)findViewById(R.id.total_cost);
         currentdonated_cost=(TextView)findViewById(R.id.tonated_cost);
         percentage=(TextView)findViewById(R.id.textView_percentage);
@@ -62,7 +62,7 @@ title=(TextView)findViewById(R.id.title_item);
         obtainedcost_value=40000;
         percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
 
-percentage.setText(percentage_value+"%");
+        percentage.setText(percentage_value+"%");
         Resources res = getResources();
         Drawable drawable = res.getDrawable(R.drawable.piechart);
 

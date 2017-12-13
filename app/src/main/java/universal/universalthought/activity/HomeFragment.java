@@ -5,6 +5,7 @@ package universal.universalthought.activity;
  */
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -12,8 +13,11 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +28,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +54,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProductsAdapterEnglish adapter;
     private List<ProductEnglish> productEnglishList;
+    ImageView fundraiser;
+    Button help;
 
 
     public HomeFragment() {
@@ -68,6 +76,8 @@ public class HomeFragment extends Fragment {
         viewPager = (ViewPager) rootView.findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) rootView.findViewById(R.id.layoutDots);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        fundraiser = (ImageView) rootView.findViewById(R.id.btn_fundraiser);
+        help = (Button) rootView.findViewById(R.id.btn_help);
         productEnglishList = new ArrayList<>();
         adapter = new ProductsAdapterEnglish(getActivity(), productEnglishList);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -88,6 +98,30 @@ public class HomeFragment extends Fragment {
                 R.layout.introslider_three
 
         };
+
+         help.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Fragment fragment = null;
+                 fragment = new TabsFragment();
+                 FragmentManager fragmentManager = (getActivity()).getSupportFragmentManager();
+                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                 fragmentTransaction.replace(R.id.container_body, fragment);
+                 fragmentTransaction.commit();
+                 Bundle b = new Bundle();
+                 String pos = "0";
+                 b.putString("pos", pos);
+                 fragment.setArguments(b);
+             }
+         });
+
+        fundraiser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),FundraiserActivity.class);
+                startActivity(i);
+            }
+        });
 
         // adding bottom dots
         addBottomDots(0);

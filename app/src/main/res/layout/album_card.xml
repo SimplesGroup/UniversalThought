@@ -61,7 +61,7 @@
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
                 android:layout_marginRight="2dp"
-                android:background="#ef0707"
+                android:background="#C22400"
                 android:text="HELP NOW"
                 android:gravity="center"
                 android:textColor="#ffffff"

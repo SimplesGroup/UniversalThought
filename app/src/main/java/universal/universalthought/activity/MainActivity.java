@@ -1,5 +1,6 @@
 package universal.universalthought.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import universal.universalthought.R;
+import universal.universalthought.fundraiser.BasicInformation;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.back);
+        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.backarrow);
         mToolbar.setNavigationIcon(drawable);
        // mToolbar.setNavigationIcon(R.drawable.logo);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -68,7 +70,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // display the first navigation drawer view on app launch
         displayView(0);
     }
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {

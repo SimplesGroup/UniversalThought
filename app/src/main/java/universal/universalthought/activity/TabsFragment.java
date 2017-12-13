@@ -1,6 +1,7 @@
 package universal.universalthought.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ public class TabsFragment extends Fragment {
     private ViewPager viewPager;
     FeedViewPagerAdapter adapter;
     int pos = 2;
+    ImageView fundraiser;
+
 
     public TabsFragment() {
         // Required empty public constructor
@@ -43,11 +47,12 @@ public class TabsFragment extends Fragment {
         viewPager.setOffscreenPageLimit(1);
 
         adapter = new FeedViewPagerAdapter(getChildFragmentManager());
+        fundraiser = (ImageView) rootView.findViewById(R.id.btn_fundraiser);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabsFromPagerAdapter(adapter);
         setupViewPager(viewPager);
-        setupTabIcons();
+       // setupTabIcons();
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -72,7 +77,16 @@ public class TabsFragment extends Fragment {
 
         }else {
             viewPager.setCurrentItem(Integer.parseInt(text));
+
         }
+
+        fundraiser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),FundraiserActivity.class);
+                startActivity(i);
+            }
+        });
 
         // Inflate the layout for this fragment
         return rootView;
@@ -143,4 +157,6 @@ public class TabsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
+
 }

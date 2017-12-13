@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_alignParentTop="true"
-        android:background="#cc0505">
+        android:background="#C22400">
 
         <ImageView
             android:layout_width="70dp"
@@ -25,14 +25,14 @@
         android:id="@+id/drawerList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#cc0505"
+        android:background="#C22400"
         android:layout_below="@id/nav_header_container"
         android:layout_marginTop="0dp" />
     <RelativeLayout
         android:id="@+id/close_layout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#cc0505"
+        android:background="#C22400"
         android:layout_marginBottom="1dp"
         android:layout_alignParentBottom="true"
         >

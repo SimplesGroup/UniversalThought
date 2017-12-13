@@ -29,57 +29,5 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:background="#ffffff"
-        android:layout_alignParentBottom="true">
 
-        <Button
-            android:id="@+id/btn_feed"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:background="#ef0707"
-            android:text="HELP"
-            android:gravity="center"
-            android:textColor="#ffffff"
-            android:layout_weight="1"
-            />
-
-        <Button
-            android:id="@+id/btn_brands"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="#ef0707"
-            android:text="STORIES"
-            android:gravity="center"
-            android:textColor="#ffffff"
-            />
-        <Button
-            android:id="@+id/btn_shop"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="#ef0707"
-            android:text="VERIFY"
-            android:gravity="center"
-            android:textColor="#ffffff"
-            />
-
-
-        <ImageView
-            android:id="@+id/btn_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/fundraiser"
-            android:padding="5dp"
-            android:gravity="center_horizontal"
-            />
-
-
-    </LinearLayout>
 </RelativeLayout>

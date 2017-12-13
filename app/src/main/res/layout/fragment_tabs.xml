@@ -1,9 +1,10 @@
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/mainlayout"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
             android:paddingRight="10dp"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
-            app:tabIndicatorColor="#0213a6"
+            app:tabIndicatorColor="#C22400"
             app:tabSelectedTextColor="#000000"
             android:showDividers="none"
             app:tabTextAppearance="@style/TabLayoutStyle"
@@ -46,6 +47,61 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="435dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-</android.support.design.widget.CoordinatorLayout>
+
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_help"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="HELP"
+            android:textColor="#C22400" />
+
+        <Button
+            android:id="@+id/btn_stories"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="STORIES"
+            android:textColor="#C22400" />
+
+        <Button
+            android:id="@+id/btn_verify"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="VERIFY"
+            android:textColor="#C22400" />
+
+
+        <ImageView
+            android:id="@+id/btn_fundraiser"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:background="#C22400"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:src="@mipmap/rupeesymbol" />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,6 +1,7 @@
 package universal.universalthought.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class MessagesFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProductsAdapterEnglish adapter;
     private List<ProductEnglish> productEnglishList;
-
+    ImageView fundraiser;
 
     public MessagesFragment() {
         // Required empty public constructor
@@ -47,6 +49,7 @@ public class MessagesFragment extends Fragment {
         productEnglishList = new ArrayList<>();
         adapter = new ProductsAdapterEnglish(getActivity(), productEnglishList);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
