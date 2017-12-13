@@ -74,7 +74,7 @@ public class FundraiserDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 image.setVisibility(View.VISIBLE);
-                startActivityForResult(getPickImageChooserIntent(), 200);
+                 startActivityForResult(getPickImageChooserIntent(), 200);
             }
         });
 
