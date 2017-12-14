@@ -77,9 +77,6 @@ public class FundraiserDetails extends AppCompatActivity {
                  startActivityForResult(getPickImageChooserIntent(), 200);
             }
         });
-
-
-
     }
 
 
