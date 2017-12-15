@@ -38,6 +38,7 @@ import java.util.List;
 
 import universal.universalthought.R;
 import universal.universalthought.adapter.ProductsAdapterEnglish;
+import universal.universalthought.fundraiser.StoriesPage;
 import universal.universalthought.model.ProductEnglish;
 
 
@@ -55,7 +56,7 @@ public class HomeFragment extends Fragment {
     private ProductsAdapterEnglish adapter;
     private List<ProductEnglish> productEnglishList;
     ImageView fundraiser;
-    Button help;
+    Button help,stories;
 
 
     public HomeFragment() {
@@ -78,6 +79,7 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         fundraiser = (ImageView) rootView.findViewById(R.id.btn_fundraiser);
         help = (Button) rootView.findViewById(R.id.btn_help);
+        stories = (Button) rootView.findViewById(R.id.btn_stories);
         productEnglishList = new ArrayList<>();
         adapter = new ProductsAdapterEnglish(getActivity(), productEnglishList);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -98,6 +100,14 @@ public class HomeFragment extends Fragment {
                 R.layout.introslider_three
 
         };
+
+        stories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), StoriesPage.class);
+                startActivity(i);
+            }
+        });
 
          help.setOnClickListener(new View.OnClickListener() {
              @Override

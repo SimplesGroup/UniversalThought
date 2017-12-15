@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.BasicInformation;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Sandhiya on 12/11/2017.
@@ -18,7 +21,7 @@ import universal.universalthought.fundraiser.BasicInformation;
 
 public class LoginActivity extends Fragment {
 
-    Button login;
+    Button login ,fb;
 
     @Nullable
     public static LoginActivity newInstance() {
@@ -31,12 +34,20 @@ public class LoginActivity extends Fragment {
         View view = inflater.inflate(R.layout.activity_login, container, false);
 
         login = (Button) view.findViewById(R.id.button_login);
-
+        fb=(Button) view.findViewById(R.id.btnfb) ;
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),BasicInformation.class);
                 startActivity(i);
+            }
+        });
+
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent facebook=new Intent(getApplicationContext(),FaceBooklogin.class);
+                startActivity(facebook);
             }
         });
         return view;

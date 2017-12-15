@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="0dp"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/profile"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="@dimen/album_title_padding"
+                    android:paddingRight="0dp"
+                    android:text="Help India's rural graduates achieve their dreams"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:layout_toEndOf="@+id/thumbnail"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp" />
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:paddingBottom="0dp"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="0dp"
+                android:text="Help India's rural graduates achieve their dreams"
+                android:textSize="@dimen/songs_count"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/thumbnail"
+                android:layout_toEndOf="@+id/thumbnail"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="60dp"
+                android:layout_alignBottom="@+id/thumbnail" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
