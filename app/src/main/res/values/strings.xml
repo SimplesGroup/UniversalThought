@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">UniversalThought</string>
+
+    <string name="facebook_app_id">1800604680012287</string>
+    <string name="fb_login_protocol_scheme">fb1800604680012287</string>
+
+
+
     <string name="title_activity_mian_drawer">MianDrawerActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
