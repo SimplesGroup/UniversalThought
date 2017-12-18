@@ -28,6 +28,8 @@
         <activity android:name=".fundraiser.DonatePage"></activity>
         <activity android:name=".fundraiser.StoriesPage"></activity>
         <activity android:name=".activity.FaceBooklogin"></activity>
+
+
     </application>
 
 </manifest>

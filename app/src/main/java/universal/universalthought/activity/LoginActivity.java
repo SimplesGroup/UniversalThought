@@ -46,7 +46,7 @@ public class LoginActivity extends Fragment {
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent facebook=new Intent(getApplicationContext(),FaceBooklogin.class);
+                Intent facebook=new Intent(getActivity(),FaceBooklogin.class);
                 startActivity(facebook);
             }
         });

@@ -33,8 +33,8 @@ public class StoriesPage extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_stories);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        adapter = new ProductsAdapterEnglish(StoriesPage.this, productEnglishList);
+        recyclerView = (RecyclerView) findViewById(R.id.drawerList);
+        adapter = new ProductsAdapterEnglish(getApplicationContext(), productEnglishList);
         productEnglishList = new ArrayList<>();
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(StoriesPage.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
