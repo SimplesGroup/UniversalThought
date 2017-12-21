@@ -21,7 +21,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class LoginActivity extends Fragment {
 
-    Button login ,fb;
+    Button login ,fb,googlelogin;
 
     @Nullable
     public static LoginActivity newInstance() {
@@ -35,6 +35,7 @@ public class LoginActivity extends Fragment {
 
         login = (Button) view.findViewById(R.id.button_login);
         fb=(Button) view.findViewById(R.id.btnfb) ;
+        googlelogin=(Button)view.findViewById(R.id.btngmail) ;
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +49,13 @@ public class LoginActivity extends Fragment {
             public void onClick(View v) {
                 Intent facebook=new Intent(getActivity(),FaceBooklogin.class);
                 startActivity(facebook);
+            }
+        });
+        googlelogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent google=new Intent(getActivity(),GoogleSignin.class);
+                startActivity(google);
             }
         });
         return view;
