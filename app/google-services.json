@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "24325816119",
+    "firebase_url": "https://universalthought-189705.firebaseio.com",
+    "project_id": "universalthought-189705",
+    "storage_bucket": "universalthought-189705.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24325816119:android:ebf6ad872368187d",
+        "android_client_info": {
+          "package_name": "universal.universalthought"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24325816119-10k3h69v2v1ubivj2befps9ujc4fucvj.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "24325816119-6aj3f18okj211ik6srivrifdv91fla55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "universal.universalthought",
+            "certificate_hash": "ed65d11e81904017342626efd0989af17a50fe44"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLKPx50N1TtGAmH74uqj59_zYA4ExnCEc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24325816119-10k3h69v2v1ubivj2befps9ujc4fucvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

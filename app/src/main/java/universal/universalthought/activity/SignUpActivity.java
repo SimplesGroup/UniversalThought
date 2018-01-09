@@ -1,6 +1,7 @@
 package universal.universalthought.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import universal.universalthought.R;
+import universal.universalthought.fundraiser.BasicInformation;
 
 /**
  * Created by Sandhiya on 12/11/2017.
@@ -37,7 +39,7 @@ public class SignUpActivity extends Fragment {
     public  static String USERIMAGE="userimage";
     public  static String USERID="userid";
 
-    Button signin_button;
+    Button signin_button,gmail,facebook;
     EditText name,mailid,password,mobileno;
     RequestQueue queue;
     String URL_SIGNUP="http://www.simples.in/universalthought/universalthought.php";
@@ -55,17 +57,36 @@ public class SignUpActivity extends Fragment {
                 Context.MODE_PRIVATE);
         queue = Volley.newRequestQueue(getActivity());
         signin_button=(Button)view.findViewById(R.id.button_signin);
+        gmail = (Button) view.findViewById(R.id.btngmail);
+        facebook = (Button) view.findViewById(R.id.btnfb);
 
         name = (EditText) view.findViewById(R.id.edt_username);
         mailid = (EditText)view.findViewById(R.id.edt_email);
         password = (EditText)view.findViewById(R.id.edt_password);
         mobileno = (EditText)view.findViewById(R.id.edt_mobileno);
 
-         
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent facebook=new Intent(getActivity(),FaceBooklogin.class);
+                startActivity(facebook);
+            }
+        });
+        gmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent google=new Intent(getActivity(),GoogleSignin.class);
+                startActivity(google);
+            }
+        });
+
         signin_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Registration();
+
+                        Intent i = new Intent(getActivity(),BasicInformation.class);
+                        startActivity(i);
             }
         });
 
