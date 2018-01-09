@@ -53,7 +53,7 @@ public class GoogleSignin extends AppCompatActivity implements  GoogleApiClient.
     public static final String mypreference = "mypref";
     public static final String Activity = "activity";
     public static final String CONTENTID = "contentid";
-    String UPLOAD_URL="http://simpli-city.in/request2.php?rtype=login&key=simples";
+    String UPLOAD_URL="http://www.simples.in/universalthought/universalthought.php";
     private String KEY_GCM = "gcm_id";
     private String KEY_NAME = "name";
     private String KEY_EMAIL= "email";

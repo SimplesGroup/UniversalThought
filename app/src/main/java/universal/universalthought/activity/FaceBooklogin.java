@@ -55,7 +55,7 @@ public class FaceBooklogin extends android.app.Activity {
     public static final String Activity = "activity";
     public static final String CONTENTID = "contentid";
     String contentid;
-    String UPLOAD_CHECK_USER="http://simpli-city.in/request2.php?rtype=checkuser&key=simples";
+    String UPLOAD_CHECK_USER="http://www.simples.in/universalthought/universalthought.php";
 ProgressDialog pdialog;
     public static final String MYUSERID= "myprofileid";
     public static final String USERNAME= "myprofilename";
@@ -64,10 +64,10 @@ ProgressDialog pdialog;
     public static final String USERMAILID= "myprofileemail";
     String text,emaildata,profileimage,activity,gcmids,gendervalue;
 
-    String UPLOAD_URL="http://simpli-city.in/request2.php?rtype=login&key=simples";
+    String UPLOAD_URL="http://www.simples.in/universalthought/universalthought.php";
 
-    private String KEY_NAME = "name";
-    private String KEY_EMAIL= "email";
+    private String MailId  = "mailis";
+    private String Mobile = "mobile";
     private String KEY_GENDER = "gender";
     RequestQueue requestQueue;
     private String KEY_PROFILEIMAGE = "image";
@@ -341,8 +341,8 @@ ProgressDialog pdialog;
                                         protected Map<String ,String> getParams()throws AuthFailureError{
                                             Map<String,String> params=new Hashtable<String, String>();
 
-                                            params.put(KEY_EMAIL,emaildata);
-                                            params.put(KEY_NAME,text);
+                                            params.put(MailId ,emaildata);
+                                            params.put(Mobile ,"9843641517");
                                             params.put(KEY_PROFILEIMAGE,"https://graph.facebook.com/" + profileimage + "/picture");
                                            // params.put(KEY_GENDER,gendervalue);
                                             params.put(KEY_GCM,gcmids);

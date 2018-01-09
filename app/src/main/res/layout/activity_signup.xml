@@ -152,7 +152,26 @@
                 android:background="#ffffff"
                 android:padding="5dp"
                 android:inputType="textPassword"
-                android:hint="Change Your Password"
+                android:hint="Enter Your Password"
+                android:textSize="12dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="#000000" />
+
+            <EditText
+                android:id="@+id/edt_mobileno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="25dp"
+                android:background="#ffffff"
+                android:padding="5dp"
+                android:inputType="number"
+                android:hint="Enter Your Mobile Number"
                 android:textSize="12dp" />
 
             <View
