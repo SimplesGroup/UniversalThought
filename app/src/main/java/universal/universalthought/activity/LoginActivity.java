@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,8 +62,9 @@ public class LoginActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 Registration();
-                Intent i = new Intent(getActivity(),BasicInformation.class);
-                startActivity(i);
+                showInputNameDialog();
+                //Intent i = new Intent(getActivity(),BasicInformation.class);
+                //startActivity(i);
             }
         });
 
@@ -82,6 +84,15 @@ public class LoginActivity extends Fragment {
         });
         return view;
     }
+
+    private void showInputNameDialog() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        MobileDialogFragment inputNameDialog = new MobileDialogFragment();
+        inputNameDialog.setCancelable(false);
+        inputNameDialog.setDialogTitle("Enter Name");
+        inputNameDialog.show(fragmentManager, "Input Dialog");
+    }
+
 
     private void Registration(){
         StringRequest request=new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {

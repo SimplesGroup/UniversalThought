@@ -34,7 +34,7 @@ public class Detailpage extends AppCompatActivity {
     TextView title,total_cost,currentdonated_cost,percentage;
     ProgressBar percentage_circularbar;
     Button button_helpnow;
-    ImageButton imagebutton_rupees;
+    ImageButton imagebutton_rupees,backbutton;
     EditText editText_enteramt;
     WebView    webView_details_about_page;
     NetworkImageView networkImageView_image_post;
@@ -58,6 +58,7 @@ public class Detailpage extends AppCompatActivity {
         webView_details_about_page=(WebView)findViewById(R.id.wwebview_detail_page);
         networkImageView_image_post=(NetworkImageView)findViewById(R.id.detail_image);
         imageLoader=CustomVolleyRequest.getInstance(this).getImageLoader();
+        backbutton = (ImageButton)findViewById(R.id.imagebutton_back);
 
         String imageurl="http://simpli-city.in/vdfdhfv78lmdsvmg5todlsh4jffgskjb2947qnt/images/food/1826888200besil%20pakoda.jpg";
 
@@ -75,6 +76,12 @@ public class Detailpage extends AppCompatActivity {
         percentage_circularbar.setMax(100); // Maximum Progress
         // percentage_circularbar.setProgressDrawable(drawable);
 
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         button_helpnow.setOnClickListener(new View.OnClickListener() {
             @Override

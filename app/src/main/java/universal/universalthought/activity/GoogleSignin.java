@@ -61,7 +61,7 @@ public class GoogleSignin extends AppCompatActivity implements  GoogleApiClient.
     public static final String Language = "lamguage";
     private String KEY_PROFILEIMAGE = "image";
     String contentid;
-String UPLOAD_CHECK_USER="http://simpli-city.in/request2.php?rtype=checkuser&key=simples";
+String UPLOAD_CHECK_USER="http://www.simples.in/universalthought/universalthought.php";
 String activity,gcmids;
     public static final String MYUSERID= "myprofileid";
     public static final String USERNAME= "myprofilename";
@@ -138,7 +138,7 @@ ProgressDialog pdialog;
             final StringRequest signintwo=new StringRequest(Request.Method.POST, UPLOAD_CHECK_USER, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-Log.e("UserID","empstart"+response.toString());
+Log.e("UserID",response.toString());
                 if(response.toString().trim().equalsIgnoreCase("no")){
                     pdialog.dismiss();
                     StringRequest upload=new StringRequest(Request.Method.POST, UPLOAD_URL, new Response.Listener<String>() {
@@ -235,9 +235,9 @@ Log.e("UserID","empty"+res);
                         protected Map<String ,String> getParams()throws AuthFailureError{
                           Map<String,String> params=new Hashtable<String, String>();
 
-                            params.put(KEY_EMAIL,acct.getEmail());
-                            params.put(KEY_NAME,acct.getDisplayName());
-                            params.put(KEY_PROFILEIMAGE,acct.getPhotoUrl().toString());
+                            params.put("MailId",acct.getEmail());
+                            params.put("Mobile ",acct.getDisplayName());
+                            //params.put(KEY_PROFILEIMAGE,acct.getPhotoUrl().toString());
                          //   params.put(KEY_GENDER,"null");
                             params.put(KEY_GCM,gcmids);
                             return  params;
