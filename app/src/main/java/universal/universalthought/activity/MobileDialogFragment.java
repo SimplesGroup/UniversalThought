@@ -75,6 +75,7 @@ public class MobileDialogFragment extends DialogFragment {
 							inputNameDialog.setDialogTitle("Enter Name");
 							inputNameDialog.show(fragmentManager, "Input Dialog");
 						getActivity().setFinishOnTouchOutside(false);
+
 					}
 				});
 				
