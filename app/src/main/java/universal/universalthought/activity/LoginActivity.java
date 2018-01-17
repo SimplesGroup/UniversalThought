@@ -91,6 +91,7 @@ public class LoginActivity extends Fragment {
         inputNameDialog.setCancelable(false);
         inputNameDialog.setDialogTitle("Enter Name");
         inputNameDialog.show(fragmentManager, "Input Dialog");
+        getActivity().setFinishOnTouchOutside(true);
     }
 
 
