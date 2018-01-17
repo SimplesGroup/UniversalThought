@@ -69,7 +69,7 @@ public class OtpDialogFragment extends DialogFragment {
 						//activity.onFinishInputDialog(txtname.getText().toString());
 						Registration();
 						//---dismiss the alert
-						dismiss();
+						//dismiss();
 					}
 				});
 				
