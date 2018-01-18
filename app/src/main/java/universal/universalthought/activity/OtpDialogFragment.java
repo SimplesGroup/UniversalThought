@@ -62,9 +62,10 @@ public class OtpDialogFragment extends DialogFragment {
 				btnDone = (Button) view.findViewById(R.id.btnDone);
 
 		ResponseDataModel a = new ResponseDataModel(mail,mobileno,id);
-//		Log.e("Response",a.getId());
+
 
 		 strtext = getArguments().getString("id");
+		Log.e("Response",strtext);
 
 		//---event handler for the button
 				btnDone.setOnClickListener(new View.OnClickListener()
