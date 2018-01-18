@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +22,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.BasicInformation;
+import universal.universalthought.model.ProductEnglish;
+import universal.universalthought.model.ResponseDataModel;
 
 /**
  * Created by Sandhiya on 12/11/2017.
@@ -43,6 +52,7 @@ public class SignUpActivity extends Fragment {
     EditText name,mailid,password,mobileno;
     RequestQueue queue;
     String URL_SIGNUP="http://www.simples.in/universalthought/universalthought.php";
+    private List<ResponseDataModel> datalist;
 
     @Nullable
     public static SignUpActivity newInstance() {
@@ -56,6 +66,7 @@ public class SignUpActivity extends Fragment {
         sharedpreferences = getActivity(). getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
         queue = Volley.newRequestQueue(getActivity());
+        datalist = new ArrayList<>();
         signin_button=(Button)view.findViewById(R.id.button_signin);
         gmail = (Button) view.findViewById(R.id.btngmail);
         facebook = (Button) view.findViewById(R.id.btnfb);
@@ -84,9 +95,13 @@ public class SignUpActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 Registration();
-
-                        Intent i = new Intent(getActivity(),BasicInformation.class);
-                        startActivity(i);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                OtpDialogFragment inputNameDialog = new OtpDialogFragment();
+                inputNameDialog.setCancelable(false);
+                inputNameDialog.setDialogTitle("Enter Name");
+                inputNameDialog.show(fragmentManager, "Input Dialog");
+                        /*Intent i = new Intent(getActivity(),BasicInformation.class);
+                        startActivity(i);*/
             }
         });
 
@@ -98,7 +113,41 @@ public class SignUpActivity extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                String[] array = response.split(",");
+                JSONObject jsonObj = null;
+                try {
+                    jsonObj = new JSONObject(response);
+                    JSONArray contacts = jsonObj.getJSONArray("result");
+
+                    // looping through All Contacts
+                    for (int i = 0; i < contacts.length(); i++) {
+                        JSONObject c = contacts.getJSONObject(i);
+
+                        String id = c.getString("id");
+                        String mail = c.getString("mail_id");
+                        String mobileno = c.getString("mobile");
+
+                        ResponseDataModel a = new ResponseDataModel(mail,mobileno,id);
+                        a.setId(id);
+                        a.setMail(mail);
+                        a.setMobileno(mobileno);
+                        Log.e("Response",id);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id",id);
+// set Fragmentclass Arguments
+                        Fragment fragobj = new Fragment();
+                        fragobj.setArguments(bundle);
+                        Log.e("Response",a.getId());
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                // Getting JSON Array node
+
+
+                    String[] array = response.split(",");
                 SharedPreferences.Editor editor=sharedpreferences.edit();
                 editor.putString(USERNAME,"name");
                 editor.commit();

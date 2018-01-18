@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import universal.universalthought.R;
+import universal.universalthought.model.ResponseDataModel;
 
 public class OtpDialogFragment extends DialogFragment {
 	EditText txtname;
@@ -34,7 +35,8 @@ public class OtpDialogFragment extends DialogFragment {
 	RequestQueue queue;
 	String URL_SIGNUP="http://www.simples.in/universalthought/universalthought.php";
 	public  static String USERNAME="username";
-
+	String mail,id,mobileno;
+	String strtext;
 	public interface InputNameDialogListener {
 		void onFinishInputDialog(String inputText);
 		}
@@ -58,8 +60,13 @@ public class OtpDialogFragment extends DialogFragment {
 				//---get the EditText and Button views
 				txtname = (EditText) view.findViewById(R.id.txtName);
 				btnDone = (Button) view.findViewById(R.id.btnDone);
-				
-				//---event handler for the button
+
+		ResponseDataModel a = new ResponseDataModel(mail,mobileno,id);
+//		Log.e("Response",a.getId());
+
+		 strtext = getArguments().getString("id");
+
+		//---event handler for the button
 				btnDone.setOnClickListener(new View.OnClickListener()
 				{
 					public void onClick(View view) {
@@ -68,6 +75,7 @@ public class OtpDialogFragment extends DialogFragment {
 						//InputNameDialogListener activity = (InputNameDialogListener) getActivity();
 						//activity.onFinishInputDialog(txtname.getText().toString());
 						Registration();
+                        dismiss();
 						//---dismiss the alert
 						//dismiss();
 					}
@@ -106,11 +114,11 @@ public class OtpDialogFragment extends DialogFragment {
 			protected Map<String, String> getParams() throws AuthFailureError {
 
 				Map<String,String> params = new HashMap<String, String>();
-
+				ResponseDataModel a = new ResponseDataModel(mail,mobileno,id);
 
 				params.put("Key","UniversalThought");
 				params.put("rType","UserLoginOtp");
-				params.put("User_id","sandhiya@simples.in");
+				params.put("User_id",strtext);
 				params.put("Otp","1234");
 
 

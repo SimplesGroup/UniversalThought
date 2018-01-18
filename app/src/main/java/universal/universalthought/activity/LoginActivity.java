@@ -63,8 +63,8 @@ public class LoginActivity extends Fragment {
             public void onClick(View v) {
                 Registration();
                 showInputNameDialog();
-                //Intent i = new Intent(getActivity(),BasicInformation.class);
-                //startActivity(i);
+                /*Intent i = new Intent(getActivity(),BasicInformation.class);
+                startActivity(i);*/
             }
         });
 
