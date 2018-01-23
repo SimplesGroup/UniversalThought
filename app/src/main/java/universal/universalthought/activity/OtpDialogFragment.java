@@ -64,8 +64,8 @@ public class OtpDialogFragment extends DialogFragment {
 		ResponseDataModel a = new ResponseDataModel(mail,mobileno,id);
 
 
-		 strtext = getArguments().getString("id");
-		Log.e("Response",strtext);
+ //		 strtext = getArguments().getString("id");
+	//	Log.e("Response",strtext);
 
 		//---event handler for the button
 				btnDone.setOnClickListener(new View.OnClickListener()
@@ -119,7 +119,7 @@ public class OtpDialogFragment extends DialogFragment {
 
 				params.put("Key","UniversalThought");
 				params.put("rType","UserLoginOtp");
-				params.put("User_id",strtext);
+				params.put("User_id","9");
 				params.put("Otp","1234");
 
 

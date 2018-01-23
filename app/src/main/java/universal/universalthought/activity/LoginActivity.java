@@ -1,5 +1,6 @@
 package universal.universalthought.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,8 @@ import java.util.Map;
 
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.BasicInformation;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class LoginActivity extends Fragment {
@@ -62,7 +65,8 @@ public class LoginActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 Registration();
-                showInputNameDialog();
+                validation();
+               // showInputNameDialog();
                 /*Intent i = new Intent(getActivity(),BasicInformation.class);
                 startActivity(i);*/
             }
@@ -130,5 +134,78 @@ public class LoginActivity extends Fragment {
 
         };
         queue.add(request);
+    }
+
+
+    public void validation() {
+        Log.d("SignupEnglish", "SignupEnglish");
+
+        if (!validate()) {
+            onSignupFailed();
+            return;
+        }
+
+        login.setEnabled(false);
+
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity(),R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
+
+
+
+        // TODO: Implement your own signup logic here.
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onSignupSuccess or onSignupFailed
+                        // depending on success
+                        onSignupSuccess();
+                        // onSignupFailed();
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
+    }
+
+
+    public void onSignupSuccess() {
+        login.setEnabled(true);
+        getActivity().setResult(RESULT_OK, null);
+        getActivity().finish();
+    }
+
+    public void onSignupFailed() {
+        // Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+
+        login.setEnabled(true);
+    }
+    public boolean validate() {
+        boolean valid = true;
+
+
+        String mail = mailid.getText().toString();
+        String pswrd = password.getText().toString();
+
+
+
+        if (mail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            mailid.setError("enter a valid email address");
+            valid = false;
+        } else {
+            mailid.setError(null);
+        }
+
+
+
+        if (pswrd.isEmpty() || password.length() < 4 || pswrd.length() > 10) {
+            password.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            password.setError(null);
+        }
+
+
+        return valid;
     }
 }

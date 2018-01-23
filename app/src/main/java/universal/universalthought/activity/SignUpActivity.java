@@ -1,5 +1,6 @@
 package universal.universalthought.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,8 @@ import universal.universalthought.fundraiser.BasicInformation;
 import universal.universalthought.model.ProductEnglish;
 import universal.universalthought.model.ResponseDataModel;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by Sandhiya on 12/11/2017.
  */
@@ -49,7 +53,7 @@ public class SignUpActivity extends Fragment {
     public  static String USERID="userid";
 
     Button signin_button,gmail,facebook;
-    EditText name,mailid,password,mobileno;
+    EditText username,mailid,password,mobileno;
     RequestQueue queue;
     String URL_SIGNUP="http://www.simples.in/universalthought/universalthought.php";
     private List<ResponseDataModel> datalist;
@@ -71,7 +75,7 @@ public class SignUpActivity extends Fragment {
         gmail = (Button) view.findViewById(R.id.btngmail);
         facebook = (Button) view.findViewById(R.id.btnfb);
 
-        name = (EditText) view.findViewById(R.id.edt_username);
+        username = (EditText) view.findViewById(R.id.edt_username);
         mailid = (EditText)view.findViewById(R.id.edt_email);
         password = (EditText)view.findViewById(R.id.edt_password);
         mobileno = (EditText)view.findViewById(R.id.edt_mobileno);
@@ -95,11 +99,12 @@ public class SignUpActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 Registration();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                validation();
+                /*FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 OtpDialogFragment inputNameDialog = new OtpDialogFragment();
                 inputNameDialog.setCancelable(false);
                 inputNameDialog.setDialogTitle("Enter Name");
-                inputNameDialog.show(fragmentManager, "Input Dialog");
+                inputNameDialog.show(fragmentManager, "Input Dialog");*/
                         /*Intent i = new Intent(getActivity(),BasicInformation.class);
                         startActivity(i);*/
             }
@@ -179,5 +184,94 @@ return params;
 
         };
         queue.add(request);
+    }
+
+
+
+    public void validation() {
+        Log.d("SignupEnglish", "SignupEnglish");
+
+        if (!validate()) {
+            onSignupFailed();
+            return;
+        }
+
+        signin_button.setEnabled(false);
+
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity(),
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
+
+
+
+        // TODO: Implement your own signup logic here.
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onSignupSuccess or onSignupFailed
+                        // depending on success
+                        onSignupSuccess();
+                        // onSignupFailed();
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
+    }
+
+
+    public void onSignupSuccess() {
+        signin_button.setEnabled(true);
+        getActivity().setResult(RESULT_OK, null);
+        getActivity().finish();
+    }
+
+    public void onSignupFailed() {
+        // Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+
+        signin_button.setEnabled(true);
+    }
+    public boolean validate() {
+        boolean valid = true;
+
+        String name = username.getText().toString();
+
+        String mobile = mobileno.getText().toString();
+        String emailup = mailid.getText().toString();
+        String Passwordin = password.getText().toString();
+
+        if (name.isEmpty() || name.length() < 3) {
+            username.setError("at least 3 characters");
+            valid = false;
+        } else {
+            username.setError(null);
+        }
+
+        if (mobile.isEmpty() || !Patterns.PHONE.matcher(mobile).matches()) {
+            mobileno.setError("Enter Valid Login Code");
+            valid = false;
+        } else {
+            mobileno.setError(null);
+        }
+
+
+        if (emailup.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailup).matches()) {
+            mailid.setError("enter a valid email address");
+            valid = false;
+        } else {
+            mailid.setError(null);
+        }
+
+
+
+        if (Passwordin.isEmpty() || password.length() < 4 || Passwordin.length() > 10) {
+            password.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            password.setError(null);
+        }
+
+        return valid;
     }
 }
