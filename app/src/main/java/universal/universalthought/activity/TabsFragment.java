@@ -18,8 +18,6 @@ import java.util.List;
 
 import universal.universalthought.R;
 
-
-
 public class TabsFragment extends Fragment {
 
     private TabLayout tabLayout;
