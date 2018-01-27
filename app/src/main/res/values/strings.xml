@@ -48,6 +48,9 @@
     <string name="eg">Eg:."Help Hari fight cancer"</string>
     <string name="cat">Please note: for all medical related causes, choose Medical and not Children or Emergencies.</string>
     <string name="fundname">You want this link to be shared by your friends and family. Make it easy for them to remember! Just mentioning the beneficiarys name should do the trick. </string>
+    <string name="suprtfrmt">Supported formats: PDF, JPG, JPEG, PNG (scanned documents formats).</string>
+    <string name="tax">Universal Thought provides you the option to auto-generate and issue 80G receipts for your INR donations. This will save your time and effort spent in reconciling and issuing on your own.</string>
+    <string name="recmd">Recommended dimensions: 75x50; Maximum file size: 500KB; Supported image formats: JPG, JPEG and PNG.</string>
 
     <array name="amount">
         <item>"Rs"</item>
@@ -72,5 +75,13 @@
         <item>"Sports"</item>
         <item>"Technology"</item>
         <item>"Women"</item>
+    </array>
+
+    <array name="orgtype">
+        <item>""</item>
+        <item>"Trust"</item>
+        <item>"Society"</item>
+        <item>"Section 25"</item>
+
     </array>
 </resources>

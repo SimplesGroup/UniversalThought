@@ -1,5 +1,6 @@
 package universal.universalthought.fundraiser;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class StoriesPage extends AppCompatActivity {
     private ProductsAdapterEnglish adapter;
     private List<ProductEnglish> productEnglishList;
     private RecyclerView recyclerView;
+    Context context;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,8 +36,9 @@ public class StoriesPage extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_stories);
         recyclerView = (RecyclerView) findViewById(R.id.drawerList);
-        adapter = new ProductsAdapterEnglish(getApplicationContext(), productEnglishList);
         productEnglishList = new ArrayList<>();
+        adapter = new ProductsAdapterEnglish(getApplicationContext(), productEnglishList);
+
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(StoriesPage.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

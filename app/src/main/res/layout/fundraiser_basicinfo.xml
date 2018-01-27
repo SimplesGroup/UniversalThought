@@ -13,7 +13,7 @@
         android:layout_gravity="center">
 
         <Button
-            android:id ="@+id/push_button"
+            android:id ="@+id/one_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="1"
@@ -139,7 +139,7 @@
             android:textColor="#000000"/>
 
         <EditText
-            android:id="@+id/edt_frgtpswd"
+            android:id="@+id/edt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -173,7 +173,7 @@
 
 
             <EditText
-                android:id="@+id/edt_ambt"
+                android:id="@+id/edt_amnt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boxborder"

@@ -179,6 +179,7 @@ public class SignUpActivity extends Fragment {
                 params.put("Password",pswd);
                 params.put("Mobile",mobile);
 
+
 return params;
             }
 
@@ -229,7 +230,6 @@ return params;
 
     public void onSignupFailed() {
         // Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
         signin_button.setEnabled(true);
     }
     public boolean validate() {

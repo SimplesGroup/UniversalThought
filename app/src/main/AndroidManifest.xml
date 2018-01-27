@@ -29,6 +29,7 @@
         <activity android:name=".activity.FundraiserActivity"></activity>
         <activity android:name=".fundraiser.BasicInformation"></activity>
         <activity android:name=".fundraiser.FundraiserDetails"></activity>
+        <activity android:name=".fundraiser.OrganizationDetails"></activity>
         <activity android:name=".fundraiser.OtherDetails"></activity>
         <activity android:name=".fundraiser.DonatePage"></activity>
         <activity android:name=".fundraiser.StoriesPage"></activity>

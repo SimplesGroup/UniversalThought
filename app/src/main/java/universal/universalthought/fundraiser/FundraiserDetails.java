@@ -1,6 +1,7 @@
 package universal.universalthought.fundraiser;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,10 +21,12 @@ import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -38,26 +41,72 @@ import universal.universalthought.R;
  */
 
 public class FundraiserDetails extends AppCompatActivity {
+    EditText fundraisername;
     Button save,previous,upload;
     ImageView image;
     public Bitmap mBitmap;
     Uri picUri;
+    String name;
+    Button one,two,three;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.fundraiser_details);
+        Bundle b = new Bundle();
+        b = getIntent().getExtras();
+        fundraisername = (EditText)findViewById(R.id.edt_fundname);
         image = (ImageView)findViewById(R.id.fund_image);
         save = (Button)findViewById(R.id.button_save);
         previous = (Button)findViewById(R.id.button_previous);
         upload = (Button)findViewById(R.id.button_upload);
+        one = (Button)findViewById(R.id.one_button);
+        two = (Button)findViewById(R.id.two_button);
+        three = (Button)findViewById(R.id.three_button);
+
+
+          name = b.getString("activity");
+        Log.e("ACTIVITY",name);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               /* Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
+                startActivity(i);*/
+            if(name.equals("OrganizationDetails"))
+                {
+                    Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
+                    startActivity(i);
+                }
+                else
+                {
+                    Intent i = new Intent(FundraiserDetails.this, OtherDetails.class);
+                    startActivity(i);
+                }
+            }
+        });
 
-                Intent i = new Intent(FundraiserDetails.this,OtherDetails.class);
+        one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(FundraiserDetails.this,BasicInformation.class);
                 startActivity(i);
+            }
+        });
+
+        three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(name.equals("OrganizationDetails"))
+                {
+                    Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
+                    startActivity(i);
+                }
+                else
+                {
+                    Intent i = new Intent(FundraiserDetails.this, OtherDetails.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -241,5 +290,77 @@ public class FundraiserDetails extends AppCompatActivity {
             width = (int) (height * bitmapRatio);
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+    public void validation() {
+        Log.d("SignupEnglish", "SignupEnglish");
+
+        if (!validate()) {
+            onSignupFailed();
+            return;
+        }
+
+        save.setEnabled(false);
+
+        final ProgressDialog progressDialog = new ProgressDialog(getApplicationContext(),
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
+
+
+
+        // TODO: Implement your own signup logic here.
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onSignupSuccess or onSignupFailed
+                        // depending on success
+                        onSignupSuccess();
+                        // onSignupFailed();
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
+    }
+
+
+    public void onSignupSuccess() {
+        save.setEnabled(true);
+        setResult(RESULT_OK, null);
+        finish();
+    }
+
+    public void onSignupFailed() {
+        // Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+
+        save.setEnabled(true);
+    }
+    public boolean validate() {
+        boolean valid = true;
+
+        String name = fundraisername.getText().toString();
+        String tit = image.getDrawable().toString();
+
+
+
+        if (name.isEmpty() || name.length() < 3) {
+            fundraisername.setError("Fundraiser name can't be blank.");
+            valid = false;
+        } else {
+            fundraisername.setError(null);
+        }
+
+       /* if (tit.isEmpty() || tit.length() < 3) {
+            image.setError("This field can't be empty.");
+            valid = false;
+        } else {
+            image.setError(null);
+
+        }*/
+
+
+
+
+        return valid;
     }
 }

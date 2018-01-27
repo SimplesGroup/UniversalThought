@@ -67,8 +67,8 @@ public class LoginActivity extends Fragment {
                 Registration();
                 validation();
                // showInputNameDialog();
-                /*Intent i = new Intent(getActivity(),BasicInformation.class);
-                startActivity(i);*/
+             Intent i = new Intent(getActivity(),BasicInformation.class);
+                startActivity(i);
             }
         });
 
