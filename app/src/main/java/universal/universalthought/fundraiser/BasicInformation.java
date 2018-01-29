@@ -50,19 +50,28 @@ public class BasicInformation extends AppCompatActivity {
         two = (Button)findViewById(R.id.two_button);
         three = (Button)findViewById(R.id.three_button);
          save.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 validation();
-                 Intent i = new Intent(BasicInformation.this,FundraiserDetails.class);
-                 if(fundyes.isChecked()) {
-                     i.putExtra("activity", "OrganizationDetails");
-                 }
+                                     @Override
+                                     public void onClick(View v) {
+                                         validation();
+
+                                         if (!fullname.equals("") && !amount.equals("") && !title.equals("") && !beneficaryname.equals(""))
+                                         {
+
+                                     Intent i = new Intent(BasicInformation.this, FundraiserDetails.class);
+                 if(fundyes.isChecked())
+
+                                     {
+                                         i.putExtra("activity", "OrganizationDetails");
+                                     }
                  else
-                 {
-                     i.putExtra("activity", "OtherDetails");
-                 }
+
+                                     {
+                                         i.putExtra("activity", "OtherDetails");
+                                     }
+
 
                  startActivity(i);
+                                         }
              }
          });
         two.setOnClickListener(new View.OnClickListener() {

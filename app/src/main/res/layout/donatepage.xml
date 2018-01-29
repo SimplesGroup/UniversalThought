@@ -184,6 +184,7 @@
                 android:background="#C22400"
                 android:paddingBottom="2dp"
                 android:text="Continue"
+                android:layout_marginBottom="20dp"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
 
