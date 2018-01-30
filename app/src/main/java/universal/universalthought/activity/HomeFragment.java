@@ -36,6 +36,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import universal.universalthought.Detailpage;
 import universal.universalthought.R;
 import universal.universalthought.adapter.ProductsAdapterEnglish;
 import universal.universalthought.fundraiser.StoriesPage;
@@ -267,7 +268,7 @@ public class HomeFragment extends Fragment {
            view.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   Intent i = new Intent(getActivity(),FundraiserActivity.class);
+                   Intent i = new Intent(getActivity(),Detailpage.class);
                    startActivity(i);
                }
            });
