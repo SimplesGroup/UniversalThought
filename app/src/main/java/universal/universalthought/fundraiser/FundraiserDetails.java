@@ -28,6 +28,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,16 +74,23 @@ public class FundraiserDetails extends AppCompatActivity {
             public void onClick(View v) {
                /* Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
                 startActivity(i);*/
-            if(name.equals("OrganizationDetails"))
-                {
-                    Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
-                    startActivity(i);
-                }
-                else
-                {
-                    Intent i = new Intent(FundraiserDetails.this, OtherDetails.class);
-                    startActivity(i);
-                }
+                validation();
+                String name = fundraisername.getText().toString();
+                String tit = image.getDrawable().toString();
+if(!name.equals("")&&tit.equals("")) {
+    if (name.equals("OrganizationDetails")) {
+        Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
+        startActivity(i);
+    } else {
+        Intent i = new Intent(FundraiserDetails.this, OtherDetails.class);
+        startActivity(i);
+    }
+}
+else
+{
+    Toast.makeText(FundraiserDetails.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
+
+}
             }
         });
 
@@ -357,9 +365,6 @@ public class FundraiserDetails extends AppCompatActivity {
             image.setError(null);
 
         }*/
-
-
-
 
         return valid;
     }

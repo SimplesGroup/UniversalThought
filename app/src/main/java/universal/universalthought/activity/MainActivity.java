@@ -1,7 +1,9 @@
 package universal.universalthought.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.BasicInformation;
@@ -21,6 +24,7 @@ import universal.universalthought.fundraiser.BasicInformation;
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
     private static String TAG = MainActivity.class.getSimpleName();
+    boolean doubleBackToExitPressedOnce = false;
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -71,7 +75,30 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
     @Override
     public void onBackPressed() {
-        finish();
+
+        if (doubleBackToExitPressedOnce) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            finish();
+            System.exit(0);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
+
+
     }
 
     /*@Override

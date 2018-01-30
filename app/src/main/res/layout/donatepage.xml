@@ -5,32 +5,28 @@
     android:layout_height="match_parent">
 
 
-
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="20dp"
             android:focusableInTouchMode="true"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txt_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="20dp"
                 android:text="Donation Details"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -64,9 +60,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="20dp"
                 android:text="Donation Amount *"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,35 +74,36 @@
                     android:id="@+id/spinner"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
-                    android:padding="6dp"
                     android:background="@drawable/boxborder"
-                    android:entries="@array/amount" />
+                    android:entries="@array/amount"
+                    android:padding="6dp"
+                    android:textSize="12dp" />
 
 
                 <EditText
-                    android:id="@+id/edt_ambt"
+                    android:id="@+id/edt_amnt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:background="@drawable/boxborder"
-                    android:padding="10dp"
                     android:hint="Enter Amount"
                     android:inputType="number"
-                    android:layout_marginLeft="5dp"
+                    android:padding="10dp"
                     android:textSize="12dp" />
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/txt_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="20dp"
                 android:text="Your name *"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/edt_title"
+                android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -114,16 +112,14 @@
                 android:textSize="12dp" />
 
 
-
-
             <TextView
                 android:id="@+id/txt_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="20dp"
                 android:text="Your Email *"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/edt_email"
@@ -135,16 +131,14 @@
                 android:textSize="12dp" />
 
 
-
-
             <TextView
                 android:id="@+id/txt_donor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="20dp"
                 android:text="Donor's name *"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/edt_donor"
@@ -160,17 +154,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="20dp"
                 android:text="Add a comment(Optional)"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
             <EditText
                 android:id="@+id/edt_cmnt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/boxborder"
-                android:padding="10dp"
                 android:hint="Enter Your comment....."
+                android:padding="10dp"
                 android:textSize="12dp" />
 
 
@@ -178,13 +173,13 @@
                 android:id="@+id/button_save"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="25dp"
                 android:background="#C22400"
                 android:paddingBottom="2dp"
                 android:text="Continue"
-                android:layout_marginBottom="20dp"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
 

@@ -55,7 +55,7 @@ public class SignUpActivity extends Fragment {
     Button signin_button,gmail,facebook;
     EditText username,mailid,password,mobileno;
     RequestQueue queue;
-    String URL_SIGNUP="http://www.simples.in/universalthought/universalthought.php";
+    String URL_SIGNUP="http://simpli-city.in/request2.php?rtype=alldatatest&key=simples&qtype=news&page=1";
     private List<ResponseDataModel> datalist;
 
     @Nullable
@@ -128,14 +128,14 @@ public class SignUpActivity extends Fragment {
                         JSONObject c = contacts.getJSONObject(i);
 
                         String id = c.getString("id");
-                        String mail = c.getString("mail_id");
+                        String mail = c.getString("title");
                         String mobileno = c.getString("mobile");
 
                         ResponseDataModel a = new ResponseDataModel(mail,mobileno,id);
                         a.setId(id);
                         a.setMail(mail);
                         a.setMobileno(mobileno);
-                        Log.e("Response",id);
+                        Log.e("Response",mail);
 
                         Bundle bundle = new Bundle();
                         bundle.putString("id",id);
@@ -172,12 +172,12 @@ public class SignUpActivity extends Fragment {
                 String mail = mailid.getText().toString();
                 String pswd = password.getText().toString();
                 String mobile = mobileno.getText().toString();
-
+/*
                 params.put("Key","UniversalThought");
                 params.put("rType","UserSignUp");
                 params.put("MailId",mail);
                 params.put("Password",pswd);
-                params.put("Mobile",mobile);
+                params.put("Mobile",mobile);*/
 
 
 return params;

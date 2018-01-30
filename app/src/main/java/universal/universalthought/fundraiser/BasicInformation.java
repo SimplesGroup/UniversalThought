@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import universal.universalthought.R;
 import universal.universalthought.activity.HomeFragment;
@@ -53,8 +54,11 @@ public class BasicInformation extends AppCompatActivity {
                                      @Override
                                      public void onClick(View v) {
                                          validation();
-
-                                         if (!fullname.equals("") && !amount.equals("") && !title.equals("") && !beneficaryname.equals(""))
+               String name = fullname.getText().toString();
+                                         String tit = title.getText().toString();
+                                         String amnt = amount.getText().toString();
+                                         String benif = beneficaryname.getText().toString();
+                                         if (!name.equals("")&&!tit.equals("")&&!amnt.equals("")&&!benif.equals(""))
                                          {
 
                                      Intent i = new Intent(BasicInformation.this, FundraiserDetails.class);
@@ -71,6 +75,10 @@ public class BasicInformation extends AppCompatActivity {
 
 
                  startActivity(i);
+                                         }
+                                         else
+                                         {
+                                             Toast.makeText(BasicInformation.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
                                          }
              }
          });
@@ -93,8 +101,9 @@ public class BasicInformation extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(BasicInformation.this,MainActivity.class);
+        Intent i =  new Intent(BasicInformation.this,MainActivity.class);
         startActivity(i);
+        finish();
     }
 
     public void validation() {

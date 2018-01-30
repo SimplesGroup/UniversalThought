@@ -88,8 +88,6 @@ public class HomeFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         prepareAlbums();
-       // btnSkip = (Button) rootView.findViewById(R.id.btn_skip);
-       // btnNext = (Button) rootView.findViewById(R.id.btn_next);
 
 
         // layouts of all welcome sliders
@@ -266,7 +264,13 @@ public class HomeFragment extends Fragment {
 
             View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
-
+           view.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent i = new Intent(getActivity(),FundraiserActivity.class);
+                   startActivity(i);
+               }
+           });
             return view;
         }
 

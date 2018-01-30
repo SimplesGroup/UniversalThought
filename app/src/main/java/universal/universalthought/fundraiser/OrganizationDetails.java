@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import universal.universalthought.R;
 
@@ -53,9 +54,35 @@ public class OrganizationDetails extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validation();
-                Intent i = new Intent(OrganizationDetails.this, OtherDetails.class);
-                startActivity(i);
+
+                String fullname = name.getText().toString();
+                String web = website.getText().toString();
+                String panno = pan.getText().toString();
+                String regsection = regsec.getText().toString();
+                String regnumber = regno.getText().toString();
+                String regnadd = regaddress.getText().toString();
+                String contactmail = cntmail.getText().toString();
+                String contactno = cntphone.getText().toString();
+                String fcraregnumber = fcraregno.getText().toString();
+                String regnumberentity = regnoentity.getText().toString();
+                String einno = ein.getText().toString();
+                String us = regadrus.getText().toString();
+                String author = authrep.getText().toString();
+                if (!fullname.equals("") && !web.equals("") && !panno.equals("") && !regsection.equals("") && !regnumber.equals("") && !regnadd.equals("") &&
+                        !contactmail.equals("") &&
+                        !contactno.equals("") &&
+                        !fcraregnumber.equals("") &&
+                        !regnumberentity.equals("") &&
+                        !einno.equals("") &&
+                        !us.equals("")&&!author.equals("") ) {
+                    validation();
+                    Intent i = new Intent(OrganizationDetails.this, OtherDetails.class);
+                    startActivity(i);
+                }
+
+            else{
+                    Toast.makeText(OrganizationDetails.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
 
