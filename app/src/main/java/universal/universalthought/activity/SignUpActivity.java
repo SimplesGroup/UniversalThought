@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -48,8 +49,8 @@ public class SignUpActivity extends Fragment {
 
     public static final String mypreference = "mypref";
     SharedPreferences sharedpreferences;
-    public  static String USERNAME="username";
-    public  static String USERIMAGE="userimage";
+    public  static String USEREMAIL="useremail";
+    public  static String USERPHONE="userphone";
     public  static String USERID="userid";
 
     Button signin_button,gmail,facebook;
@@ -98,6 +99,7 @@ public class SignUpActivity extends Fragment {
         signin_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              // Toast.makeText(getActivity(),"clicked",Toast.LENGTH_LONG).show();
                 Registration();
                 validation();
                 /*FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -114,11 +116,13 @@ public class SignUpActivity extends Fragment {
     }
 
     private void Registration(){
+        Log.e("RES","START");
         StringRequest request=new StringRequest(Request.Method.POST, URL_SIGNUP, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-                JSONObject jsonObj = null;
+                Log.e("RES","hi"+response);
+               JSONObject jsonObj = null;
+               String mailid ="",userid="",phonenum="";
                 try {
                     jsonObj = new JSONObject(response);
                     JSONArray contacts = jsonObj.getJSONArray("result");
@@ -127,18 +131,18 @@ public class SignUpActivity extends Fragment {
                     for (int i = 0; i < contacts.length(); i++) {
                         JSONObject c = contacts.getJSONObject(i);
 
-                        String id = c.getString("id");
-                        String mail = c.getString("mail_id");
-                        String mobileno = c.getString("mobile");
+                       userid = c.getString("id");
+                        mailid = c.getString("mail_id");
+                        phonenum = c.getString("mobile");
 
-                        ResponseDataModel a = new ResponseDataModel(mail,mobileno,id);
-                        a.setId(id);
-                        a.setMail(mail);
-                        a.setMobileno(mobileno);
-                        Log.e("Response",id);
+                        ResponseDataModel a = new ResponseDataModel(mailid,phonenum,userid);
+                        a.setId(userid);
+                        a.setMail(mailid);
+                        a.setMobileno(phonenum);
+                        Log.e("RES",userid);
 
                         Bundle bundle = new Bundle();
-                        bundle.putString("id",id);
+                        bundle.putString("id",userid);
 // set Fragmentclass Arguments
                         Fragment fragobj = new Fragment();
                         fragobj.setArguments(bundle);
@@ -154,10 +158,12 @@ public class SignUpActivity extends Fragment {
 
                     String[] array = response.split(",");
                 SharedPreferences.Editor editor=sharedpreferences.edit();
-                editor.putString(USERNAME,"name");
+                editor.putString(USEREMAIL,mailid);
+                editor.putString(USERID,userid);
+                editor.putString(USERPHONE,phonenum);
                 editor.commit();
                 Log.e("Response",response);
-
+                Toast.makeText(getActivity(),"clicked"+userid,Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -172,9 +178,11 @@ public class SignUpActivity extends Fragment {
                 String mail = mailid.getText().toString();
                 String pswd = password.getText().toString();
                 String mobile = mobileno.getText().toString();
+                String name=username.getText().toString();
 
                 params.put("Key","UniversalThought");
                 params.put("rType","UserSignUp");
+                params.put("Name",name);
                 params.put("MailId",mail);
                 params.put("Password",pswd);
                 params.put("Mobile",mobile);
@@ -184,7 +192,9 @@ return params;
             }
 
         };
+
         queue.add(request);
+        Log.e("RES","SEND");
     }
 
 

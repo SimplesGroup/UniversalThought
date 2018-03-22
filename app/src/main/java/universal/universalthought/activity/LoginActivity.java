@@ -103,12 +103,13 @@ public class LoginActivity extends Fragment {
         StringRequest request=new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("RES","HI"+response.toString());
 
                 String[] array = response.split(",");
                 SharedPreferences.Editor editor=sharedpreferences.edit();
                 editor.putString(USERNAME,"name");
                 editor.commit();
-                Log.e("Response",response);
+
 
             }
         }, new Response.ErrorListener() {

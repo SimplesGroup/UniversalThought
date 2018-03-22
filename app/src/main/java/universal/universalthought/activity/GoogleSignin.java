@@ -1,5 +1,6 @@
 package universal.universalthought.activity;
 
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -177,13 +178,16 @@ Log.e("UserID",response.toString());
                                         // Toast.makeText(SigninComplete.this, sharedpreferences.getString(GcmId,""), Toast.LENGTH_SHORT).show();
                                     }
                                     Log.e("EMAIL,","data"+user_email+userimage+username);
-                                    if(language_data.equals("English")) {
+                                    /*if(language_data.equals("English")) {
                                         Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(main);
                                     }else {
                                         Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(main);
-                                    }
+                                    }*/
+                                    android.support.v4.app.FragmentTransaction ft =getSupportFragmentManager().beginTransaction();
+                                    MobileDialogFragment dialog = new MobileDialogFragment();
+                                    dialog.show(ft, "Tag");
                                 }
 
                             }
@@ -265,13 +269,10 @@ Log.e("UserID","empty"+res);
                         String emails=array[3].toString();
                         editor.putString(USERMAILID,array[3].toString().trim());
                         editor.commit();
-                        if(language_data.equals("English")) {
-                            Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(main);
-                        }else {
-                            Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(main);
-                        }
+
+                        android.support.v4.app.FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                        MobileDialogFragment mobile=new MobileDialogFragment();
+                        mobile.show(transaction, "Tag");
                     }
 
 
