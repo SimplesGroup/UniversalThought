@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        // View rootView = inflater.inflate(R.layout.f, container, false);
-        View rootView = inflater.inflate(R.layout.frags,)
+        View rootView = inflater.inflate(R.layout.frags,container,false);
 
         viewPager = (ViewPager) rootView.findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) rootView.findViewById(R.id.layoutDots);
