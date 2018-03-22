@@ -65,10 +65,11 @@ public class LoginActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 Registration();
-                validation();
+              //  validation();
                // showInputNameDialog();
              Intent i = new Intent(getActivity(),BasicInformation.class);
                 startActivity(i);
+                getActivity().finish();
             }
         });
 
@@ -77,6 +78,7 @@ public class LoginActivity extends Fragment {
             public void onClick(View v) {
                 Intent facebook=new Intent(getActivity(),FaceBooklogin.class);
                 startActivity(facebook);
+                getActivity().finish();
             }
         });
         googlelogin.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +86,7 @@ public class LoginActivity extends Fragment {
             public void onClick(View v) {
                 Intent google=new Intent(getActivity(),GoogleSignin.class);
                 startActivity(google);
+                getActivity().finish();
             }
         });
         return view;

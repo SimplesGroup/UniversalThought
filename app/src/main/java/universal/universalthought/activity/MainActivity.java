@@ -1,7 +1,5 @@
 package universal.universalthought.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,12 +9,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.BasicInformation;
@@ -30,11 +26,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private FragmentDrawer drawerFragment;
 
     ImageView menuimage;
-    SharedPreferences sharedpreferences;
-    public static final String mypreference = "mypref";
-    public  static String USEREMAIL="useremail";
-    public  static String USERPHONE="userphone";
-    public  static String USERID="userid";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +37,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("");
-sharedpreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-String userid=sharedpreferences.getString(USERID,"");
-        Log.e("RES",userid);
 
      //mToolbar.setLogo(R.drawable.logo);
 

@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import universal.universalthought.R;
 import universal.universalthought.activity.HomeFragment;
@@ -50,19 +51,35 @@ public class BasicInformation extends AppCompatActivity {
         two = (Button)findViewById(R.id.two_button);
         three = (Button)findViewById(R.id.three_button);
          save.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 validation();
-                 Intent i = new Intent(BasicInformation.this,FundraiserDetails.class);
-                 if(fundyes.isChecked()) {
-                     i.putExtra("activity", "OrganizationDetails");
-                 }
+                                     @Override
+                                     public void onClick(View v) {
+                                         validation();
+               String name = fullname.getText().toString();
+                                         String tit = title.getText().toString();
+                                         String amnt = amount.getText().toString();
+                                         String benif = beneficaryname.getText().toString();
+                                         if (!name.equals("")&&!tit.equals("")&&!amnt.equals("")&&!benif.equals(""))
+                                         {
+
+                                     Intent i = new Intent(BasicInformation.this, FundraiserDetails.class);
+                 if(fundyes.isChecked())
+
+                                     {
+                                         i.putExtra("activity", "OrganizationDetails");
+                                     }
                  else
-                 {
-                     i.putExtra("activity", "OtherDetails");
-                 }
+
+                                     {
+                                         i.putExtra("activity", "OtherDetails");
+                                     }
+
 
                  startActivity(i);
+                                         }
+                                         else
+                                         {
+                                             Toast.makeText(BasicInformation.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
+                                         }
              }
          });
         two.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +101,9 @@ public class BasicInformation extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(BasicInformation.this,MainActivity.class);
+        Intent i =  new Intent(BasicInformation.this,MainActivity.class);
         startActivity(i);
+        finish();
     }
 
     public void validation() {
