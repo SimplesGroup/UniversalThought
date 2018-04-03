@@ -6,6 +6,7 @@
 
 
 
+
     <string name="title_activity_mian_drawer">MianDrawerActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -17,6 +18,7 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <string name="nav_item_select">SELECT YOUR CATEGORY</string>
     <string name="nav_item_education">EDUCATION</string>
     <string name="nav_item_emergencies">EMERGENCIES</string>
     <string name="nav_item_medicals">MEDICAL</string>
@@ -30,6 +32,7 @@
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_select</item>
         <item>@string/nav_item_education</item>
         <item>@string/nav_item_emergencies</item>
         <item>@string/nav_item_medicals</item>
@@ -84,4 +87,6 @@
         <item>"Section 25"</item>
 
     </array>
+
+
 </resources>

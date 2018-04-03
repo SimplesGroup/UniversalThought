@@ -1,41 +1,45 @@
 package universal.universalthought.fundraiser;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.ExifInterface;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import universal.universalthought.R;
+import universal.universalthought.activity.Gallery.Customgallery;
 
 /**
  * Created by Sandhiya on 12/12/2017.
@@ -49,6 +53,12 @@ public class FundraiserDetails extends AppCompatActivity {
     Uri picUri;
     String name;
     Button one,two,three;
+    LinearLayout linearLayout1;
+    private Uri fileUri;
+    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
+
+    private static final String IMAGE_DIRECTORY_NAME = "Unversal Thought";
+    String mCurrentPhotoPath,camera_image_convertedstring;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +75,7 @@ public class FundraiserDetails extends AppCompatActivity {
         one = (Button)findViewById(R.id.one_button);
         two = (Button)findViewById(R.id.two_button);
         three = (Button)findViewById(R.id.three_button);
-
+linearLayout1=(LinearLayout)findViewById(R.id.fundraiser_layout);
 
           name = b.getString("activity");
         Log.e("ACTIVITY",name);
@@ -131,71 +141,190 @@ else
             @Override
             public void onClick(View v) {
                 image.setVisibility(View.VISIBLE);
-                 startActivityForResult(getPickImageChooserIntent(), 200);
+                LayoutInflater layoutInflater = (LayoutInflater) FundraiserDetails.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.imageselectionlayout,null);
+
+
+
+                //instantiate popup window
+       //  final PopupWindow popupWindow = new PopupWindow(customView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+              //  popupWindow.showAtLocation(linearLayout1, Gravity.CENTER, 0, 0);
+                final PopupWindow  window = new PopupWindow(customView, 450, 310, true);
+
+                window.setBackgroundDrawable(new ColorDrawable(Color.BLUE));
+                window.setOutsideTouchable(true);
+                window.showAtLocation(customView, Gravity.CENTER, 40, 60);
+                ImageButton camera=(ImageButton)customView.findViewById(R.id.camera_imagebutton);
+                ImageButton gallery=(ImageButton)customView.findViewById(R.id.gallery_imagebutton);
+                camera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       window.dismiss();
+                        if(ActivityCompat.checkSelfPermission(FundraiserDetails.this, android.Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
+
+                            ActivityCompat.requestPermissions(FundraiserDetails.this,
+                                    new String[]{android.Manifest.permission
+                                            .CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                                    200);
+                        }else {
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                            //fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+
+                           // intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+                            // start the image capture Intent
+
+                            File photoFile = null;
+                            try {
+                                photoFile = createImageFile();
+                            } catch (IOException ex) {
+                                // Error occurred while creating the File
+
+                            }
+                            // Continue only if the File was successfully created
+                            if (photoFile != null) {
+                                Uri photoURI = FileProvider.getUriForFile(FundraiserDetails.this,
+                                        "com.example.android.fileprovider",
+                                        photoFile);
+                               intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                                startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
+                            }
+                        }
+
+                    }
+                });
+
+
+
+                gallery.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent gallery=new Intent(getApplicationContext(), Customgallery.class);
+                        startActivity(gallery);
+                    }
+                });
+                //close the popup window on button click
+
+
+                //startActivityForResult(getPickImageChooserIntent(), 200);
             }
         });
     }
 
-
-    public Intent getPickImageChooserIntent() {
-
-        // Determine Uri of camera image to save.
-        Uri outputFileUri = getCaptureImageOutputUri();
-
-        List<Intent> allIntents = new ArrayList<>();
-        PackageManager packageManager = getPackageManager();
-
-        // colle ct all camera intents
-        Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
-        for (ResolveInfo res : listCam) {
-            Intent intent = new Intent(captureIntent);
-            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
-            intent.setPackage(res.activityInfo.packageName);
-            if (outputFileUri != null) {
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-            }
-            allIntents.add(intent);
-        }
-
-        // collect all gallery intents
-        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/*");
-        List<ResolveInfo> listGallery = packageManager.queryIntentActivities(galleryIntent, 0);
-        for (ResolveInfo res : listGallery) {
-            Intent intent = new Intent(galleryIntent);
-            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
-            intent.setPackage(res.activityInfo.packageName);
-            allIntents.add(intent);
-        }
-
-        // the main intent is the last in the list (fucking android) so pickup the useless one
-        Intent mainIntent = allIntents.get(allIntents.size() - 1);
-        for (Intent intent : allIntents) {
-            if (intent.getComponent().getClassName().equals("com.android.documentsui.DocumentsActivity")) {
-                mainIntent = intent;
-                break;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // successfully captured the image
+                // display it in image view
+               // Bundle extras = data.getExtras();
+                //Log.e("DATA","hi"+extras.toString());
+               /* Bitmap imageBitmap = (Bitmap) extras.get("data");
+                image.setImageBitmap(imageBitmap);*/
+               // previewCapturedImage();
+                setPic();
             }
         }
-        allIntents.remove(mainIntent);
 
-        // Create a chooser from the main intent
-        Intent chooserIntent = Intent.createChooser(mainIntent, "Select source");
-
-        // Add all other intents
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, allIntents.toArray(new Parcelable[allIntents.size()]));
-
-        return chooserIntent;
     }
+    private void setPic() {
+        // Get the dimensions of the View
+        int targetW = image.getWidth();
+        int targetH = image.getHeight();
 
-    private Uri getCaptureImageOutputUri() {
-        Uri outputFileUri = null;
-        File getImage = getExternalCacheDir();
-        if (getImage != null) {
-            outputFileUri = Uri.fromFile(new File(getImage.getPath(), "profile.png"));
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        image.setImageBitmap(bitmap);
+        Uri uri= Uri.parse(mCurrentPhotoPath);
+        try{
+            Bitmap bm=BitmapFactory.decodeFile(uri.getPath());
+            ByteArrayOutputStream bao=new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.JPEG,50,bao);
+            byte[] imagebytes=bao.toByteArray();
+            camera_image_convertedstring= Base64.encodeToString(imagebytes,Base64.DEFAULT);
+            Log.e("ENCODE", camera_image_convertedstring);
+        }catch (Exception e){
+
         }
-        return outputFileUri;
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(FundraiserDetails.this,
+                        "com.example.android.fileprovider",
+                        photoFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
+            }
+        }
+    }
+
+
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_DCIM);
+        File mediaStorageDir = new File(
+                Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                IMAGE_DIRECTORY_NAME);
+
+        /*File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+*/
+        File image;
+
+        image = new File(storageDir + File.separator
+                + "IMG_" + timeStamp + ".jpg");
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        Log.e("IMAGE",mCurrentPhotoPath.toString());
+      //  galleryAddPic();
+        return image;
+    }
+
+
+
+
+
 
 
     @Override
@@ -205,100 +334,9 @@ else
            // super.onBackPressed();
 
     }
-    public Uri getPickImageResultUri(Intent data) {
-        boolean isCamera = true;
-        if (data != null) {
-            String action = data.getAction();
-            isCamera = action != null && action.equals(MediaStore.ACTION_IMAGE_CAPTURE);
-        }
-
-
-        return isCamera ? getCaptureImageOutputUri() : data.getData();
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        Bitmap bitmap;
-        if (resultCode == Activity.RESULT_OK) {
 
 
 
-            if (getPickImageResultUri(data) != null) {
-                picUri = getPickImageResultUri(data);
-
-                try {
-                    mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), picUri);
-                    mBitmap = rotateImageIfRequired(mBitmap, picUri);
-                    mBitmap = getResizedBitmap(mBitmap, 500);
-
-                    ImageView croppedImageView = (ImageView) findViewById(R.id.fund_image);
-                    croppedImageView.setImageBitmap(mBitmap);
-                    image.setImageBitmap(mBitmap);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-            } else {
-
-
-                bitmap = (Bitmap) data.getExtras().get("data");
-
-                mBitmap = bitmap;
-                ImageView croppedImageView = (ImageView) findViewById(R.id.fund_image);
-                if (croppedImageView != null) {
-                    croppedImageView.setImageBitmap(mBitmap);
-                }
-
-                image.setImageBitmap(mBitmap);
-
-            }
-
-        }
-
-    }
-
-    private static Bitmap rotateImageIfRequired(Bitmap img, Uri selectedImage) throws IOException {
-
-        ExifInterface ei = new ExifInterface(selectedImage.getPath());
-        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-
-        switch (orientation) {
-            case ExifInterface.ORIENTATION_ROTATE_90:
-                return rotateImage(img, 90);
-            case ExifInterface.ORIENTATION_ROTATE_180:
-                return rotateImage(img, 180);
-            case ExifInterface.ORIENTATION_ROTATE_270:
-                return rotateImage(img, 270);
-            default:
-                return img;
-        }
-    }
-    private static Bitmap rotateImage(Bitmap img, int degree) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(degree);
-        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
-        img.recycle();
-        return rotatedImg;
-    }
-
-    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-
-        float bitmapRatio = (float) width / (float) height;
-        if (bitmapRatio > 0) {
-            width = maxSize;
-            height = (int) (width / bitmapRatio);
-        } else {
-            height = maxSize;
-            width = (int) (height * bitmapRatio);
-        }
-        return Bitmap.createScaledBitmap(image, width, height, true);
-    }
     public void validation() {
         Log.d("SignupEnglish", "SignupEnglish");
 

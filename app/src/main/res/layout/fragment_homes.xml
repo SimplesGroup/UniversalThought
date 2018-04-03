@@ -8,8 +8,7 @@
         android:layout_above="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ScrollView
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
@@ -17,8 +16,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
+                    android:id="@+id/view_pagerlayout"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:descendantFocusability="blocksDescendants"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.v4.view.ViewPager
@@ -35,17 +34,16 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_above="@+id/textView"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true">
+                        android:layout_alignParentLeft="true">
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:alpha=".5"
+                            android:layout_above="@id/layoutDots"
+                            android:background="@android:color/white" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:alpha=".5"
-                        android:layout_above="@id/layoutDots"
-                        android:background="@android:color/white" />
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -65,7 +63,7 @@
                     android:descendantFocusability="blocksDescendants"
                     android:id="@+id/recycler_layout"
                     android:background="#ffffff"
-                    android:layout_below="@+id/textView"
+                    android:layout_below="@+id/view_pagerlayout"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="0dp"
                     >
@@ -77,10 +75,10 @@
                         />
                 </RelativeLayout>
             </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
 
 
-        </ScrollView>
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/footer"
