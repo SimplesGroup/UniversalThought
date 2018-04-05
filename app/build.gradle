@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.2"
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "universal.universalthought"
         minSdkVersion 15
@@ -36,7 +37,9 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.26.0'
     compile 'com.google.android.gms:play-services-auth:10.0.1'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
+    compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.3'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
+    compile files('libs/httpclient-4.5.5.jar')
 }
 apply plugin: 'com.google.gms.google-services'

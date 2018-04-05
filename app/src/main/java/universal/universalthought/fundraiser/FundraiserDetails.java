@@ -32,9 +32,20 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -385,7 +396,7 @@ else
         boolean valid = true;
 
         String name = fundraisername.getText().toString();
-        String tit = image.getDrawable().toString();
+       // String tit = image.getDrawable().toString();
 
 
 
@@ -406,4 +417,29 @@ else
 
         return valid;
     }
+
+    private void Post(){
+        try {
+
+
+        String url="http://";
+        HttpClient client=new DefaultHttpClient();
+        HttpPost httpPost=new HttpPost(url);
+        File file=new File("videpath");
+            FileBody fileBody=new FileBody(file);
+        MultipartEntity entity=new MultipartEntity();
+        entity.addPart("stringone",new StringBody("sbgsbdsb"));
+        entity.addPart("image",fileBody);
+        httpPost.setEntity(entity);
+            HttpResponse response=client.execute(httpPost);
+            HttpEntity entity1=response.getEntity();
+            String Response= EntityUtils.toString(entity1);
+            Log.d("Response:", Response);
+        }catch (UnsupportedEncodingException e){
+
+        }catch (IOException e){
+
+        }
+    }
+
 }
