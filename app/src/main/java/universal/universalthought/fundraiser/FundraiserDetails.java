@@ -36,9 +36,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
+
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
@@ -97,13 +95,13 @@ linearLayout1=(LinearLayout)findViewById(R.id.fundraiser_layout);
                 startActivity(i);*/
                 validation();
                 String name = fundraisername.getText().toString();
-                String tit = image.getDrawable().toString();
-if(!name.equals("")&&tit.equals("")) {
+//                String tit = image.getDrawable().toString();
+if(!name.equals("")) {
     if (name.equals("OrganizationDetails")) {
         Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
         startActivity(i);
     } else {
-        Intent i = new Intent(FundraiserDetails.this, OtherDetails.class);
+        Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
         startActivity(i);
     }
 }
@@ -362,7 +360,7 @@ else
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+//        progressDialog.show();
 
 
 
@@ -418,7 +416,7 @@ else
         return valid;
     }
 
-    private void Post(){
+    /*private void Post(){
         try {
 
 
@@ -441,5 +439,5 @@ else
 
         }
     }
-
+*/
 }
