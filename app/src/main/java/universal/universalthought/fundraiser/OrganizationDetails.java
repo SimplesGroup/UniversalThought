@@ -375,24 +375,24 @@ public class OrganizationDetails extends AppCompatActivity {
                 params.put("Key","UniversalThought");
                 params.put("rType","page3");
                 params.put("user_id","1");
-                params.put("name_of_organization", organisationname);
-                params.put("fundraiser_contact_person_of_organization", fundraisercontactperson);
+                params.put("name_of_organization", "gdfcgdfg");
+                params.put("fundraiser_contact_person_of_organization", "gdfgdf");
 
                 Log.e("Checking",fundraisercontactperson);
 
-                if(fundraisercontactperson.equals("No")) {
+               /* if(fundraisercontactperson.equals("No")) {
 
                 params.put("contact_email", cntemail);
                 params.put("name_of_contact_person", cntpersonname);
                 params.put("contact_number", cntnumber);
                 }else {
-
+*/
                     params.put("website", web);
                     params.put("pan_number_of_organization", panno);
-                 params.put("tax_exemption_to_donors ", rg80g);
-                 params.put("raise_foreign_funds  ", raisefund);
+                 params.put("tax_exemption_to_donors ", "No");
+                 params.put("raise_foreign_funds  ", "No");
                     Log.e("Checking",rg80g);
-                if(rg80g.equals("Yes")){
+                /*if(rg80g.equals("Yes")){
                     Log.e("Checking","1");
                     params.put("tax_certificate",certficatename);
                     params.put("organization_logo",orglogo);
@@ -425,9 +425,9 @@ public class OrganizationDetails extends AppCompatActivity {
                     }
                     else{
                         Log.e("Checking","4");
-                    }
+                    }*/
 
-}
+//}
                 return params;
             }
         };

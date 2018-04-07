@@ -95,7 +95,7 @@ linearLayout1=(LinearLayout)findViewById(R.id.fundraiser_layout);
                 startActivity(i);*/
                 validation();
                 String name = fundraisername.getText().toString();
-//                String tit = image.getDrawable().toString();
+               // String tit = image.getDrawable().toString();
 if(!name.equals("")) {
     if (name.equals("OrganizationDetails")) {
         Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
