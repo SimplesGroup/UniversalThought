@@ -27,6 +27,7 @@ import java.util.Map;
 
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.BasicInformation;
+import universal.universalthought.fundraiser.FundraiserDetails;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -67,7 +68,7 @@ public class LoginActivity extends Fragment {
                 Registration();
               //  validation();
                // showInputNameDialog();
-             Intent i = new Intent(getActivity(),BasicInformation.class);
+             Intent i = new Intent(getActivity(),FundraiserDetails.class);
                 startActivity(i);
                 getActivity().finish();
             }

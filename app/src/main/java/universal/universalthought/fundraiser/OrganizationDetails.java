@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.internal.http.multipart.MultipartEntity;
+//import com.android.internal.http.multipart.MultipartEntity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,12 +25,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+
+/*import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;*/
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-/*import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;*/
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
@@ -40,6 +50,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+/*import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;*/
 import universal.universalthought.R;
 
 /**
@@ -202,7 +217,13 @@ public class OrganizationDetails extends AppCompatActivity {
         setResult(RESULT_OK, null);
         finish();
     }
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100);
 
+    }
     public void onSignupFailed() {
         // Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
@@ -435,7 +456,8 @@ public class OrganizationDetails extends AppCompatActivity {
         queue.add(request);
     }
 
-   /* private void Post(){
+
+   private void Post(){
         try {
 
 
@@ -485,24 +507,25 @@ public class OrganizationDetails extends AppCompatActivity {
             File file=new File("videpath");
             FileBody fileBody=new FileBody(file);
             org.apache.http.entity.mime.MultipartEntity entity=new org.apache.http.entity.mime.MultipartEntity();
-            entity.addPart("stringone",new StringBody("sbgsbdsb"));
-            entity.addPart("image",fileBody);
+            //entity.addPart("stringone",new StringBody("sbgsbdsb"));
+           // entity.addPart("image",fileBody);
 
 
             entity.addPart("Key",new StringBody("UniversalThought"));
-            entity.addPart("rType",new StringBody("page3"));
-            entity.addPart("user_id",new StringBody("1"));
+            entity.addPart("rType",new StringBody("file"));
+            entity.addPart("sathish",new StringBody("file"));
+            /*entity.addPart("user_id",new StringBody("1"));
             entity.addPart("name_of_organization", new StringBody(organisationname));
-            entity.addPart("fundraiser_contact_person_of_organization", new StringBody(fundraisercontactperson));
+            entity.addPart("fundraiser_contact_person_of_organization", new StringBody("No"));
 
             Log.e("Checking",fundraisercontactperson);
 
-            if(fundraisercontactperson.equals("No")) {
+          //  if(fundraisercontactperson.equals("No")) {
 
                 entity.addPart("contact_email", new StringBody(cntemail));
                 entity.addPart("name_of_contact_person", new StringBody(cntpersonname));
-                entity.addPart("contact_number", new StringBody(cntnumber));
-            }else {
+                entity.addPart("contact_number", new StringBody(cntnumber));*/
+            /*}else {
 
                 entity.addPart("website", new StringBody(web));
                 entity.addPart("pan_number_of_organization", new StringBody(panno));
@@ -542,9 +565,9 @@ public class OrganizationDetails extends AppCompatActivity {
                 }
                 else{
                     Log.e("Checking","4");
-                }
+                }*/
 
-            }
+            //}
 
 
             httpPost.setEntity(entity);
@@ -557,5 +580,5 @@ public class OrganizationDetails extends AppCompatActivity {
         }catch (IOException e){
 
         }
-    }*/
+    }
 }

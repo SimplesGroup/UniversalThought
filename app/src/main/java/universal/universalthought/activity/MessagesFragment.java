@@ -10,6 +10,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,21 +18,40 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import universal.universalthought.R;
+import universal.universalthought.adapter.CatagoriesAdapter;
 import universal.universalthought.adapter.ProductsAdapterEnglish;
+import universal.universalthought.model.CategoryItemmodel;
 import universal.universalthought.model.ProductEnglish;
 
 
 public class MessagesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private ProductsAdapterEnglish adapter;
-    private List<ProductEnglish> productEnglishList;
+    private CatagoriesAdapter adapter;
+    private List<CategoryItemmodel> productList;
     ImageView fundraiser;
-
+    RequestQueue requestqueue;
+    int requestcount=1;
+    String url="http://www.simples.in/universalthought/universalthought.php";
     public MessagesFragment() {
         // Required empty public constructor
     }
@@ -46,51 +66,79 @@ public class MessagesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_messages, container, false);
-        productEnglishList = new ArrayList<>();
-        adapter = new ProductsAdapterEnglish(getActivity(), productEnglishList);
+        productList = new ArrayList<CategoryItemmodel>();
+        adapter = new CatagoriesAdapter(getActivity(), productList);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-
+        requestqueue= Volley.newRequestQueue(getActivity());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-        prepareAlbums();
 
+        getData();
         // Inflate the layout for this fragment
         return rootView;
     }
-    private void prepareAlbums() {
-        int[] covers = new int[]{
-                R.drawable.imageone,
-                R.drawable.imagetwo,
-                R.drawable.imagethree,
-                R.drawable.imagefour,
-                R.drawable.imageone,
-                R.drawable.imagetwo};
 
-
-
-        ProductEnglish a = new ProductEnglish("Fennel Seeds", "250", covers[0],"Help India's rural graduates achieve their dreams");
-        productEnglishList.add(a);
-
-        a = new ProductEnglish("Asafoetida", "250", covers[1],"Help India's rural graduates achieve their dreams");
-        productEnglishList.add(a);
-
-        a = new ProductEnglish("Red Chilli Powder", "150", covers[2],"Help India's rural graduates achieve their dreams");
-        productEnglishList.add(a);
-
-        a = new ProductEnglish("Black Cardamon", "540", covers[3],"Help India's rural graduates achieve their dreams");
-        productEnglishList.add(a);
-
-        a = new ProductEnglish("White Pepper", "14", covers[4],"Help India's rural graduates achieve their dreams");
-        productEnglishList.add(a);
-
-        a = new ProductEnglish("Black Pepper", "1", covers[5],"Help India's rural graduates achieve their dreams");
-        productEnglishList.add(a);
-
-        adapter.notifyDataSetChanged();
+    private void getData(){
+    requestqueue.add(getDatafromserver(requestcount));
+    requestcount++;
     }
+StringRequest getDatafromserver(final int reqcount){
+        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response",response.toString());
+                try {
+                    JSONObject jsondata=new JSONObject(response.toString());
+                    JSONArray jsonArray=jsondata.getJSONArray("result");
+
+                    Log.e("Response","data"+jsonArray.toString());
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject explrObject = jsonArray.getJSONObject(i);
+                        CategoryItemmodel model=new CategoryItemmodel();
+                        model.setAmount(explrObject.getString("amount"));
+                        model.setCity(explrObject.getString("city"));
+                        model.setId(explrObject.getString("id"));
+                        model.setTitleoffundraising(explrObject.getString("title_of_fundraising"));
+                        Log.e("Response",explrObject.getString("title_of_fundraising"));
+                        model.setPhoto(explrObject.getString("fundraiser_photo"));
+                        productList.add(model);
+                    }
+                    adapter.notifyDataSetChanged();
+                }catch (JSONException e){
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String>param=new HashMap<>();
+                param.put("Key","UniversalThought");
+                param.put("rType","IndividualCategory");
+                param.put("category","animal");
+                param.put("page",String.valueOf(reqcount));
+
+
+                return param;
+
+
+            }
+        };
+    request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 3, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+    requestqueue.add(request);
+        return request;
+}
+
 
     @Override
     public void onAttach(Activity activity) {
