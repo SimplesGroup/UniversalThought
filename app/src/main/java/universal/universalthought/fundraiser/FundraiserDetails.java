@@ -86,8 +86,8 @@ public class FundraiserDetails extends AppCompatActivity {
         three = (Button)findViewById(R.id.three_button);
 linearLayout1=(LinearLayout)findViewById(R.id.fundraiser_layout);
 
-          name = b.getString("activity");
-        Log.e("ACTIVITY",name);
+//          name = b.getString("activity");
+        //Log.e("ACTIVITY",name);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +96,7 @@ linearLayout1=(LinearLayout)findViewById(R.id.fundraiser_layout);
                 validation();
                 String name = fundraisername.getText().toString();
                // String tit = image.getDrawable().toString();
-if(!name.equals("")) {
+/*if(!name.equals("")) {
     if (name.equals("OrganizationDetails")) {
         Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
         startActivity(i);
@@ -109,7 +109,7 @@ else
 {
     Toast.makeText(FundraiserDetails.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
 
-}
+}*/
             }
         });
 
@@ -124,16 +124,16 @@ else
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(name.equals("OrganizationDetails"))
-                {
+                /*if(name.equals("OrganizationDetails"))
+                {*/
                     Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
                     startActivity(i);
-                }
+                /*}
                 else
                 {
                     Intent i = new Intent(FundraiserDetails.this, OtherDetails.class);
                     startActivity(i);
-                }
+                }*/
             }
         });
 

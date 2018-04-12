@@ -1,9 +1,18 @@
 package universal.universalthought.fundraiser;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +25,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.internal.http.multipart.MultipartEntity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,23 +33,28 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
 /*import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;*/
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
+import junit.framework.Test;
+
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import universal.universalthought.Manifest;
 import universal.universalthought.R;
-
 /**
  * Created by Sandhiya on 1/25/2018.
  */
@@ -54,6 +67,14 @@ public class OrganizationDetails extends AppCompatActivity {
     String userid,category_data;
     RadioGroup radioGroup,rg80,raisefunds,tax,foreginfunds;
     Spinner organisationtype;
+    private int SELECT_PICTURE = 1;
+    private Uri picUri;
+    Button choose,logo;
+    String filePath;
+    String filePathpdf;
+    MultipartEntity entity;
+    File finalFile;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +106,8 @@ public class OrganizationDetails extends AppCompatActivity {
         one = (Button)findViewById(R.id.one_button);
         two = (Button)findViewById(R.id.two_button);
         four = (Button)findViewById(R.id.four_button);
+        choose = (Button)findViewById(R.id.button_choosefile);
+        logo = (Button)findViewById(R.id.button_choosefileone);
         organisationtype = (Spinner)findViewById(R.id.orgtype);
         radioGroup=(RadioGroup)findViewById(R.id.rgOpinion) ;
         rg80=(RadioGroup)findViewById(R.id.rg80g) ;
@@ -92,13 +115,30 @@ public class OrganizationDetails extends AppCompatActivity {
         tax=(RadioGroup)findViewById(R.id.taxreceptis) ;
         foreginfunds=(RadioGroup)findViewById(R.id.fcra1) ;
 
+        choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VideoBrowse();
+            }
+        });
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VideoBrowse();
+            }
+        });
+
         save.setOnClickListener(
                 new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Submit();
+                //Submit();
+                Uploadpost();
+
+                Intent i = new Intent(OrganizationDetails.this, OtherDetails.class);
+                startActivity(i);
                 //Post();
-                String fullname = name.getText().toString();
+                /*String fullname = name.getText().toString();
                 String noemail = email.getText().toString();
                 String noname = cntname.getText().toString();
                 String nonumber = number.getText().toString();
@@ -128,7 +168,7 @@ public class OrganizationDetails extends AppCompatActivity {
 
             else{
                     Toast.makeText(OrganizationDetails.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
             }
         });
 
@@ -318,6 +358,59 @@ public class OrganizationDetails extends AppCompatActivity {
 
         return valid;
     }
+
+    private void VideoBrowse() {
+            if(ActivityCompat.checkSelfPermission(OrganizationDetails.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(OrganizationDetails.this,new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},200);
+        }else {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+           // Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Files.Media.EXTERNAL_CONTENT_URI);
+
+            startActivityForResult(intent, 100);
+        }
+
+
+    }
+
+    private String getPath(Uri contentUri) {
+        String[] proj = { MediaStore.Files.FileColumns.DATA};
+        CursorLoader loader = new CursorLoader(getApplicationContext(), contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100) {
+            picUri = data.getData();
+            filePath = getPath(picUri);
+            Log.d("picUri", picUri.toString());
+            Log.d("filePath", filePath);
+
+
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(grantResults.length>0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            // Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Files.Media.EXTERNAL_CONTENT_URI);
+
+            startActivityForResult(intent, 100);
+
+        }
+    }
+
     private void Submit(){
         StringRequest request=new StringRequest(Request.Method.POST, URL_FORMONE, new Response.Listener<String>() {
             @Override
@@ -373,26 +466,27 @@ public class OrganizationDetails extends AppCompatActivity {
 
                 Map<String,String>params=new HashMap<>();
                 params.put("Key","UniversalThought");
-                params.put("rType","page3");
+                params.put("rType","file");
+                params.put("sathish", String.valueOf(filePath));
                 params.put("user_id","1");
-                params.put("name_of_organization", "gdfcgdfg");
-                params.put("fundraiser_contact_person_of_organization", "gdfgdf");
+                params.put("name_of_organization", organisationname);
+                params.put("fundraiser_contact_person_of_organization", fundraisercontactperson);
 
                 Log.e("Checking",fundraisercontactperson);
 
-               /* if(fundraisercontactperson.equals("No")) {
+               if(fundraisercontactperson.equals("No")) {
 
                 params.put("contact_email", cntemail);
                 params.put("name_of_contact_person", cntpersonname);
                 params.put("contact_number", cntnumber);
                 }else {
-*/
+
                     params.put("website", web);
                     params.put("pan_number_of_organization", panno);
-                 params.put("tax_exemption_to_donors ", "No");
-                 params.put("raise_foreign_funds  ", "No");
+                 params.put("tax_exemption_to_donors", rg80g);
+                 params.put("raise_foreign_funds", raisefund);
                     Log.e("Checking",rg80g);
-                /*if(rg80g.equals("Yes")){
+                if(rg80g.equals("Yes")){
                     Log.e("Checking","1");
                     params.put("tax_certificate",certficatename);
                     params.put("organization_logo",orglogo);
@@ -425,9 +519,9 @@ public class OrganizationDetails extends AppCompatActivity {
                     }
                     else{
                         Log.e("Checking","4");
-                    }*/
+                    }
 
-//}
+}
                 return params;
             }
         };
@@ -435,127 +529,139 @@ public class OrganizationDetails extends AppCompatActivity {
         queue.add(request);
     }
 
-   /* private void Post(){
-        try {
+    private void Uploadpost() {
+        if (filePath != null) {
+            File final_file = new File(filePath);
+
+            try {
+                entity=new org.apache.http.entity.mime.MultipartEntity();
+                String organisationname=name.getText().toString();
+                String cntemail=email.getText().toString();
+                String cntpersonname=cntname.getText().toString();
+                String cntnumber=number.getText().toString();
+                int selected=radioGroup.getCheckedRadioButtonId();
+                RadioButton new_radiobutton=(RadioButton)findViewById(selected);
+                String fundraisercontactperson =new_radiobutton.getText().toString();
+                //  String benificeryname=beneficaryname.getText().toString();
+                String web=website.getText().toString();
+                String panno=pan.getText().toString();
+                int select=rg80.getCheckedRadioButtonId();
+                RadioButton rg=(RadioButton)findViewById(select);
+                String rg80g =rg.getText().toString();
+                int funds=raisefunds.getCheckedRadioButtonId();
+                RadioButton rf=(RadioButton)findViewById(funds);
+                String raisefund =rg.getText().toString();
+                String certficatename=certficate.getText().toString();
+                String orglogo=organisationlogo.getText().toString();
+                String regsection=regsec.getText().toString();
+                String regnumber=regno.getText().toString();
+                String registrationaddress=regaddress.getText().toString();
+                String cntctmail=cntmail.getText().toString();
+                String orgtype = organisationtype.getSelectedItem().toString();
+                int taxrec=tax.getCheckedRadioButtonId();
+                RadioButton taxres=(RadioButton)findViewById(taxrec);
+                String taxrecept =taxres.getText().toString();
+                String phone =cntphone.getText().toString();
+                int frgn=foreginfunds.getCheckedRadioButtonId();
+                RadioButton frfunds=(RadioButton)findViewById(frgn);
+                String foreignfund =frfunds.getText().toString();
+                String reg =regnoentity.getText().toString();
+                String empno =ein.getText().toString();
+                String us =regadrus.getText().toString();
+                String auth =authrep.getText().toString();
+                String fcregno =fcraregno.getText().toString();
+                String upfund =uploadfund.getText().toString();
+
+                FileBody fileBody=new FileBody(final_file);
+              /*  entity.addPart("Key",new StringBody("UniversalThought"));
+                entity.addPart("rType",new StringBody("file"));
+                entity.addPart("sathish",fileBody);
+*/
 
 
-            String url="http://www.simples.in/universalthought/universalthought.php";
 
-            String organisationname=name.getText().toString();
-            String cntemail=email.getText().toString();
-            String cntpersonname=cntname.getText().toString();
-            String cntnumber=number.getText().toString();
-            int selected=radioGroup.getCheckedRadioButtonId();
-            RadioButton new_radiobutton=(RadioButton)findViewById(selected);
-            String fundraisercontactperson =new_radiobutton.getText().toString();
-            //  String benificeryname=beneficaryname.getText().toString();
-            String web=website.getText().toString();
-            String panno=pan.getText().toString();
-            int select=rg80.getCheckedRadioButtonId();
-            RadioButton rg=(RadioButton)findViewById(select);
-            String rg80g =rg.getText().toString();
-            int funds=raisefunds.getCheckedRadioButtonId();
-            RadioButton rf=(RadioButton)findViewById(funds);
-            String raisefund =rg.getText().toString();
-            String certficatename=certficate.getText().toString();
-            String orglogo=organisationlogo.getText().toString();
-            String regsection=regsec.getText().toString();
-            String regnumber=regno.getText().toString();
-            String registrationaddress=regaddress.getText().toString();
-            String cntctmail=cntmail.getText().toString();
-            String orgtype = organisationtype.getSelectedItem().toString();
-            int taxrec=tax.getCheckedRadioButtonId();
-            RadioButton taxres=(RadioButton)findViewById(taxrec);
-            String taxrecept =taxres.getText().toString();
-            String phone =cntphone.getText().toString();
-            int frgn=foreginfunds.getCheckedRadioButtonId();
-            RadioButton frfunds=(RadioButton)findViewById(frgn);
-            String foreignfund =frfunds.getText().toString();
-            String reg =regnoentity.getText().toString();
-            String empno =ein.getText().toString();
-            String us =regadrus.getText().toString();
-            String auth =authrep.getText().toString();
-            String fcregno =fcraregno.getText().toString();
-            String upfund =uploadfund.getText().toString();
+                entity.addPart("Key",new StringBody("UniversalThought"));
+                entity.addPart("rType",new StringBody("page3"));
+                entity.addPart("user_id",new StringBody("1"));
+                entity.addPart("name_of_organization", new StringBody(organisationname));
+                entity.addPart("fundraiser_contact_person_of_organization", new StringBody(fundraisercontactperson));
 
+                Log.e("Checking",fundraisercontactperson);
 
+                if(fundraisercontactperson.equals("No")) {
 
-            HttpClient client=new DefaultHttpClient();
-            HttpPost httpPost=new HttpPost(url);
-            File file=new File("videpath");
-            FileBody fileBody=new FileBody(file);
-            org.apache.http.entity.mime.MultipartEntity entity=new org.apache.http.entity.mime.MultipartEntity();
-            entity.addPart("stringone",new StringBody("sbgsbdsb"));
-            entity.addPart("image",fileBody);
+                    entity.addPart("contact_email", new StringBody(cntemail));
+                    entity.addPart("name_of_contact_person", new StringBody(cntpersonname));
+                    entity.addPart("contact_number", new StringBody(cntnumber));
+                }else {
 
-
-            entity.addPart("Key",new StringBody("UniversalThought"));
-            entity.addPart("rType",new StringBody("page3"));
-            entity.addPart("user_id",new StringBody("1"));
-            entity.addPart("name_of_organization", new StringBody(organisationname));
-            entity.addPart("fundraiser_contact_person_of_organization", new StringBody(fundraisercontactperson));
-
-            Log.e("Checking",fundraisercontactperson);
-
-            if(fundraisercontactperson.equals("No")) {
-
-                entity.addPart("contact_email", new StringBody(cntemail));
-                entity.addPart("name_of_contact_person", new StringBody(cntpersonname));
-                entity.addPart("contact_number", new StringBody(cntnumber));
-            }else {
-
-                entity.addPart("website", new StringBody(web));
-                entity.addPart("pan_number_of_organization", new StringBody(panno));
-                entity.addPart("tax_exemption_to_donors ", new StringBody(rg80g));
-                entity.addPart("raise_foreign_funds  ", new StringBody(raisefund));
-                Log.e("Checking",rg80g);
-                if(rg80g.equals("Yes")){
-                    Log.e("Checking","1");
-                    entity.addPart("tax_certificate",new StringBody(certficatename));
-                    entity.addPart("organization_logo",new StringBody(orglogo));
-                    entity.addPart("organization_type",new StringBody(orgtype));
-                    entity.addPart("registration_section",new StringBody(regsection));
-                    entity.addPart("registration_number",new StringBody(regnumber));
-                    entity.addPart("registration_address",new StringBody(registrationaddress));
-                    entity.addPart("contact_email_for_finance_department",new StringBody(cntctmail));
-                    entity.addPart("contact_phone_for_finance_department",new StringBody(phone));
-                    entity.addPart("issue_tax_receipts_to_donors",new StringBody(taxrecept));
-
-                }
-                else{
-                    Log.e("Checking","2");
-                }
-                Log.e("Checking",raisefund);
-                if(raisefund.equals("Yes")){
-                    Log.e("Checking","3");
-                    entity.addPart("foreign_funds_raised_to_transferred",new StringBody(foreignfund));
-                    if(foreignfund.equals(0)){
-                        entity.addPart("fcra_registration_number",new StringBody(fcregno));
-                        entity.addPart("fcra_certificate",new StringBody(upfund));
-                    }else if(foreignfund.equals(1)){
-                        entity.addPart("registered_name_of_c3_entity",new StringBody(reg));
-                        entity.addPart("employer_identification_number",new StringBody(empno));
-                        entity.addPart("registered_address_united_states",new StringBody(us));
-                    }else{
+                    entity.addPart("website", new StringBody(web));
+                    entity.addPart("pan_number_of_organization", new StringBody(panno));
+                    entity.addPart("tax_exemption_to_donors", new StringBody(rg80g));
+                    entity.addPart("raise_foreign_funds", new StringBody("No"));
+                    Log.e("Checking",rg80g);
+                    if(rg80g.equals("Yes")){
+                        Log.e("Checking","1");
+                        entity.addPart("tax_certificate",fileBody);
+                        entity.addPart("organization_logo",fileBody);
+                        entity.addPart("organization_type",new StringBody(orgtype));
+                        entity.addPart("registration_section",new StringBody(regsection));
+                        entity.addPart("registration_number",new StringBody(regnumber));
+                        entity.addPart("registration_address",new StringBody(registrationaddress));
+                        entity.addPart("contact_email_for_finance_department",new StringBody(cntctmail));
+                        entity.addPart("contact_phone_for_finance_department",new StringBody(phone));
+                        entity.addPart("issue_tax_receipts_to_donors",new StringBody(taxrecept));
 
                     }
-                }
-                else{
-                    Log.e("Checking","4");
+                    else{
+                        Log.e("Checking","2");
+                    }
+                    Log.e("Checking",raisefund);
+                    /*if(raisefund.equals("Yes")){
+                        Log.e("Checking","3");
+                        entity.addPart("foreign_funds_raised_to_transferred",new StringBody(foreignfund));
+                        if(foreignfund.equals(0)){
+                            entity.addPart("fcra_registration_number",new StringBody(fcregno));
+                            entity.addPart("fcra_certificate",new StringBody(upfund));
+                        }else if(foreignfund.equals(1)){
+                            entity.addPart("registered_name_of_c3_entity",new StringBody(reg));
+                            entity.addPart("employer_identification_number",new StringBody(empno));
+                            entity.addPart("registered_address_united_states",new StringBody(us));
+                        }else{
+
+                        }
+                    }
+                    else{
+                        Log.e("Checking","4");
+                    }*/
+
                 }
 
+
+            }catch (UnsupportedEncodingException e){
+
+            }catch (NoSuchMethodError e) {
+                e.printStackTrace();
             }
 
+            CustomMultipart request=new CustomMultipart(URL_FORMONE, new Response.Listener() {
+                @Override
+                public void onResponse(Object response) {
+                    Log.e("Checking", "hi" + response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
 
-            httpPost.setEntity(entity);
-            HttpResponse response=client.execute(httpPost);
-            HttpEntity entity1=response.getEntity();
-            String Response= EntityUtils.toString(entity1);
-            Log.d("Response:", Response);
-        }catch (UnsupportedEncodingException e){
-
-        }catch (IOException e){
+                }
+            },entity);
+            RequestQueue queue= Volley.newRequestQueue(getApplicationContext());
+            queue.add(request);
 
         }
-    }*/
+    }
+
+
+
+
 }
