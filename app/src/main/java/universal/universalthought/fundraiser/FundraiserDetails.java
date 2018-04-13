@@ -32,31 +32,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-/*
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-*/
-
-
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -64,9 +45,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import universal.universalthought.R;
 import universal.universalthought.activity.Gallery.Customgallery;
@@ -89,10 +68,6 @@ public class FundraiserDetails extends AppCompatActivity {
 
     private static final String IMAGE_DIRECTORY_NAME = "Unversal Thought";
     String mCurrentPhotoPath,camera_image_convertedstring;
-
-    String path;
-    Uri filePath;
-    File photoFile = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +86,8 @@ public class FundraiserDetails extends AppCompatActivity {
         three = (Button)findViewById(R.id.three_button);
 linearLayout1=(LinearLayout)findViewById(R.id.fundraiser_layout);
 
-       /*   name = b.getString("activity");
-        Log.e("ACTIVITY",name);*/
+          name = b.getString("activity");
+        Log.e("ACTIVITY",name);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,9 +210,8 @@ else
                 gallery.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showFileChooser();
-                       /* Intent gallery=new Intent(getApplicationContext(), Customgallery.class);
-                        startActivity(gallery);*/
+                        Intent gallery=new Intent(getApplicationContext(), Customgallery.class);
+                        startActivity(gallery);
                     }
                 });
                 //close the popup window on button click
@@ -262,11 +236,6 @@ else
                // previewCapturedImage();
                 setPic();
             }
-        }else if(requestCode==102){
-            filePath = data.getData();
-            path = data.getData().getPath();
-            Log.e("FILEPATH", path);
-            Post();
         }
 
     }
@@ -303,7 +272,6 @@ else
         }catch (Exception e){
 
         }
-        Post();
     }
 
     @Override
@@ -314,7 +282,7 @@ else
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 
-             photoFile = null;
+            File photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
@@ -376,16 +344,7 @@ else
 
     }
 
-    private void showFileChooser() {
-        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Gallery"), 102);
-        /*Intent intent = new Intent();
-        intent.setType("image*//*");
-        intent.setAction(Intent.ACTION_PICK);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"),102);*/
 
-    }
 
     public void validation() {
         Log.d("SignupEnglish", "SignupEnglish");
@@ -457,40 +416,28 @@ else
         return valid;
     }
 
-    private void Post(){
+    /*private void Post(){
         try {
 
 
-            String url = "http://www.simples.in/universalthought/universalthought.php";
-            String url2 = "http://www.simples.in/universalthought/get.php";
-            HttpClient client = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(url2);
-
-            List<NameValuePair> params = new ArrayList<>();
-            params.add(new BasicNameValuePair("name", "John"));
-            params.add(new BasicNameValuePair("email", "pass"));
-            params.add(new BasicNameValuePair("contact", "pass"));
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
-            /*Uri uri= Uri.parse(mCurrentPhotoPath);
-            Log.e("Response",mCurrentPhotoPath);
-        File file=new File(uri.getPath());
-
-
+        String url="http://";
+        HttpClient client=new DefaultHttpClient();
+        HttpPost httpPost=new HttpPost(url);
+        File file=new File("videpath");
             FileBody fileBody=new FileBody(file);
-        MultipartEntity entity=new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-            entity.addPart("Key",new StringBody("UniversalThought"));
-            entity.addPart("rType",new StringBody("file"));
-            entity.addPart("sathish",fileBody);
-        httpPost.setEntity(entity);*/
-            HttpResponse response = client.execute(httpPost);
-            HttpEntity entity1 = response.getEntity();
-            String Response = EntityUtils.toString(entity1);
+        MultipartEntity entity=new MultipartEntity();
+        entity.addPart("stringone",new StringBody("sbgsbdsb"));
+        entity.addPart("image",fileBody);
+        httpPost.setEntity(entity);
+            HttpResponse response=client.execute(httpPost);
+            HttpEntity entity1=response.getEntity();
+            String Response= EntityUtils.toString(entity1);
             Log.d("Response:", Response);
+        }catch (UnsupportedEncodingException e){
 
         }catch (IOException e){
 
         }
     }
-
-
+*/
 }

@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.2"
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "universal.universalthought"
         minSdkVersion 15
@@ -11,7 +12,6 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        useLibrary 'org.apache.http.legacy'
     }
     buildTypes {
         release {
@@ -19,13 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -43,7 +40,9 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.2.1'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.android.support:multidex:1.0.0'
-    compile files('libs/httpmime-4.3.3.jar')
-    compile files('libs/httpcore-4.3.2.jar')
+  /*  compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.3'
+    compile 'com.android.support:multidex:1.0.3'
+    compile files('libs/httpclient-4.5.5.jar')*/
 }
 apply plugin: 'com.google.gms.google-services'
