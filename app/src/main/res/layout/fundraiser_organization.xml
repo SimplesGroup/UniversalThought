@@ -184,21 +184,23 @@
                 android:layout_marginTop="20dp"
                 android:text="Are you the contact person for the organization's campaign?*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <RadioGroup
                 android:id="@+id/rgOpinion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
+                android:visibility="gone"
                 >
 
                 <RadioButton
                     android:id="@+id/radiobtnexclnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes">
+                    android:text="Yes"
+                    >
 
                 </RadioButton>
 
@@ -219,7 +221,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Contact email *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_email"
@@ -229,7 +232,8 @@
                 android:background="@drawable/boxborder"
                 android:hint="http://"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_descemail"
@@ -238,7 +242,8 @@
                 android:layout_marginTop="2dp"
                 android:text="@string/fundname"
                 android:textColor="#000000"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/txt_cntname"
                 android:layout_width="match_parent"
@@ -246,7 +251,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Name of the contact person  *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_cntname"
@@ -256,7 +262,8 @@
                 android:background="@drawable/boxborder"
                 android:hint="http://"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/txt_cntno"
                 android:layout_width="match_parent"
@@ -264,7 +271,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Contact number *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_cntno"
@@ -274,7 +282,8 @@
                 android:background="@drawable/boxborder"
                 android:hint="Enter Contact Name"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/txt_website"
                 android:layout_width="match_parent"
@@ -282,7 +291,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Website(if any)"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_website"
@@ -292,7 +302,8 @@
                 android:background="@drawable/boxborder"
                 android:hint="http://"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_status"
@@ -301,15 +312,18 @@
                 android:layout_marginTop="10dp"
                 android:text="Statutory information"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <View
+                android:id="@+id/view_status"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="5dp"
-                android:background="#f1eaea" />
+                android:background="#f1eaea"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_pan"
@@ -318,7 +332,8 @@
                 android:layout_marginTop="20dp"
                 android:text="PAN of the organization *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_pan"
@@ -328,7 +343,8 @@
                 android:background="@drawable/boxborder"
                 android:hint="http://"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_fundname"
@@ -337,7 +353,8 @@
                 android:layout_marginTop="2dp"
                 android:text="@string/fundname"
                 android:textColor="#000000"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_80g"
@@ -346,21 +363,23 @@
                 android:layout_marginTop="20dp"
                 android:text="Do you provide 80G tax exemption to donord?*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <RadioGroup
                 android:id="@+id/rg80g"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
+                android:visibility="gone"
                 >
 
                 <RadioButton
                     android:id="@+id/radiobtn80gyes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes">
+                    android:text="Yes"
+                    >
 
                 </RadioButton>
 
@@ -382,7 +401,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Upload 80G Certficate*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -395,19 +415,21 @@
                     android:background="@drawable/boxborder"
                     android:hint=""
                     android:padding="10dp"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
             <Button
                 android:id="@+id/button_choosefile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="23dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="25dp"
                 android:background="#b70707"
-                android:paddingBottom="2dp"
+                android:paddingBottom="0dp"
                 android:text="Choosefile"
                 android:textAllCaps="false"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:visibility="gone"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/txt_sprtfrmt"
@@ -416,10 +438,21 @@
                 android:layout_marginTop="2dp"
                 android:text="@string/suprtfrmt"
                 android:textColor="#000000"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/txt_orglogo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Organization logo *"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:visibility="gone"/>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <EditText
                     android:id="@+id/organization_logo"
@@ -429,28 +462,23 @@
                     android:background="@drawable/boxborder"
                     android:hint=""
                     android:padding="10dp"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
                 <Button
                     android:id="@+id/button_choosefileone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="23dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="25dp"
                     android:background="#b70707"
-                    android:paddingBottom="2dp"
+                    android:paddingBottom="0dp"
                     android:text="Choosefile"
                     android:textAllCaps="false"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:visibility="gone"/>
             </LinearLayout>
-            <TextView
-                android:id="@+id/txt_orglogo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Organization logo *"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+
 
             <TextView
                 android:id="@+id/txt_recmd"
@@ -459,7 +487,8 @@
                 android:layout_marginTop="2dp"
                 android:text="@string/recmd"
                 android:textColor="#000000"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_orgtype"
@@ -468,7 +497,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Organization type*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <Spinner
                 android:id="@+id/orgtype"
@@ -477,7 +507,8 @@
                 android:textSize="12dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/boxborder"
-                android:entries="@array/orgtype" />
+                android:entries="@array/orgtype"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_regsec"
@@ -486,7 +517,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Registration section *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_regsec"
@@ -496,16 +528,18 @@
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
                 android:textSize="12dp"
-                android:hint="Eg.Bombay Public Trust Act"/>
+                android:hint="Eg.Bombay Public Trust Act"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_regno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Registration section *"
+                android:text="Registration Number *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_regno"
@@ -515,6 +549,7 @@
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
                 android:textSize="12dp"
+                android:visibility="gone"
                 />
 
             <TextView
@@ -522,9 +557,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Registration section *"
+                android:text="Registration Address *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_regaddress"
@@ -534,7 +570,8 @@
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
                 android:textSize="12dp"
-                android:hint="Eg.Bombay Public Trust Act"/>
+                android:hint="Eg.Bombay Public Trust Act"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_cntctemail"
@@ -543,7 +580,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Contact email for finance department *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_cntctemail"
@@ -553,6 +591,7 @@
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
                 android:textSize="12dp"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/txt_allqueries"
@@ -561,7 +600,8 @@
                 android:layout_marginTop="2dp"
                 android:text="All queries regarding tax-exemption receipts will be directed to this email ID."
                 android:textColor="#000000"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/txt_cntctno"
                 android:layout_width="match_parent"
@@ -569,7 +609,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Contact phone no. for finance department *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_cntctno"
@@ -580,6 +621,7 @@
                 android:padding="10dp"
                 android:textSize="12dp"
                 android:hint="Enter Contact number"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/txt_issues"
@@ -588,15 +630,18 @@
                 android:layout_marginTop="10dp"
                 android:text="Issue 80G tax receipts"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <View
+                android:id="@+id/view_issues"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="5dp"
-                android:background="#f1eaea" />
+                android:background="#f1eaea"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_inr"
@@ -605,7 +650,8 @@
                 android:layout_marginTop="2dp"
                 android:text="@string/tax"
                 android:textColor="#000000"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_taxrecepit"
@@ -614,7 +660,8 @@
                 android:layout_marginTop="10dp"
                 android:text="How will you issue 80G tax receipts to your donors?*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
 
             <RadioGroup
@@ -622,15 +669,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
+                android:visibility="gone"
                 >
 
                 <RadioButton
                     android:id="@+id/radiotax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ssue your organization's 80G tax receipts from Milaap's dashboard">
-
+                    android:text="Issue your organization's 80G tax receipts from Milaap's dashboard"
+                    >
 
                 </RadioButton>
 
@@ -642,7 +689,8 @@
                     android:layout_marginLeft="20dp"
                     android:text="Fundraiser will fall under ASSIST pricing (8%). Know more"
                     android:textColor="#000000"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:visibility="gone"/>
 
                 <RadioButton
                     android:id="@+id/radiotaxreceptist"
@@ -661,7 +709,8 @@
                     android:layout_marginLeft="20dp"
                     android:text="Fundraiser will fall under DIY pricing (5%). Know more"
                     android:textColor="#000000"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:visibility="gone"/>
 
             </RadioGroup>
 
@@ -672,7 +721,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Foreign donations"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="match_parent"
@@ -680,7 +730,9 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="5dp"
-                android:background="#f1eaea" />
+                android:background="#f1eaea"
+                android:visibility="gone"
+                android:id="@+id/view_frng"/>
             <TextView
                 android:id="@+id/txt_frng"
                 android:layout_width="match_parent"
@@ -688,21 +740,23 @@
                 android:layout_marginTop="20dp"
                 android:text="Do you wish to raise foreign funds?*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <RadioGroup
                 android:id="@+id/frgn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
+                android:visibility="gone"
                 >
 
                 <RadioButton
                     android:id="@+id/frgn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes">
+                    android:text="Yes"
+                    >
 
                 </RadioButton>
 
@@ -724,7 +778,8 @@
                 android:layout_marginTop="2dp"
                 android:text="If you choose 'No' - we will disable USD ($) donations for your campaign.Save and continue"
                 android:textColor="#000000"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_fcra"
@@ -733,13 +788,14 @@
                 android:layout_marginTop="20dp"
                 android:text="Where do you want the foreign funds raised to be transferred?*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
             <RadioGroup
                 android:id="@+id/fcra1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
+                android:visibility="gone"
                 >
 
                 <RadioButton
@@ -776,7 +832,8 @@
                 android:layout_marginTop="20dp"
                 android:text="FCRA Registration Number*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
 
             <EditText
@@ -786,7 +843,8 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_fcraupload"
@@ -795,16 +853,10 @@
                 android:layout_marginTop="20dp"
                 android:text="Upload FCRA certficate*"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
-            <TextView
-                android:id="@+id/txt_uploadfund"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Supported formats: PDF, JPG, JPEG, PNG (scanned documents formats)."
-                android:textColor="#000000"
-                android:textSize="12dp" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -817,20 +869,31 @@
                     android:background="@drawable/boxborder"
                     android:hint=""
                     android:padding="10dp"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
                 <Button
                     android:id="@+id/button_uploadfund"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="23dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="25dp"
                     android:background="#b70707"
-                    android:paddingBottom="2dp"
+                    android:paddingBottom="0dp"
                     android:text="Choosefile"
                     android:textAllCaps="false"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:visibility="gone"/>
             </LinearLayout>
+            <TextView
+                android:id="@+id/txt_uploadfund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Supported formats: PDF, JPG, JPEG, PNG (scanned documents formats)."
+                android:textColor="#000000"
+                android:textSize="12dp"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/txt_501C"
                 android:layout_width="match_parent"
@@ -838,7 +901,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Registered name of your 501(c)(3) entity *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
 
             <EditText
@@ -848,7 +912,8 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_ein"
@@ -857,7 +922,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Employer Identification Number (EIN) **"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
 
             <EditText
@@ -867,7 +933,8 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_us"
@@ -876,7 +943,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Registered address in the United States *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
 
             <EditText
@@ -886,7 +954,8 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txt_auth"
@@ -895,7 +964,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Authorized representative of the organization *"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
 
             <EditText
@@ -905,7 +975,8 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/boxborder"
                 android:padding="10dp"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
 
             <Button
@@ -919,7 +990,22 @@
                 android:paddingBottom="2dp"
                 android:text="Save and continue"
                 android:textAllCaps="false"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:visibility="gone"
+               />
+            <Button
+                android:id="@+id/button_save1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="25dp"
+                android:background="#b70707"
+                android:paddingBottom="2dp"
+                android:text="Save and continue"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                />
 
 
             <Button
@@ -933,8 +1019,21 @@
                 android:paddingBottom="2dp"
                 android:text="Previous"
                 android:textAllCaps="false"
-                android:textColor="#b70707" />
-
+                android:textColor="#b70707"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/button_previous1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                android:background="#00ffffff"
+                android:paddingBottom="2dp"
+                android:text="Previous"
+                android:textAllCaps="false"
+                android:textColor="#b70707"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

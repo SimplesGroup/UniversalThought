@@ -16,6 +16,16 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import universal.universalthought.Fragments.AnimalsFragment;
+import universal.universalthought.Fragments.ArtsMediaFragment;
+import universal.universalthought.Fragments.ChildrensFragment;
+import universal.universalthought.Fragments.CommunityFragment;
+import universal.universalthought.Fragments.EducationFragment;
+import universal.universalthought.Fragments.ElderlyFragment;
+import universal.universalthought.Fragments.EmergenciesFragment;
+import universal.universalthought.Fragments.MedicalFragment;
+import universal.universalthought.Fragments.MemorialsFragment;
+import universal.universalthought.Fragments.SportsFragment;
 import universal.universalthought.R;
 
 public class TabsFragment extends Fragment {
@@ -101,16 +111,16 @@ public class TabsFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         FeedViewPagerAdapter adapter = new FeedViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new MessagesFragment(), "EDUCATION");
-        adapter.addFragment(new MessagesFragment(), "EMERGENCIES");
-        adapter.addFragment(new MessagesFragment(), "MEDICAL");
-        adapter.addFragment(new MessagesFragment(), "ANIMALS");
-        adapter.addFragment(new MessagesFragment(), "CHILDRENS");
-        adapter.addFragment(new MessagesFragment(), "SPORTS");
-        adapter.addFragment(new MessagesFragment(), "MEMORIALS");
-        adapter.addFragment(new MessagesFragment(), "COMMUNITY");
-        adapter.addFragment(new MessagesFragment(), "ELDERLY");
-        adapter.addFragment(new MessagesFragment(), "ARTS & MEDIA");
+        adapter.addFragment(new EducationFragment(), "EDUCATION");
+        adapter.addFragment(new EmergenciesFragment(), "EMERGENCIES");
+        adapter.addFragment(new MedicalFragment(), "MEDICAL");
+        adapter.addFragment(new AnimalsFragment(), "ANIMALS");
+        adapter.addFragment(new ChildrensFragment(), "CHILDRENS");
+        adapter.addFragment(new SportsFragment(), "SPORTS");
+        adapter.addFragment(new MemorialsFragment(), "MEMORIALS");
+        adapter.addFragment(new CommunityFragment(), "COMMUNITY");
+        adapter.addFragment(new ElderlyFragment(), "ELDERLY");
+        adapter.addFragment(new ArtsMediaFragment(), "ARTS & MEDIA");
 
         viewPager.setAdapter(adapter);
     }

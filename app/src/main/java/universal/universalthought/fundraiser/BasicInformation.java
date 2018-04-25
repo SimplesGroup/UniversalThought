@@ -62,7 +62,7 @@ SharedPreferences sharedPreferences;
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.fundraiser_basicinfo);
-sharedPreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+        sharedPreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         userid=sharedPreferences.getString(USERID,"");
 
         spinner_category = (Spinner)findViewById(R.id.category);
@@ -89,20 +89,15 @@ sharedPreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
 
                                          if (!name.equals("")&&!tit.equals("")&&!amnt.equals("")&&!benif.equals(""))
                                          {
-
-                                     Intent i = new Intent(BasicInformation.this, FundraiserDetails.class);
+                                             Intent i = new Intent(BasicInformation.this, FundraiserDetails.class);
                  if(fundyes.isChecked())
-
-                                     {
-                                         i.putExtra("activity", "OrganizationDetails");
-                                     }
+                 {
+                     i.putExtra("activity", "OtherDetails");
+                 }
                  else
-
-                                     {
-                                         i.putExtra("activity", "OtherDetails");
-                                     }
-
-
+                 {
+                     i.putExtra("activity", "OrganizationDetails");
+                 }
                  startActivity(i);
                                          }
                                          else
@@ -116,11 +111,11 @@ sharedPreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
             public void onClick(View v) {
                 Intent i = new Intent(BasicInformation.this,FundraiserDetails.class);
                 if(fundyes.isChecked()) {
-                    i.putExtra("activity", "OrganizationDetails");
+                    i.putExtra("activity", "OtherDetails");
                 }
                 else
                 {
-                    i.putExtra("activity", "OtherDetails");
+                    i.putExtra("activity", "OrganizationDetails");
                 }
 
                 startActivity(i);
@@ -240,7 +235,7 @@ sharedPreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
                StringRequest request=new StringRequest(Request.Method.POST, URL_FORMONE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+         Log.e("Response",response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -263,11 +258,11 @@ sharedPreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
                 Map<String,String>params=new HashMap<>();
                 params.put("Key","UniversalThought");
                 params.put("rType","page1");
-                params.put("user_id",userid);
+                params.put("user_id","1");
                 params.put("fund_raiser_name",fundraisername);
                 params.put("raising_amount",fund_raising_amount);
                 params.put("title_of_fundraising",title_of_fundraising);
-                params.put("category",category_data);
+                params.put("category",spinner_category.getSelectedItem().toString());
                 params.put("who_fundraising",who_fundraising);
                 params.put("beneficiary_name",benificeryname);
 Log.e("RES",fund_raising_amount+fundraisername+title_of_fundraising+category_data+who_fundraising+benificeryname);
