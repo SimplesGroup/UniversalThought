@@ -90,9 +90,10 @@ StringRequest getDatafromserver(final int reqcount){
                     JSONObject jsondata=new JSONObject(response.toString());
                     JSONArray jsonArray=jsondata.getJSONArray("result");
 
-                    Log.e("Response","data"+jsonArray.toString());
+                    Log.e("Responsess","data"+jsonArray.toString());
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject explrObject = jsonArray.getJSONObject(i);
+
                         CategoryItemmodel model=new CategoryItemmodel();
                         model.setAmount(explrObject.getString("amount"));
                         model.setCity(explrObject.getString("city"));
@@ -120,12 +121,9 @@ StringRequest getDatafromserver(final int reqcount){
                 Map<String,String>param=new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","IndividualCategory");
-                param.put("category","education");
+                param.put("category","medical");
                 param.put("page",String.valueOf(reqcount));
-
-
                 return param;
-
 
             }
         };

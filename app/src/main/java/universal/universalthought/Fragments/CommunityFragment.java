@@ -120,7 +120,7 @@ StringRequest getDatafromserver(final int reqcount){
                 Map<String,String>param=new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","IndividualCategory");
-                param.put("category","community");
+                param.put("category","medical");
                 param.put("page",String.valueOf(reqcount));
 
 
