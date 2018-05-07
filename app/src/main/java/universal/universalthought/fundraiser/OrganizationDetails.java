@@ -918,7 +918,6 @@ public class OrganizationDetails extends AppCompatActivity {
                     else{
                         Log.e("Checking","4");
                     }
-
                 }
 
 
@@ -944,8 +943,5 @@ public class OrganizationDetails extends AppCompatActivity {
 
         }
     }
-
-
-
 
 }
