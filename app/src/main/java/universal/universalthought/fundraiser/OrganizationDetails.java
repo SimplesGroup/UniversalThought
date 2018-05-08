@@ -673,7 +673,7 @@ public class OrganizationDetails extends AppCompatActivity {
             picUri = data.getData();
             filePath = getPath(picUri);
             Log.d("picUri", picUri.toString());
-            Log.d("filePath", filePath);
+//            Log.d("filePath", filePath);
 
 
         }

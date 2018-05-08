@@ -112,7 +112,7 @@ public class TabsFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         FeedViewPagerAdapter adapter = new FeedViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new EducationFragment(), "EDUCATION");
-        adapter.addFragment(new HomeFragment(), "EMERGENCIES");
+        adapter.addFragment(new EmergenciesFragment(), "EMERGENCIES");
         adapter.addFragment(new MedicalFragment(), "MEDICAL");
         adapter.addFragment(new AnimalsFragment(), "ANIMALS");
         adapter.addFragment(new ChildrensFragment(), "CHILDRENS");

@@ -86,7 +86,7 @@ public class OtherDetails extends AppCompatActivity {
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+//        progressDialog.show();
 
 
 
