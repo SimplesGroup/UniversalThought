@@ -73,7 +73,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
             public void onClick(View view) {
                 Intent i = new Intent(mContext,Detailpage.class);
 
-                // i.putExtra("TITLE", productEnglish.getPname());
+                i.putExtra("ID", productEnglish.getId());
 
                 // Log.e("TITLEEEE", productEnglish.getPname());
                 mContext.startActivity(i);

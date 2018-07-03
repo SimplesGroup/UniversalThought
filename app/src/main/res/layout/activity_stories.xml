@@ -1,12 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/drawerList"
+    <RelativeLayout
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp" />
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/root_coordinator"
+        android:background="@android:color/transparent"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:id="@+id/nestedscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:fillViewport="true" >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/imagemenu"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/logo" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/title_stories"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:background="#e4e1e1"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Stories of crowdfunding"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v4.view.ViewPager
+                            android:scrollbars="none"
+
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp" />
+
+                        <LinearLayout
+                            android:descendantFocusability="blocksDescendants"
+                            android:id="@+id/layoutDots"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dots_height"
+                            android:gravity="left"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_above="@+id/textView"
+                            android:layout_alignParentLeft="true">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:alpha=".5"
+                                android:layout_above="@id/layoutDots"
+                                android:background="@android:color/white" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="12dp"
+                            android:gravity="center_horizontal"
+                            android:text="Raise funds online for yourself, loved ones, charities, and more"
+                            android:id="@+id/textView"
+                            android:layout_below="@+id/view_pager"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="20dp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants"
+                    android:id="@+id/recycler_layout"
+                    android:background="#ffffff"
+                    android:layout_below="@+id/view_pagerlayout"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="0dp"
+                    >
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/drawerList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="60dp"
+                        android:layout_marginTop="40dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

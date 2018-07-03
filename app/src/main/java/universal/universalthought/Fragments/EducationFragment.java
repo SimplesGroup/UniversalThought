@@ -68,7 +68,7 @@ public class EducationFragment extends Fragment {
         requestqueue= Volley.newRequestQueue(getActivity());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+       // recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
@@ -121,7 +121,7 @@ StringRequest getDatafromserver(final int reqcount){
                 Map<String,String>param=new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","IndividualCategory");
-                param.put("category","medical");
+                param.put("category","education");
                 param.put("page",String.valueOf(reqcount));
                 return param;
 

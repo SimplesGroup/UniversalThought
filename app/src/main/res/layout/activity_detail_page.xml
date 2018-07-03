@@ -138,7 +138,7 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="58dp">
+        android:layout_height="50dp">
 
 <ImageButton
     android:id="@+id/imagebutton_rupees"
@@ -153,6 +153,9 @@
             android:layout_weight="2"
             android:inputType="number"
             android:background="#ffffff"
+            android:hint="Enter Amount"
+            android:textColorHint="#FFDEDCDC"
+            android:textSize="16dp"
             android:id="@+id/editext_donation_cost"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
@@ -160,6 +163,7 @@
             android:background="#C22400"
             android:layout_alignParentRight="true"
             android:id="@+id/button_helpnow"
+            android:textColor="@android:color/white"
             android:text="HELP NOW"
             android:padding="3dp"
             android:layout_weight="2"

@@ -4,28 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/mainlayout"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
     >
 
         <RelativeLayout
-            android:layout_alignParentTop="true"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <android.support.design.widget.CoordinatorLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/root_coordinator"
+                android:background="@android:color/transparent"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:elevation="0dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll">
 
-        </android.support.v7.widget.Toolbar>
+            <ImageView
+                android:id="@+id/imagemenu"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:paddingBottom="10dp"
+                android:src="@drawable/logo" />
 
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <android.support.design.widget.TabLayout
+
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,8 +59,8 @@
             app:tabGravity="fill"
             app:tabTextColor="#000000"
             app:tabIndicatorHeight="1dp"
-            app:tabPaddingStart="10dp"
-            app:tabPaddingEnd="10dp"
+            app:tabPaddingEnd="8dp"
+            app:paddingStart="6dp"
             android:paddingLeft="0dp"
             android:paddingRight="10dp"
             android:layout_marginLeft="0dp"
@@ -46,6 +70,7 @@
             android:showDividers="none"
             app:tabTextAppearance="@style/TabLayoutStyle"
             />
+        </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -54,59 +79,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            </android.support.design.widget.CoordinatorLayout>
+
         </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:background="#ffffff"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_help"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:text="HELP"
-            android:textColor="#C22400" />
-
-        <Button
-            android:id="@+id/btn_stories"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:text="STORIES"
-            android:textColor="#C22400" />
-
-        <Button
-            android:id="@+id/btn_verify"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:text="VERIFY"
-            android:textColor="#C22400" />
-
-
-        <ImageView
-            android:id="@+id/btn_fundraiser"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_centerInParent="true"
-            android:layout_weight="1"
-            android:background="#C22400"
-            android:gravity="center_horizontal"
-            android:padding="5dp"
-            android:src="@mipmap/rupeesymbol" />
-
-
-    </LinearLayout>
 </RelativeLayout>

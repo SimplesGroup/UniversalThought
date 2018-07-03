@@ -12,6 +12,8 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -29,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,8 +60,8 @@ public class HomeFragment extends Fragment {
     private ProductsAdapterEnglish adapter;
     private List<ProductEnglish> productEnglishList;
     ImageView fundraiser;
-    Button help,stories;
-
+    ImageButton help,stories;
+    CoordinatorLayout mCoordinatorLayout;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -76,19 +79,21 @@ public class HomeFragment extends Fragment {
        // View rootView = inflater.inflate(R.layout.f, container, false);
         View rootView = inflater.inflate(R.layout.fragment_homes,container,false);
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.view_pager);
+       viewPager = (ViewPager) rootView.findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) rootView.findViewById(R.id.layoutDots);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         fundraiser = (ImageView) rootView.findViewById(R.id.btn_fundraiser);
-        help = (Button) rootView.findViewById(R.id.btn_help);
-        stories = (Button) rootView.findViewById(R.id.btn_stories);
+        help = (ImageButton) rootView.findViewById(R.id.btn_help);
+        stories = (ImageButton) rootView.findViewById(R.id.btn_stories);
+        mCoordinatorLayout=(CoordinatorLayout)rootView.findViewById(R.id.root_coordinator) ;
         productEnglishList = new ArrayList<>();
         adapter = new ProductsAdapterEnglish(getActivity(), productEnglishList);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
         prepareAlbums();
 
 
@@ -104,8 +109,16 @@ public class HomeFragment extends Fragment {
         stories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), StoriesPage.class);
-                startActivity(i);
+                Fragment fragment = null;
+                fragment = new StoriesPage();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
+                Bundle b = new Bundle();
+                String pos = "0";
+                b.putString("pos", pos);
+                fragment.setArguments(b);
             }
         });
 
@@ -143,29 +156,7 @@ public class HomeFragment extends Fragment {
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-       /* btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchHomeScreen();
-            }
-        });
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // checking for last page
-                // if last page home screen will be launched
-                int current = getItem(+1);
-                if (current < layouts.length) {
-                    // move to next screen
-                    viewPager.setCurrentItem(current);
-                } else {
-                    launchHomeScreen();
-                }
-            }
-        });*/
-
-        // Inflate the layout for this fragment
         return rootView;
     }
 

@@ -8,75 +8,96 @@
         android:layout_above="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
+
+        <android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/root_coordinator"
+            android:background="@android:color/transparent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
+            <ScrollView
+                android:id="@+id/nestedscrollview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <RelativeLayout
-                    android:id="@+id/view_pagerlayout"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:fillViewport="true" >
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp" />
+                    android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:id="@+id/layoutDots"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dots_height"
-                        android:gravity="left"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_above="@+id/textView"
-                        android:layout_alignParentLeft="true">
+                        android:layout_height="wrap_content">
 
-                        <View
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:alpha=".5"
-                            android:layout_above="@id/layoutDots"
-                            android:background="@android:color/white" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:gravity="center_horizontal"
-                        android:text="Raise funds online for yourself, loved ones, charities, and more"
-                        android:id="@+id/textView"
-                        android:layout_below="@+id/view_pager"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="20dp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:descendantFocusability="blocksDescendants"
-                    android:id="@+id/recycler_layout"
-                    android:background="#ffffff"
-                    android:layout_below="@+id/view_pagerlayout"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="0dp"
-                    >
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycler_view"
+                            <android.support.v4.view.ViewPager
+                                android:scrollbars="none"
+
+                                android:id="@+id/view_pager"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp" />
+
+                            <LinearLayout
+                                android:descendantFocusability="blocksDescendants"
+                                android:id="@+id/layoutDots"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dots_height"
+                                android:gravity="left"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_above="@+id/textView"
+                                android:layout_alignParentLeft="true">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:alpha=".5"
+                                    android:layout_above="@id/layoutDots"
+                                    android:background="@android:color/white" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:gravity="center_horizontal"
+                                android:text="Raise funds online for yourself, loved ones, charities, and more"
+                                android:id="@+id/textView"
+                                android:layout_below="@+id/view_pager"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="20dp" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <RelativeLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:descendantFocusability="blocksDescendants"
+                        android:id="@+id/recycler_layout"
                         android:background="#ffffff"
-                        />
-                </RelativeLayout>
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+                        android:layout_below="@+id/view_pagerlayout"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="0dp"
+                        >
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#ffffff"
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
 
+            </ScrollView>
+
+        </android.support.design.widget.CoordinatorLayout>
 
 
     </RelativeLayout>
@@ -85,39 +106,42 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="#ffffff"
+        android:background="#C22400"
         android:layout_alignParentBottom="true">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_help"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:background="#ffffff"
+            android:background="#C22400"
             android:text="HELP"
             android:gravity="center"
-            android:textColor="#C22400"
+            android:src="@mipmap/helpwhite"
+            android:textColor="@android:color/white"
             android:layout_weight="1"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_stories"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#ffffff"
+            android:background="#C22400"
             android:text="STORIES"
+            android:src="@mipmap/storywhite"
             android:gravity="center"
-            android:textColor="#C22400"
+            android:textColor="@android:color/white"
             />
-        <Button
+        <ImageButton
             android:id="@+id/btn_verify"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#ffffff"
+            android:background="#C22400"
             android:text="VERIFY"
+            android:src="@mipmap/verifywhite"
             android:gravity="center"
-            android:textColor="#C22400"
+            android:textColor="@android:color/white"
             />
 
 
@@ -126,13 +150,22 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_centerInParent="true"
-            android:src="@mipmap/rupeesymbol"
+            android:src="@mipmap/fundrraiserwhite"
             android:layout_weight="1"
             android:padding="5dp"
             android:background="#C22400"
             android:gravity="center_horizontal"
             />
 
-
+        <ImageButton
+            android:id="@+id/btn_menu"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:background="#C22400"
+            android:gravity="center"
+            android:src="@mipmap/menuwhite"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"
+            />
     </LinearLayout>
 </RelativeLayout>

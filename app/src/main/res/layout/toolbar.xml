@@ -15,8 +15,7 @@
         android:background="@android:color/transparent"
         android:src="@drawable/logo"
         android:id="@+id/imagemenu"
-        android:paddingBottom="10dp"
+        android:paddingBottom="10dp" />
 
-        />
 
     </android.support.v7.widget.Toolbar>

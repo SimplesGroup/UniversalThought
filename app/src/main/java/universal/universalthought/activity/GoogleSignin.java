@@ -136,12 +136,12 @@ ProgressDialog pdialog;
             pdialog.setContentView(R.layout.custom_progressdialog);
             pdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            final StringRequest signintwo=new StringRequest(Request.Method.POST, UPLOAD_CHECK_USER, new Response.Listener<String>() {
+            /*final StringRequest signintwo=new StringRequest(Request.Method.POST, UPLOAD_CHECK_USER, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
 Log.e("UserID",response.toString());
                 if(response.toString().trim().equalsIgnoreCase("no")){
-                    pdialog.dismiss();
+                    pdialog.dismiss();*/
                     StringRequest upload=new StringRequest(Request.Method.POST, UPLOAD_URL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String res) {
@@ -163,72 +163,22 @@ Log.e("UserID",response.toString());
                                     Log.e("EMAIL,",array[3].toString());
                                     editor.commit();
                                     if (sharedpreferences.contains(USERNAME)) {
-                                        // name.setText(sharedpreferences.getString(Name, ""));
                                         username=sharedpreferences.getString(USERNAME,"");
-                                        // Toast.makeText(SigninComplete.this, sharedpreferences.getString(GcmId,""), Toast.LENGTH_SHORT).show();
                                     }
                                     if (sharedpreferences.contains(USERIMAGE)) {
-                                        // name.setText(sharedpreferences.getString(Name, ""));
                                         userimage=sharedpreferences.getString(USERIMAGE,"");
-                                        // Toast.makeText(SigninComplete.this, sharedpreferences.getString(GcmId,""), Toast.LENGTH_SHORT).show();
-                                    }
+                                        }
                                     if (sharedpreferences.contains(USERMAILID)) {
-                                        // name.setText(sharedpreferences.getString(Name, ""));
                                         user_email=sharedpreferences.getString(USERMAILID,"");
-                                        // Toast.makeText(SigninComplete.this, sharedpreferences.getString(GcmId,""), Toast.LENGTH_SHORT).show();
-                                    }
+                                        }
                                     Log.e("EMAIL,","data"+user_email+userimage+username);
-                                    /*if(language_data.equals("English")) {
-                                        Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(main);
-                                    }else {
-                                        Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(main);
-                                    }*/
                                     android.support.v4.app.FragmentTransaction ft =getSupportFragmentManager().beginTransaction();
                                     MobileDialogFragment dialog = new MobileDialogFragment();
                                     dialog.show(ft, "Tag");
                                 }
 
                             }
-                           /* if(res.equalsIgnoreCase("no")) {
-Log.e("UserID","no cancel");
-                            }else {
-                                if(res==""||res==null||res.equalsIgnoreCase("no")){
-Log.e("UserID","empty"+res);
-                                }else {
-                                    Log.e("UserIDnew", res);
-                                    String[] array = res.split(",");
 
-                                    SharedPreferences.Editor editor = sharedpreferences.edit();
-                                    editor.putString(MYUSERID,array[0]);
-                                    editor.putString(USERNAME,array[1]);
-                                    editor.putString(USERIMAGE,array[2]);
-                                    editor.putString(USERMAILID,array[3].toString().trim());
-                                    Log.e("EMAIL,",array[3].toString());
-                                    editor.commit();
-                                    if (sharedpreferences.contains(USERNAME)) {
-                                        // name.setText(sharedpreferences.getString(Name, ""));
-                                        username=sharedpreferences.getString(USERNAME,"");
-                                        // Toast.makeText(SigninComplete.this, sharedpreferences.getString(GcmId,""), Toast.LENGTH_SHORT).show();
-                                    }
-                                    if (sharedpreferences.contains(USERIMAGE)) {
-                                        // name.setText(sharedpreferences.getString(Name, ""));
-                                        userimage=sharedpreferences.getString(USERIMAGE,"");
-                                        // Toast.makeText(SigninComplete.this, sharedpreferences.getString(GcmId,""), Toast.LENGTH_SHORT).show();
-                                    }
-                                    if (sharedpreferences.contains(USERMAILID)) {
-                                        // name.setText(sharedpreferences.getString(Name, ""));
-                                        user_email=sharedpreferences.getString(USERMAILID,"");
-                                        // Toast.makeText(SigninComplete.this, sharedpreferences.getString(GcmId,""), Toast.LENGTH_SHORT).show();
-                                    }
-                                    Log.e("EMAIL,","data"+user_email+userimage+username);
-                                    Intent main=new Intent(getApplicationContext(),MainPageEnglish.class);
-                                    startActivity(main);
-                                }
-
-
-                            }*/
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -241,6 +191,8 @@ Log.e("UserID","empty"+res);
 
                             params.put("MailId",acct.getEmail());
                             params.put("Mobile ",acct.getDisplayName());
+                            params.put("Key","UniversalThought");
+                            params.put("rType","UserLogin");
                             //params.put(KEY_PROFILEIMAGE,acct.getPhotoUrl().toString());
                          //   params.put(KEY_GENDER,"null");
                             params.put(KEY_GCM,gcmids);
@@ -253,7 +205,7 @@ Log.e("UserID","empty"+res);
                     //Adding request to the queue
                     requestQueue.add(upload);
 
-                }else {
+                /*}else {
                     pdialog.dismiss();
                     if(response==""||response==null){
                         Log.e("UserID","emptycheck"+response);
@@ -300,21 +252,8 @@ Log.e("Email",gcmids);
             requestQueue.add(signintwo);
 
             //Displaying name and email
-           // textViewName.setText(acct.getDisplayName());
-           // textViewEmail.setText(acct.getEmail());
 
-            //Initializing image loader
-           /* imageLoader = CustomVolleyRequest.getInstance(this.getApplicationContext())
-                    .getImageLoader();
-
-            imageLoader.get(acct.getPhotoUrl().toString(),
-                    ImageLoader.getImageListener(profilePhoto,
-                            R.mipmap.ic_launcher,
-                            R.mipmap.ic_launcher));
-
-            //Loading image
-            profilePhoto.setImageUrl(acct.getPhotoUrl().toString(), imageLoader);*/
-
+*/
 
 
 

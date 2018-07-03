@@ -3,14 +3,19 @@ package universal.universalthought.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -27,16 +32,21 @@ import universal.universalthought.Fragments.MedicalFragment;
 import universal.universalthought.Fragments.MemorialsFragment;
 import universal.universalthought.Fragments.SportsFragment;
 import universal.universalthought.R;
+import universal.universalthought.fundraiser.StoriesPage;
 
 public class TabsFragment extends Fragment {
-
+    CoordinatorLayout mCoordinator;
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     FeedViewPagerAdapter adapter;
     int pos = 2;
     ImageView fundraiser;
-
-
+    ImageButton stories_butt,verify_butt;
+    public static TabsFragment newInstance() {
+        TabsFragment fragment = new TabsFragment();
+        return fragment;
+    }
     public TabsFragment() {
         // Required empty public constructor
     }
@@ -53,9 +63,11 @@ public class TabsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_tabs, container, false);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         viewPager.setOffscreenPageLimit(1);
+        mCoordinator = (CoordinatorLayout) rootView.findViewById(R.id.root_coordinator);
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) rootView.findViewById(R.id.collapsing_toolbar_layout);
 
         adapter = new FeedViewPagerAdapter(getChildFragmentManager());
-        fundraiser = (ImageView) rootView.findViewById(R.id.btn_fundraiser);
+
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabsFromPagerAdapter(adapter);
@@ -78,23 +90,13 @@ public class TabsFragment extends Fragment {
             }
         });
         Bundle bundle =  getArguments();
+if(bundle!=null){
 
         String text= bundle.getString("pos");
-     //   String text= "5";
-        if(pos==0){
-
-        }else {
             viewPager.setCurrentItem(Integer.parseInt(text));
+}else {
 
-        }
-
-        fundraiser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(),FundraiserActivity.class);
-                startActivity(i);
-            }
-        });
+}
 
         // Inflate the layout for this fragment
         return rootView;
@@ -112,7 +114,7 @@ public class TabsFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         FeedViewPagerAdapter adapter = new FeedViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new EducationFragment(), "EDUCATION");
-        adapter.addFragment(new HomeFragment(), "EMERGENCIES");
+        adapter.addFragment(new EmergenciesFragment(), "EMERGENCIES");
         adapter.addFragment(new MedicalFragment(), "MEDICAL");
         adapter.addFragment(new AnimalsFragment(), "ANIMALS");
         adapter.addFragment(new ChildrensFragment(), "CHILDRENS");

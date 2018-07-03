@@ -11,11 +11,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.Detailpage;
 import universal.universalthought.R;
 import universal.universalthought.model.ProductEnglish;
@@ -25,12 +28,12 @@ public class ProductsAdapterEnglish extends RecyclerView.Adapter<ProductsAdapter
 
     private Context mContext;
     private List<ProductEnglish> productEnglishList;
-
+ImageLoader imageLoader;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView quantity;
-        public ImageView thumbnail;
+        public NetworkImageView thumbnail;
         Button overflow;
 
         public MyViewHolder(View view) {
@@ -38,7 +41,7 @@ public class ProductsAdapterEnglish extends RecyclerView.Adapter<ProductsAdapter
          //   title = (TextView) view.findViewById(R.id.profile);
            // count = (TextView) view.findViewById(R.id.count);
             quantity = (TextView) view.findViewById(R.id.kg);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
+            thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
             overflow = (Button) view.findViewById(R.id.overflow);
         }
     }
@@ -62,14 +65,14 @@ public class ProductsAdapterEnglish extends RecyclerView.Adapter<ProductsAdapter
         String splash = "fonts/LATO-MEDIUM.TTF";
 ////        final Typeface tf = Typeface.createFromAsset(mContext.getAssets(), splash);
         final ProductEnglish productEnglish = productEnglishList.get(position);
-
+imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
         Log.e("SIZEEEE", String.valueOf(productEnglishList.size()));
        // holder.title.setText(productEnglish.getPname());
        // holder.count.setText("Rs." + productEnglish.getPprice());
-        holder.quantity.setText(productEnglish.getPquantity());
+        holder.quantity.setText(productEnglish.getTitleoffundraising());
         // loading album cover using Glide library
-        Glide.with(mContext).load(productEnglish.getPimage()).into(holder.thumbnail);
-
+       // Glide.with(mContext).load(productEnglish.getPhoto()).into(holder.thumbnail);
+holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +83,7 @@ public class ProductsAdapterEnglish extends RecyclerView.Adapter<ProductsAdapter
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(mContext,Detailpage.class);
-
+                i.putExtra("ID", productEnglish.getId());
                // i.putExtra("TITLE", productEnglish.getPname());
 
                // Log.e("TITLEEEE", productEnglish.getPname());

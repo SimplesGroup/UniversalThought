@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class FragmentDrawer extends Fragment {
     private static String[] titles = null;
     private FragmentDrawerListener drawerListener;
     RelativeLayout closelayout;
-    Button btnclose;
+    ImageButton btnclose;
     TextView txtclose;
 
     public FragmentDrawer() {
@@ -81,7 +82,7 @@ public class FragmentDrawer extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
           closelayout = (RelativeLayout) layout.findViewById(R.id.close_layout);
-        btnclose = (Button) layout.findViewById(R.id.closeprofile);
+        btnclose = (ImageButton) layout.findViewById(R.id.closeprofile);
         txtclose = (TextView) layout.findViewById(R.id.profile_text_close);
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
