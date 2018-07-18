@@ -5,7 +5,15 @@ package universal.universalthought.model;
  */
 
 public class CategoryItemmodel {
-    String id,titleoffundraising,photo,amount,city;
+    String id,titleoffundraising,photo,amount,city,formoneid;
+
+    public String getFormoneid() {
+        return formoneid;
+    }
+
+    public void setFormoneid(String formoneid) {
+        this.formoneid = formoneid;
+    }
 
     public String getAmount() {
         return amount;

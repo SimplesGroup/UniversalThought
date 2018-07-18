@@ -80,8 +80,8 @@ String url="http://www.simples.in/universalthought/universalthought.php";
         imageLoader=CustomVolleyRequest.getInstance(this).getImageLoader();
         backbutton = (ImageButton)findViewById(R.id.imagebutton_back);
 
-Intent in=getIntent();
-post_id=in.getStringExtra("ID");
+        Intent in=getIntent();
+        post_id=in.getStringExtra("ID");
         requestQueue= Volley.newRequestQueue(getApplicationContext());
         String imageurl="http://simpli-city.in/vdfdhfv78lmdsvmg5todlsh4jffgskjb2947qnt/images/food/1826888200besil%20pakoda.jpg";
 

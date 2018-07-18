@@ -72,8 +72,6 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
                 mContext.startActivity(i);
             }
         });
-
-
     }
 
 

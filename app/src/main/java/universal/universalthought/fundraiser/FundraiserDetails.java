@@ -30,13 +30,26 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
@@ -46,6 +59,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import universal.universalthought.R;
 import universal.universalthought.activity.Gallery.Customgallery;
@@ -65,9 +80,12 @@ public class FundraiserDetails extends AppCompatActivity {
     LinearLayout linearLayout1;
     private Uri fileUri;
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
-
+    String URL_FORMTWO="http://www.simples.in/universalthought/universalthought.php";
     private static final String IMAGE_DIRECTORY_NAME = "Unversal Thought";
     String mCurrentPhotoPath,camera_image_convertedstring;
+    File imagefile;
+    MultipartEntity entity;
+    String pid;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +95,7 @@ public class FundraiserDetails extends AppCompatActivity {
         Bundle b = new Bundle();
         b = getIntent().getExtras();
         fundraisername = (EditText)findViewById(R.id.edt_fundname);
+
         image = (ImageView)findViewById(R.id.fund_image);
         save = (Button)findViewById(R.id.button_save);
         previous = (Button)findViewById(R.id.button_previous);
@@ -87,17 +106,19 @@ public class FundraiserDetails extends AppCompatActivity {
 linearLayout1=(LinearLayout)findViewById(R.id.fundraiser_layout);
 
           name = b.getString("activity");
-        Log.e("ACTIVITY",name);
+          pid = b.getString("id");
+        Log.e("RESooid",pid);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                /* Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
                 startActivity(i);*/
                 validation();
-                String name = fundraisername.getText().toString();
+                Uploadpost();
+               // String name = fundraisername.getText().toString();
                // String tit = image.getDrawable().toString();
 if(!name.equals("")) {
-    if (name.equals("OrganizationDetails")) {
+    if (name.equals("Individual/Group")) {
         Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
         startActivity(i);
     } else {
@@ -124,7 +145,7 @@ else
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(name.equals("OrganizationDetails"))
+                if(name.equals("Individual/Group"))
                 {
                     Intent i = new Intent(FundraiserDetails.this, OrganizationDetails.class);
                     startActivity(i);
@@ -301,7 +322,6 @@ else
     }
 
 
-
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -318,16 +338,16 @@ else
                 storageDir
         );
 */
-        File image;
 
-        image = new File(storageDir + File.separator
+
+        imagefile = new File(storageDir + File.separator
                 + "IMG_" + timeStamp + ".jpg");
 
         // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
+        mCurrentPhotoPath = imagefile.getAbsolutePath();
         Log.e("IMAGE",mCurrentPhotoPath.toString());
       //  galleryAddPic();
-        return image;
+        return imagefile;
     }
 
 
@@ -343,6 +363,7 @@ else
            // super.onBackPressed();
 
     }
+
 
 
 
@@ -415,29 +436,83 @@ else
 
         return valid;
     }
+    private void Submit(){
+        StringRequest request=new StringRequest(Request.Method.POST, URL_FORMTWO, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response",response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-    /*private void Post(){
-        try {
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                entity=new org.apache.http.entity.mime.MultipartEntity();
+                // userid="3";
+                String fundname=fundraisername.getText().toString();
 
 
-        String url="http://";
-        HttpClient client=new DefaultHttpClient();
-        HttpPost httpPost=new HttpPost(url);
-        File file=new File("videpath");
-            FileBody fileBody=new FileBody(file);
-        MultipartEntity entity=new MultipartEntity();
-        entity.addPart("stringone",new StringBody("sbgsbdsb"));
-        entity.addPart("image",fileBody);
-        httpPost.setEntity(entity);
-            HttpResponse response=client.execute(httpPost);
-            HttpEntity entity1=response.getEntity();
-            String Response= EntityUtils.toString(entity1);
-            Log.d("Response:", Response);
-        }catch (UnsupportedEncodingException e){
-
-        }catch (IOException e){
-
-        }
+                Map<String,String>params=new HashMap<>();
+                params.put("Key","UniversalThought");
+                params.put("rType","page2");
+                params.put("user_id",pid);
+                params.put("site_with_name_of_fundraiser",fundname);
+                params.put("story_of_fundraising","vcvc");
+                /*FileBody fileBody=new FileBody(imagefile);
+                entity.addPart("tax_certificate",fileBody);
+                Log.e("IMAGE", String.valueOf(fileBody));*/
+                return params;
+            }
+        };
+        RequestQueue queue= Volley.newRequestQueue(getApplicationContext());
+        queue.add(request);
     }
-*/
+
+
+
+    private void Uploadpost() {
+
+
+            try {
+                entity=new org.apache.http.entity.mime.MultipartEntity();
+
+                FileBody fileBody=new FileBody(imagefile);
+                String fundname=fundraisername.getText().toString();
+
+                entity.addPart("Key",new StringBody("UniversalThought"));
+                entity.addPart("rType",new StringBody("page2"));
+                entity.addPart("user_id",new StringBody("37"));
+                entity.addPart("id",new StringBody(pid));
+                entity.addPart("fundraiser_link",new StringBody(fundname));
+                entity.addPart("fundraiser_photo",fileBody);
+                entity.addPart("story_of_fundraising",new StringBody("AAAAAAAAAAAAAAAAAA"));
+
+
+
+
+            }catch (UnsupportedEncodingException e){
+
+            }catch (NoSuchMethodError e) {
+                e.printStackTrace();
+            }
+
+            CustomMultipart request=new CustomMultipart(URL_FORMTWO, new Response.Listener() {
+                @Override
+                public void onResponse(Object response) {
+                    Log.e("Checking", "hi" + response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            },entity);
+            RequestQueue queue= Volley.newRequestQueue(getApplicationContext());
+            queue.add(request);
+
+
+    }
 }

@@ -31,12 +31,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import universal.universalthought.R;
 import universal.universalthought.activity.HomeFragment;
 import universal.universalthought.activity.MainActivity;
+import universal.universalthought.model.CategoryItemmodel;
 
 /**
  * Created by Sandhiya on 12/11/2017.
@@ -56,6 +63,8 @@ SharedPreferences sharedPreferences;
     public  static String USERPHONE="userphone";
     public  static String USERID="userid";
     String userid,category_data;
+    String passid;
+    private List<CategoryItemmodel> productList;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +73,7 @@ SharedPreferences sharedPreferences;
         setContentView(R.layout.fundraiser_basicinfo);
         sharedPreferences=getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         userid=sharedPreferences.getString(USERID,"");
-
+        productList = new ArrayList<CategoryItemmodel>();
         spinner_category = (Spinner)findViewById(R.id.category);
         fullname = (EditText) findViewById(R.id.edt_name);
         amount = (EditText) findViewById(R.id.edt_amnt);
@@ -77,33 +86,39 @@ SharedPreferences sharedPreferences;
         one = (Button)findViewById(R.id.one_button);
         two = (Button)findViewById(R.id.two_button);
         three = (Button)findViewById(R.id.three_button);
+
+
+      //  Log.e("RADIO",who_fundraising);
+
          save.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
-                                        //validation();
+                                        validation();
                                          Submit();
-               String name = fullname.getText().toString();
+               /*String name = fullname.getText().toString();
                                          String tit = title.getText().toString();
                                          String amnt = amount.getText().toString();
                                          String benif = beneficaryname.getText().toString();
+                                         int selected=radioGroup.getCheckedRadioButtonId();
+                                         RadioButton new_radiobutton=(RadioButton)findViewById(selected);
+                                         String who_fundraising=new_radiobutton.getText().toString();
+                                         Log.e("RADIO",who_fundraising);
+
+                                         CategoryItemmodel model=new CategoryItemmodel();
+
 
                                          if (!name.equals("")&&!tit.equals("")&&!amnt.equals("")&&!benif.equals(""))
                                          {
                                              Intent i = new Intent(BasicInformation.this, FundraiserDetails.class);
-                 if(fundyes.isChecked())
-                 {
-                     i.putExtra("activity", "OtherDetails");
-                 }
-                 else
-                 {
-                     i.putExtra("activity", "OrganizationDetails");
-                 }
-                 startActivity(i);
+                                             i.putExtra("activity", who_fundraising);
+                                             i.putExtra("id", model.getFormoneid());
+
+                                             startActivity(i);
                                          }
                                          else
                                          {
                                              Toast.makeText(BasicInformation.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
-                                         }
+                                         }*/
              }
          });
         two.setOnClickListener(new View.OnClickListener() {
@@ -159,13 +174,18 @@ SharedPreferences sharedPreferences;
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+//        progressDialog.show();
 
 
 
         // TODO: Implement your own signup logic here.
 
         new android.os.Handler().postDelayed(
+
+
+
+
+
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
@@ -235,7 +255,47 @@ SharedPreferences sharedPreferences;
                StringRequest request=new StringRequest(Request.Method.POST, URL_FORMONE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-         Log.e("Response",response);
+         Log.e("RES",response);
+                try {
+                    JSONObject jsondata=new JSONObject(response.toString());
+                    JSONArray jsonArray=jsondata.getJSONArray("result");
+
+                    Log.e("Responsess","data"+jsonArray.toString());
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject explrObject = jsonArray.getJSONObject(i);
+
+
+
+                        CategoryItemmodel model=new CategoryItemmodel();
+
+                        model.setFormoneid(explrObject.getString("id"));
+
+                        String name = fullname.getText().toString();
+                        String tit = title.getText().toString();
+                        String amnt = amount.getText().toString();
+                        String benif = beneficaryname.getText().toString();
+                        int selected=radioGroup.getCheckedRadioButtonId();
+                        RadioButton new_radiobutton=(RadioButton)findViewById(selected);
+                        String who_fundraising=new_radiobutton.getText().toString();
+                        if (!name.equals("")&&!tit.equals("")&&!amnt.equals("")&&!benif.equals(""))
+                        {
+                            Intent in = new Intent(BasicInformation.this, FundraiserDetails.class);
+                            in.putExtra("activity", who_fundraising);
+                            in.putExtra("id", explrObject.getString("id"));
+                          //  Log.e("RESooo",explrObject.getString("id"));
+                            startActivity(in);
+                        }
+                        else
+                        {
+                            Toast.makeText(BasicInformation.this, "Enter all fields ", Toast.LENGTH_SHORT).show();
+                        }
+
+                        productList.add(model);
+                    }
+
+                }catch (JSONException e){
+
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -254,11 +314,11 @@ SharedPreferences sharedPreferences;
                 RadioButton new_radiobutton=(RadioButton)findViewById(selected);
                 String who_fundraising=new_radiobutton.getText().toString();
                 String benificeryname=beneficaryname.getText().toString();
-
+                Log.e("RADIO",who_fundraising);
                 Map<String,String>params=new HashMap<>();
                 params.put("Key","UniversalThought");
                 params.put("rType","page1");
-                params.put("user_id","1");
+                params.put("user_id","37");
                 params.put("fund_raiser_name",fundraisername);
                 params.put("raising_amount",fund_raising_amount);
                 params.put("title_of_fundraising",title_of_fundraising);

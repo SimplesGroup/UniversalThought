@@ -54,7 +54,7 @@ public class Customgallery extends AppCompatActivity {
         recyclerView_imageslist.addItemDecoration(new ItemOffsetDecoration(this, R.dimen.item_offset));
         imageAdapter=new ImageAdapter(this,imageUrls);
         recyclerView_imageslist.setAdapter(imageAdapter);
-recyclerView_imageslist.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView_imageslist, new RecyclerItemClickListener.OnItemClickListener() {
+        recyclerView_imageslist.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView_imageslist, new RecyclerItemClickListener.OnItemClickListener() {
     @Override
     public void onItemClick(View view, int position) {
         if (isMultiSelect)

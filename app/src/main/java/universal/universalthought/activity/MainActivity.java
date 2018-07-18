@@ -126,7 +126,7 @@ story_butt.setOnClickListener(new View.OnClickListener() {
     }
 });
 
-fundraiser_butt.setOnClickListener(new View.OnClickListener() {
+fundraiser_butt.setOnClickListener( new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         Intent i=new Intent(getApplicationContext(),FundraiserActivity.class);
@@ -182,7 +182,7 @@ fundraiser_butt.setOnClickListener(new View.OnClickListener() {
         //displayView(0);
     }
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()                                                                                                                                         {
         finish();
     }
 

@@ -65,7 +65,7 @@ public class LoginActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 Registration();
-              //  validation();
+                validation();
                // showInputNameDialog();
              Intent i = new Intent(getActivity(),BasicInformation.class);
                 startActivity(i);
@@ -127,7 +127,8 @@ public class LoginActivity extends Fragment {
                 Map<String,String> params = new HashMap<String, String>();
                 String mail = mailid.getText().toString();
                 String pswd = password.getText().toString();
-
+                Log.e("RES",mail);
+                Log.e("RES",pswd);
                 params.put("Key","UniversalThought");
                 params.put("rType","UserLogin");
                 params.put("MailId",mail);
@@ -154,8 +155,8 @@ public class LoginActivity extends Fragment {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity(),R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
-
+//        progressDialog.show();
+//
 
 
         // TODO: Implement your own signup logic here.
@@ -165,7 +166,7 @@ public class LoginActivity extends Fragment {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
-                        onSignupSuccess();
+                       // onSignupSuccess();
                         // onSignupFailed();
                         progressDialog.dismiss();
                     }
@@ -175,7 +176,7 @@ public class LoginActivity extends Fragment {
 
     public void onSignupSuccess() {
         login.setEnabled(true);
-        getActivity().setResult(RESULT_OK, null);
+     //   getActivity().setResult(RESULT_OK, null);
         getActivity().finish();
     }
 
@@ -190,6 +191,8 @@ public class LoginActivity extends Fragment {
 
         String mail = mailid.getText().toString();
         String pswrd = password.getText().toString();
+
+
 
 
 

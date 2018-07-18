@@ -134,6 +134,8 @@ public class OrganizationDetails extends AppCompatActivity {
         certficate = (EditText)findViewById(R.id.certficate_name);
         organisationlogo = (EditText)findViewById(R.id.organization_logo);
         regsec = (EditText)findViewById(R.id.edt_regsec);
+
+
         regno = (EditText)findViewById(R.id.edt_regno);
         regaddress = (EditText)findViewById(R.id.edt_regaddress);
         cntmail = (EditText)findViewById(R.id.edt_cntctemail);
@@ -181,13 +183,20 @@ public class OrganizationDetails extends AppCompatActivity {
        save1.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               save.setVisibility(View.VISIBLE);
-               previous.setVisibility(View.VISIBLE);
-               previous1.setVisibility(View.GONE);
-               txtcntctperson.setVisibility(View.VISIBLE);
-               radioGroup.setVisibility(View.VISIBLE);
-               save1.setVisibility(View.GONE);
 
+
+
+               if(name.getText().equals("")){
+                   save.setVisibility(View.VISIBLE);
+                   previous.setVisibility(View.VISIBLE);
+                   previous1.setVisibility(View.GONE);
+                   txtcntctperson.setVisibility(View.VISIBLE);
+                   radioGroup.setVisibility(View.VISIBLE);
+                   save1.setVisibility(View.GONE);
+               }
+               else{
+                   validation();
+               }
               /* int selected=radioGroup.getCheckedRadioButtonId();
                RadioButton new_radiobutton=(RadioButton)findViewById(selected);
                final String fundraisercontactperson =new_radiobutton.getText().toString();
@@ -343,7 +352,8 @@ public class OrganizationDetails extends AppCompatActivity {
 
 
 
-               foreginfunds.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+               foreginfunds.setOnCheckedChangeListener(
+                       new RadioGroup.OnCheckedChangeListener() {
                    @Override
                    public void onCheckedChanged(RadioGroup group, int checkedId) {
                        int frgn=foreginfunds.getCheckedRadioButtonId();
@@ -879,6 +889,9 @@ public class OrganizationDetails extends AppCompatActivity {
                 }else {
 
                     entity.addPart("website", new StringBody(web));
+
+
+
                     entity.addPart("pan_number_of_organization", new StringBody(panno));
                     entity.addPart("tax_exemption_to_donors", new StringBody(rg80g));
                     entity.addPart("raise_foreign_funds", new StringBody("Yes"));
