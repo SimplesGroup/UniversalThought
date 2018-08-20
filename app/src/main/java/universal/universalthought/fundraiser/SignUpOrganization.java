@@ -179,14 +179,14 @@ public class SignUpOrganization extends Fragment {
             @Override
             public void onClick(View v) {
 
-             /*   save.setVisibility(View.VISIBLE);
+                save.setVisibility(View.VISIBLE);
                 previous.setVisibility(View.VISIBLE);
                 previous1.setVisibility(View.GONE);
                 txtcntctperson.setVisibility(View.VISIBLE);
                 radioGroup.setVisibility(View.VISIBLE);
-                save1.setVisibility(View.GONE);*/
+                save1.setVisibility(View.GONE);
 
-                if(name.getText().equals("")){
+                /*if(name.getText().equals("")){
                     save.setVisibility(View.VISIBLE);
                     previous.setVisibility(View.VISIBLE);
                     previous1.setVisibility(View.GONE);
@@ -196,7 +196,7 @@ public class SignUpOrganization extends Fragment {
                 }
                 else{
                     validation();
-                }
+                }*/
               /* int selected=radioGroup.getCheckedRadioButtonId();
                RadioButton new_radiobutton=(RadioButton)findViewById(selected);
                final String fundraisercontactperson =new_radiobutton.getText().toString();
