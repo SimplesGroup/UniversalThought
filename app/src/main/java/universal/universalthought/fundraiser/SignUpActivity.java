@@ -80,9 +80,9 @@ public class SignUpActivity extends Fragment {
        setupViewPager(viewPager);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        queue = Volley.newRequestQueue(getActivity());
-        datalist = new ArrayList<>();
-        signin_button=(Button)view.findViewById(R.id.button_signin);
+       /* queue = Volley.newRequestQueue(getActivity());
+        datalist = new ArrayList<>();*/
+       /* signin_button=(Button)view.findViewById(R.id.button_signin);
         gmail = (Button) view.findViewById(R.id.btngmail);
         facebook = (Button) view.findViewById(R.id.btnfb);
 
@@ -112,20 +112,20 @@ public class SignUpActivity extends Fragment {
               // Toast.makeText(getActivity(),"clicked",Toast.LENGTH_LONG).show();
                 Registration();
                 validation();
-                /*FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                *//*FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 OtpDialogFragment inputNameDialog = new OtpDialogFragment();
                 inputNameDialog.setCancelable(false);
                 inputNameDialog.setDialogTitle("Enter Name");
-                inputNameDialog.show(fragmentManager, "Input Dialog");*/
-                        /*Intent i = new Intent(getActivity(),BasicInformation.class);
-                        startActivity(i);*/
+                inputNameDialog.show(fragmentManager, "Input Dialog");*//*
+                        *//*Intent i = new Intent(getActivity(),BasicInformation.class);
+                        startActivity(i);*//*
             }
         });
-
+*/
         return view;
     }
 
-    private void Registration(){
+  /*  private void Registration(){
         Log.e("RES","START");
         StringRequest request=new StringRequest(Request.Method.POST, URL_SIGNUP, new Response.Listener<String>() {
             @Override
@@ -205,11 +205,11 @@ return params;
 
         queue.add(request);
         Log.e("RES","SEND");
-    }
+    }*/
 
 
 
-    public void validation() {
+  /*  public void validation() {
         Log.d("SignupEnglish", "SignupEnglish");
 
         if (!validate()) {
@@ -239,10 +239,10 @@ return params;
                         progressDialog.dismiss();
                     }
                 }, 3000);
-    }
+    }*/
 
 
-    public void onSignupSuccess() {
+   /* public void onSignupSuccess() {
         signin_button.setEnabled(true);
         getActivity().setResult(RESULT_OK, null);
         getActivity().finish();
@@ -293,12 +293,12 @@ return params;
         }
 
         return valid;
-    }
+    }*/
     private void setupViewPager(ViewPager viewPager) {
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new SignupUserActivity(), "User");
-        adapter.addFragment(new LoginActivity(), "Organization");
+        adapter.addFragment(new SignUpOrganization(), "Organization");
 
         viewPager.setAdapter(adapter);
 

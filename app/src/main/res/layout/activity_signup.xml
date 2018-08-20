@@ -15,7 +15,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:focusableInTouchMode="true"
-            android:layout_gravity="center"
+            android:layout_gravity="top"
+            android:layout_marginTop="10dp"
             >
 
 
@@ -25,15 +26,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="1dp"
                 android:background="#ffffff"
                 android:showDividers="none"
                 app:tabGravity="fill"
                 app:tabIndicatorColor="#C22400"
                 app:tabIndicatorHeight="3dp"
                 app:tabMode="fixed"
-                app:tabPaddingEnd="30dp"
-                app:tabPaddingStart="10dp"
+                app:tabPaddingEnd="0dp"
+                app:tabPaddingStart="0dp"
                 app:tabSelectedTextColor="#C22400"
                 app:tabTextAppearance="@style/TabLayoutStyle"
                 app:tabTextColor="#a39999" />
@@ -41,7 +42,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="520dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:layout_weight="1.02" />
 
@@ -52,7 +53,8 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
 
@@ -95,7 +97,8 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
-                android:weightSum="1">
+                android:weightSum="1"
+                android:visibility="gone">
 
                 <View
                     android:layout_width="0dp"
@@ -141,6 +144,7 @@
                 android:inputType="text"
                 android:hint="First and last name"
                 android:textSize="12dp"
+                android:visibility="gone"
                 />
 
             <View
@@ -148,7 +152,8 @@
                 android:layout_height="0.5dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="#000000" />
+                android:background="#000000"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_email"
@@ -162,6 +167,7 @@
                 android:inputType="textEmailAddress"
                 android:hint="Email Address"
                 android:textSize="12dp"
+                android:visibility="gone"
                 />
 
             <View
@@ -169,7 +175,8 @@
                 android:layout_height="0.5dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="#000000" />
+                android:background="#000000"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_password"
@@ -182,13 +189,15 @@
                 android:padding="5dp"
                 android:inputType="textPassword"
                 android:hint="Enter Your Password"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="#000000" />
+                android:background="#000000"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/edt_mobileno"
@@ -201,14 +210,16 @@
                 android:padding="5dp"
                 android:inputType="number"
                 android:hint="Enter Your Mobile Number"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="#000000" />
+                android:background="#000000"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/button_signin"
@@ -221,7 +232,8 @@
                 android:text="Sign up"
                 android:paddingBottom="2dp"
                 android:textAllCaps="false"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/forget_password"
@@ -233,7 +245,8 @@
                 android:textAlignment="center"
                 android:textSize="12dp"
                 android:text="By signing up you agree to our "
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:visibility="gone"/>
 
         </LinearLayout>
     </ScrollView>

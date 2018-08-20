@@ -77,9 +77,9 @@ public class SignupUserActivity extends Fragment {
         sharedpreferences = getActivity(). getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+       /* setupViewPager(viewPager);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);*/
         queue = Volley.newRequestQueue(getActivity());
         datalist = new ArrayList<>();
         signin_button=(Button)view.findViewById(R.id.button_signin);
@@ -294,7 +294,7 @@ public class SignupUserActivity extends Fragment {
 
         return valid;
     }
-    private void setupViewPager(ViewPager viewPager) {
+   /* private void setupViewPager(ViewPager viewPager) {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new LoginActivity(), "User");
@@ -335,5 +335,5 @@ public class SignupUserActivity extends Fragment {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
-    }
+    }*/
 }
