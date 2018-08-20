@@ -1,4 +1,4 @@
-package universal.universalthought.activity;
+package universal.universalthought.fundraiser;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -35,8 +38,8 @@ import java.util.List;
 import java.util.Map;
 
 import universal.universalthought.R;
-import universal.universalthought.fundraiser.BasicInformation;
-import universal.universalthought.model.ProductEnglish;
+import universal.universalthought.activity.FaceBooklogin;
+import universal.universalthought.activity.GoogleSignin;
 import universal.universalthought.model.ResponseDataModel;
 
 import static android.app.Activity.RESULT_OK;
@@ -52,7 +55,8 @@ public class SignUpActivity extends Fragment {
     public  static String USEREMAIL="useremail";
     public  static String USERPHONE="userphone";
     public  static String USERID="userid";
-
+    public ViewPager viewPager;
+    private TabLayout tabLayout;
     Button signin_button,gmail,facebook;
     EditText username,mailid,password,mobileno;
     RequestQueue queue;
@@ -72,6 +76,10 @@ public class SignUpActivity extends Fragment {
         View view = inflater.inflate(R.layout.activity_signup, container, false);
         sharedpreferences = getActivity(). getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+       setupViewPager(viewPager);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
         queue = Volley.newRequestQueue(getActivity());
         datalist = new ArrayList<>();
         signin_button=(Button)view.findViewById(R.id.button_signin);
@@ -285,5 +293,47 @@ return params;
         }
 
         return valid;
+    }
+    private void setupViewPager(ViewPager viewPager) {
+
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        adapter.addFragment(new SignupUserActivity(), "User");
+        adapter.addFragment(new LoginActivity(), "Organization");
+
+        viewPager.setAdapter(adapter);
+
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            //    pos = position;
+            //  Log.e("POSITIONNNNN", String.valueOf(pos));
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+
+
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }

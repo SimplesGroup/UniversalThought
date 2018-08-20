@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import universal.universalthought.R;
+import universal.universalthought.fundraiser.LoginActivity;
+import universal.universalthought.fundraiser.SignUpActivity;
 
 /**
  * Created by Sandhiya on 12/11/2017.

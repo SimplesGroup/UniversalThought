@@ -3,7 +3,6 @@ package universal.universalthought.OTP;
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,11 +17,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-
-import universal.universalthought.activity.LoginActivity;
-import universal.universalthought.activity.OtpDialogFragment;
+import universal.universalthought.fundraiser.LoginActivity;
 
 
 /**

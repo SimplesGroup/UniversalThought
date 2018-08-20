@@ -1,4 +1,4 @@
-package universal.universalthought.activity;
+package universal.universalthought.fundraiser;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -26,9 +26,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import universal.universalthought.R;
-import universal.universalthought.fundraiser.BasicInformation;
-
-import static android.app.Activity.RESULT_OK;
+import universal.universalthought.activity.FaceBooklogin;
+import universal.universalthought.activity.GoogleSignin;
+import universal.universalthought.activity.MobileDialogFragment;
 
 
 public class LoginActivity extends Fragment {
