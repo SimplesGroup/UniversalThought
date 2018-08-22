@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +19,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -61,6 +63,18 @@ String url="http://www.simples.in/universalthought/universalthought.php";
     RequestQueue requestQueue;
     String post_id;
     String text;
+    /** declaration start of campaign organizer **/
+    TextView campaign_organizer_textview_label,campaign_organizer_textview_name,campaign_organizer_textview_date,campaign_organizer_textview_centerdivider,campaign_organizer_textview_location;
+    TextView benificiary_name_textview;
+    ImageView campaign_logo_imageview;
+    ImageButton conatct_campaign_imgbutton;
+
+
+    /** declaration end of campaign organizer **/
+
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +93,23 @@ String url="http://www.simples.in/universalthought/universalthought.php";
         networkImageView_image_post=(NetworkImageView)findViewById(R.id.detail_image);
         imageLoader=CustomVolleyRequest.getInstance(this).getImageLoader();
         backbutton = (ImageButton)findViewById(R.id.imagebutton_back);
+
+
+        campaign_logo_imageview=(ImageView)findViewById(R.id.campainorganizerlogo);
+        conatct_campaign_imgbutton=(ImageButton)findViewById(R.id.contact_organizer);
+        campaign_organizer_textview_label=(TextView)findViewById(R.id.organizer_campainname) ;
+        campaign_organizer_textview_name=(TextView)findViewById(R.id.campain_organaizername);
+        campaign_organizer_textview_date=(TextView)findViewById(R.id.campain_date) ;
+        campaign_organizer_textview_centerdivider=(TextView)findViewById(R.id.campain_centerdivider) ;
+        campaign_organizer_textview_location=(TextView)findViewById(R.id.campain_location) ;
+        benificiary_name_textview=(TextView)findViewById(R.id.benificiary_name) ;
+
+        campaign_organizer_textview_name.setText("universal thought");
+        campaign_organizer_textview_centerdivider.setText(Html.fromHtml("|"));
+        campaign_organizer_textview_date.setText("16 Aug 2018");
+        campaign_organizer_textview_location.setText("Coimbatore,TamilNadu");
+        benificiary_name_textview.setText("Beneficiary: universal");
+
 
         Intent in=getIntent();
         post_id=in.getStringExtra("ID");
