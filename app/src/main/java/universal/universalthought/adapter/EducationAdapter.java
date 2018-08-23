@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,7 +28,8 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
         public TextView quantity;
         public ImageView thumbnail;
         Button overflow;
-
+        ProgressBar progressBar;
+        TextView total_amount_textview;
         public MyViewHolder(View view) {
             super(view);
             //   title = (TextView) view.findViewById(R.id.profile);
@@ -35,6 +37,8 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (Button) view.findViewById(R.id.overflow);
+            progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
+            total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
     }
     public EducationAdapter(Context mContext, List<CategoryItemmodel> productEnglishList) {
@@ -61,7 +65,13 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         // loading album cover using Glide library
         Glide.with(mContext).load(productEnglish.getPhoto()).into(holder.thumbnail);
-
+        int    totalcost_value=56658;
+        int   obtainedcost_value=40000;
+        int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
+        holder.progressBar.setProgress(percentage_value);   // Main Progress
+        //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
+        holder.progressBar.setMax(100);
+        holder.total_amount_textview.setText("56k");
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

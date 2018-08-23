@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -30,7 +31,8 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
         public TextView quantity;
         public NetworkImageView thumbnail;
         Button overflow;
-
+        ProgressBar progressBar;
+        TextView total_amount_textview;
         public MyViewHolder(View view) {
             super(view);
             //   title = (TextView) view.findViewById(R.id.profile);
@@ -38,6 +40,8 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
             overflow = (Button) view.findViewById(R.id.overflow);
+            progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
+            total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
     }
     public ElderlyAdapter(Context mContext, List<CategoryItemmodel> productEnglishList) {
@@ -61,7 +65,13 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
         holder.quantity.setText(productEnglish.getTitleoffundraising());
-
+        int    totalcost_value=56658;
+        int   obtainedcost_value=40000;
+        int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
+        holder.progressBar.setProgress(percentage_value);   // Main Progress
+        //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
+        holder.progressBar.setMax(100);
+        holder.total_amount_textview.setText("56k");
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

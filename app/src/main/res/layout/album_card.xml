@@ -28,11 +28,36 @@
                 android:clickable="true"
                 android:scaleType="fitXY" />
 
-
+<RelativeLayout
+    android:id="@+id/progressbar"
+    android:layout_below="@+id/thumbnail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ProgressBar
+        android:id="@+id/circularProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_height="22dp"
+        android:indeterminate="false"
+        android:secondaryProgress="100"
+        android:progressDrawable="@drawable/horizontalpiechart" />
+    <TextView
+        android:padding="3dp"
+        android:id="@+id/totalamount"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        android:text="41.0 k"
+        android:textSize="11sp"
+        android:layout_alignTop="@+id/circularProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp" />
+</RelativeLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/thumbnail"
+    android:layout_below="@+id/progressbar"
     android:orientation="horizontal"
     android:weightSum="1">
 
