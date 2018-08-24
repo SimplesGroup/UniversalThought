@@ -22,6 +22,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="red">#f20909</color>
+    <color name="redprogress">#f5481d</color>
     <array name="array_dot_active">
         <item>@color/white</item>
         <item>@color/white</item>
