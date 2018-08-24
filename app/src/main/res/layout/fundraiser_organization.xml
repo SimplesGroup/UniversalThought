@@ -1,138 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#ffffff">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="center"
-        android:visibility="gone">
-
-        <Button
-            android:id ="@+id/one_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="1"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="3dp"
-            android:background="@drawable/redroundbutton"
-            android:padding="15dp"
-            />
-        <View
-            android:layout_width="80dp"
-            android:layout_height="13dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="18dp"
-            android:background="#dedbdb" />
-        <Button
-            android:id ="@+id/two_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="2"
-            android:textColor="#ffffff"
-            android:background="@drawable/redroundbutton"
-            android:padding="15dp"
-            />
-
-        <View
-            android:layout_width="80dp"
-            android:layout_height="13dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="18dp"
-            android:background="#dedbdb" />
-        <Button
-            android:id ="@+id/three_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="3"
-            android:textColor="#b70707"
-            android:background="@drawable/roundbutton"
-            android:padding="15dp"
-            />
-
-        <View
-            android:layout_width="80dp"
-            android:layout_height="13dp"
-            android:layout_marginLeft="0dp"
-            android:layout_weight="1"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="18dp"
-            android:background="#dedbdb" />
-        <Button
-            android:id ="@+id/four_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="4"
-            android:textColor="#b70707"
-            android:background="@drawable/grayroundmaterial"
-            android:padding="15dp"
-            />
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="0dp"
-        android:gravity="center"
-        android:visibility="gone">
-
-        <TextView
-            android:id ="@+id/txt_one"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Basic Infromation"
-            android:padding="15dp"
-            />
-
-        <TextView
-            android:id ="@+id/txt_two"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:text="Fundraisers details"
-            android:layout_weight="1"
-            android:padding="15dp"
-            android:textColor="#b70707"
-            />
-
-
-        <TextView
-            android:id ="@+id/txt_three"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:text="Organization Details"
-            android:layout_weight="1"
-            android:padding="15dp"
-            />
-
-        <TextView
-            android:id ="@+id/txt_four"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:text="Other Details"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_marginLeft="10dp"
-            android:padding="15dp"
-            />
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1065,5 +945,7 @@
                     android:textColor="#b70707" />
             </LinearLayout>
         </LinearLayout>
+        </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+</RelativeLayout>

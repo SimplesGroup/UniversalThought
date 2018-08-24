@@ -146,9 +146,7 @@ public class SignUpOrganization extends Fragment {
         save1 = (Button)view.findViewById(R.id.button_save1);
         previous = (Button)view.findViewById(R.id.button_previous);
         previous1 = (Button)view.findViewById(R.id.button_previous1);
-        one = (Button)view.findViewById(R.id.one_button);
-        two = (Button)view.findViewById(R.id.two_button);
-        four = (Button)view.findViewById(R.id.four_button);
+
         choose = (Button)view.findViewById(R.id.button_choosefile);
         logo = (Button)view.findViewById(R.id.button_choosefileone);
         buttonuploadfund = (Button)view.findViewById(R.id.button_uploadfund);
@@ -469,7 +467,7 @@ public class SignUpOrganization extends Fragment {
             }
         });
 
-        one.setOnClickListener(new View.OnClickListener() {
+      /*  one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), BasicInformation.class);
@@ -492,7 +490,7 @@ public class SignUpOrganization extends Fragment {
                 startActivity(i);
 
             }
-        });
+        });*/
         return view;
     }
     @SuppressLint("NewApi")
