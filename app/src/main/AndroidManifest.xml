@@ -27,7 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivityWeb"/>
         <activity android:name=".activity.MainActivity"></activity>
+
         <activity android:name=".Detailpage"></activity>
         <activity android:name=".activity.FundraiserActivity"></activity>
         <activity android:name=".fundraiser.BasicInformation"></activity>

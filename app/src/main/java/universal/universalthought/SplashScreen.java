@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         try {
-            info = getPackageManager().getPackageInfo("simplicity_an.simplicity_an", PackageManager.GET_SIGNATURES);
+            info = getPackageManager().getPackageInfo("universal.universalthought", PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md;
                 md = MessageDigest.getInstance("SHA");

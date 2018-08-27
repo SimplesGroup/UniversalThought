@@ -35,7 +35,6 @@ import java.util.Map;
 
 import universal.universalthought.R;
 import universal.universalthought.adapter.AnimalsAdapter;
-import universal.universalthought.adapter.CatagoriesAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
@@ -48,6 +47,8 @@ public class AnimalsFragment extends Fragment {
     RequestQueue requestqueue;
     int requestcount=1;
     String url="http://www.simples.in/universalthought/universalthought.php";
+    String urls="https://androiddevelopmentnew.000webhostapp.com/listjson.json";
+
     public AnimalsFragment() {
         // Required empty public constructor
     }
@@ -71,8 +72,20 @@ public class AnimalsFragment extends Fragment {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+       /* listJsonInterface=new ListJsonInterface() {
+            @Override
+            public List<CategoryItemmodel> getList(Context context) {
+                return null;
+            }
+        }*/
+//       JsonGet get=new JsonGet();
+//        productList=get.getList(getActivity().getBaseContext(),requestqueue);
+//        Log.e("ARR",productList.toString());
+//        // productList=listJsonInterface.getList(getActivity().getApplicationContext());
+//        adapter.notifyDataSetChanged();
+       // getData();
 
-        getData();
+
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -134,6 +147,7 @@ StringRequest getDatafromserver(final int reqcount){
     requestqueue.add(request);
         return request;
 }
+
 
 
     @Override
