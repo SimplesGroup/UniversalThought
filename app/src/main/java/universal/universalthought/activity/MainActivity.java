@@ -101,6 +101,22 @@ help_butt.setOnClickListener(new View.OnClickListener() {
 verify_butt.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        Fragment selectedfrag=null;
+        selectedfrag= VerifyActivity.newInstance();
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container_body, selectedfrag);
+        transaction.commit();
+
+        menu_butt.setBackgroundResource(R.color.footerbackred);
+        help_butt.setBackgroundResource(R.color.footerbackred);
+        story_butt.setBackgroundResource(R.color.footerbackred);
+        verify_butt.setBackgroundResource(R.color.white);
+        fundraiser_butt.setBackgroundResource(R.color.footerbackred);
+        help_butt.setImageResource(R.mipmap.helpwhite);
+        menu_butt.setImageResource(R.mipmap.menuwhite);
+        story_butt.setImageResource(R.mipmap.storywhite);
+        verify_butt.setImageResource(R.mipmap.verifyred);
+        fundraiser_butt.setImageResource(R.mipmap.fundrraiserwhite);
 
     }
 });
