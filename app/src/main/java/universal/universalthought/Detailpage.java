@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -60,6 +61,7 @@ public class Detailpage extends AppCompatActivity {
     int totalcost_value,obtainedcost_value;
     int percentage_value;
 String url="http://www.simples.in/universalthought/universalthought.php";
+String urltest="http://www.simples.in/universalthought/universalthought.php";
     RequestQueue requestQueue;
     String post_id;
     String text;
@@ -69,7 +71,7 @@ String url="http://www.simples.in/universalthought/universalthought.php";
     ImageView campaign_logo_imageview;
     ImageButton conatct_campaign_imgbutton;
 
-
+LinearLayout benificiarylayout,campain_layout;
     /** declaration end of campaign organizer **/
 
 
@@ -103,12 +105,13 @@ String url="http://www.simples.in/universalthought/universalthought.php";
         campaign_organizer_textview_centerdivider=(TextView)findViewById(R.id.campain_centerdivider) ;
         campaign_organizer_textview_location=(TextView)findViewById(R.id.campain_location) ;
         benificiary_name_textview=(TextView)findViewById(R.id.benificiary_name) ;
+        benificiarylayout=(LinearLayout)findViewById(R.id.benificiary_layout);
+        campain_layout=(LinearLayout)findViewById(R.id.campain_layout) ;
+        //campaign_organizer_textview_name.setText("universal thought");
 
-        campaign_organizer_textview_name.setText("universal thought");
-        campaign_organizer_textview_centerdivider.setText(Html.fromHtml("|"));
-        campaign_organizer_textview_date.setText("16 Aug 2018");
+       /* campaign_organizer_textview_date.setText("16 Aug 2018");
         campaign_organizer_textview_location.setText("Coimbatore,TamilNadu");
-        benificiary_name_textview.setText("Beneficiary: universal");
+        benificiary_name_textview.setText("Beneficiary: universal");*/
 
 
         Intent in=getIntent();
@@ -133,9 +136,9 @@ String url="http://www.simples.in/universalthought/universalthought.php";
                 startActivity(i);
             }
         });
-        text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." +
+       /* text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." +
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-
+*/
         webView_details_about_page.getSettings().setLoadsImagesAutomatically(true);
         webView_details_about_page.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView_details_about_page.getSettings().setAllowFileAccess(true);
@@ -170,7 +173,7 @@ String url="http://www.simples.in/universalthought/universalthought.php";
 
 
     private void getdata(){
-        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest request=new StringRequest(Request.Method.POST, urltest, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e("Response",response.toString());
@@ -183,17 +186,20 @@ String url="http://www.simples.in/universalthought/universalthought.php";
                             JSONObject explrObject = jsonArray.getJSONObject(i);
 
                             CategoryItemmodel model=new CategoryItemmodel();
-                            model.setAmount(explrObject.getString("amount"));
+                            model.setAmount(explrObject.getString("raising_amount"));
                            model.setCity(explrObject.getString("city"));
                             model.setId(explrObject.getString("id"));
                         model.setTitleoffundraising(explrObject.getString("title"));
 
                         model.setPhoto(explrObject.getString("fundraiser_photo"));
 
+                        text=explrObject.getString("story_of_fundraising");
+                        total_cost.setText(explrObject.getString("raising_amount"));
+                        currentdonated_cost.setText("Raised of Rs,"+explrObject.getString("amount_raised")+"goal");
                         title.setText(explrObject.getString("title"));
                             networkImageView_image_post.setImageUrl(explrObject.getString("fundraiser_photo"),imageLoader);
-                            totalcost_value=56658;
-                            obtainedcost_value=40000;
+                            totalcost_value=Integer.valueOf(explrObject.getString("raising_amount"));
+                            obtainedcost_value=Integer.valueOf(explrObject.getString("amount_raised"));
                             percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
 
                             percentage.setText(percentage_value+"%");
@@ -207,6 +213,19 @@ String url="http://www.simples.in/universalthought/universalthought.php";
                             // description.setBackgroundColor(0x0a000000);
                             webView_details_about_page.setBackgroundColor(Color.TRANSPARENT);
                             webView_details_about_page.setWebViewClient(new MyBrowser());
+
+
+
+                            campaign_organizer_textview_name.setText(explrObject.getString("name"));
+                            campaign_organizer_textview_location.setText(explrObject.getString("city"));
+                            campaign_organizer_textview_centerdivider.setText(Html.fromHtml("|"));
+
+                            if(explrObject.getString("beneficiary_name")!=null) {
+                                benificiary_name_textview.setText("Beneficiary: "+explrObject.getString("beneficiary_name"));
+                            }else {
+                                benificiary_name_textview.setVisibility(View.GONE);
+                                benificiarylayout.setVisibility(View.GONE);
+                            }
 
                     }
 
@@ -227,7 +246,7 @@ String url="http://www.simples.in/universalthought/universalthought.php";
                 Map<String,String>param=new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","DetailPage");
-                param.put("id",post_id);
+                param.put("id","286");
 
                 return param;
 
