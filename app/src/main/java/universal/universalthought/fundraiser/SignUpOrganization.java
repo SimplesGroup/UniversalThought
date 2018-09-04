@@ -755,7 +755,7 @@ public class SignUpOrganization extends Fragment {
 
 
                 entity.addPart("Key",new StringBody("UniversalThought"));
-                entity.addPart("rType",new StringBody("page3"));
+                entity.addPart("rType",new StringBody("signup "));
                 entity.addPart("user_id",new StringBody("1"));
                 entity.addPart("name_of_organization", new StringBody(organisationname));
                 entity.addPart("fundraiser_contact_person_of_organization", new StringBody(fundraisercontactperson));

@@ -1,8 +1,6 @@
 package universal.universalthought.Fragments;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -15,9 +13,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -27,7 +23,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,9 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import universal.universalthought.Detailpage;
 import universal.universalthought.R;
-import universal.universalthought.adapter.CatagoriesAdapter;
 import universal.universalthought.adapter.SportsAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -100,7 +93,7 @@ StringRequest getDatafromserver(final int reqcount){
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject explrObject = jsonArray.getJSONObject(i);
                         CategoryItemmodel model=new CategoryItemmodel();
-                        model.setAmount(explrObject.getString("amount"));
+                        model.setAmountraised(explrObject.getString("amount"));
                         model.setCity(explrObject.getString("city"));
                         model.setId(explrObject.getString("id"));
                         model.setTitleoffundraising(explrObject.getString("title_of_fundraising"));

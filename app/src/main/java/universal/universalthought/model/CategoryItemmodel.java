@@ -5,7 +5,7 @@ package universal.universalthought.model;
  */
 
 public class CategoryItemmodel {
-    String id,titleoffundraising,photo,amount,city,formoneid;
+    String id,titleoffundraising,photo, amountraised,city,formoneid,raisingamount,name,url;
 
     public String getFormoneid() {
         return formoneid;
@@ -15,12 +15,12 @@ public class CategoryItemmodel {
         this.formoneid = formoneid;
     }
 
-    public String getAmount() {
-        return amount;
+    public String getAmountraised() {
+        return amountraised;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setAmountraised(String amountraised) {
+        this.amountraised = amountraised;
     }
 
     public String getCity() {
@@ -53,5 +53,29 @@ public class CategoryItemmodel {
 
     public void setTitleoffundraising(String titleoffundraising) {
         this.titleoffundraising = titleoffundraising;
+    }
+
+    public String getRaisingamount() {
+        return raisingamount;
+    }
+
+    public void setRaisingamount(String raisingamount) {
+        this.raisingamount = raisingamount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

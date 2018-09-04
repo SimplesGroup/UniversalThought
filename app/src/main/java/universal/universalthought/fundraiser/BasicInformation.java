@@ -136,6 +136,13 @@ SharedPreferences sharedPreferences;
                 startActivity(i);
             }
         });
+        three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BasicInformation.this,OtherDetails.class);
+                startActivity(i);
+            }
+        });
         spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

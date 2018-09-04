@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import universal.universalthought.R;
-import universal.universalthought.adapter.CatagoriesAdapter;
+import universal.universalthought.activity.CheckClass;
 import universal.universalthought.adapter.EducationAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -72,13 +72,16 @@ public class EducationFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        getData();
+       getData();
+        adapter.notifyDataSetChanged();
         // Inflate the layout for this fragment
         return rootView;
     }
 
     private void getData(){
-    requestqueue.add(getDatafromserver(requestcount));
+        CheckClass cls=new CheckClass();
+        cls.jsonmethod(getContext(),"education",requestcount);
+        productList = cls.jsonmethod(getContext(),"education",requestcount);
     requestcount++;
     }
 StringRequest getDatafromserver(final int reqcount){
@@ -95,7 +98,7 @@ StringRequest getDatafromserver(final int reqcount){
                         JSONObject explrObject = jsonArray.getJSONObject(i);
 
                         CategoryItemmodel model=new CategoryItemmodel();
-                        model.setAmount(explrObject.getString("amount"));
+                        model.setAmountraised(explrObject.getString("amount"));
                         model.setCity(explrObject.getString("city"));
                         model.setId(explrObject.getString("id"));
                         model.setTitleoffundraising(explrObject.getString("title_of_fundraising"));

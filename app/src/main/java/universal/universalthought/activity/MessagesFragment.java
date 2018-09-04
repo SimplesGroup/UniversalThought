@@ -1,7 +1,6 @@
 package universal.universalthought.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -9,14 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -38,9 +35,7 @@ import java.util.Map;
 
 import universal.universalthought.R;
 import universal.universalthought.adapter.CatagoriesAdapter;
-import universal.universalthought.adapter.ProductsAdapterEnglish;
 import universal.universalthought.model.CategoryItemmodel;
-import universal.universalthought.model.ProductEnglish;
 
 
 public class MessagesFragment extends Fragment {
@@ -98,7 +93,7 @@ StringRequest getDatafromserver(final int reqcount){
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject explrObject = jsonArray.getJSONObject(i);
                         CategoryItemmodel model=new CategoryItemmodel();
-                        model.setAmount(explrObject.getString("amount"));
+                        model.setAmountraised(explrObject.getString("amount"));
                         model.setCity(explrObject.getString("city"));
                         model.setId(explrObject.getString("id"));
                         model.setTitleoffundraising(explrObject.getString("title_of_fundraising"));

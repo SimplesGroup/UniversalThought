@@ -169,7 +169,7 @@
                 android:textSize="12dp"
                 android:padding="6dp"
                 android:background="@drawable/boxborder"
-                android:entries="@array/amount" />
+                android:entries="@array/amountraised" />
 
 
             <EditText

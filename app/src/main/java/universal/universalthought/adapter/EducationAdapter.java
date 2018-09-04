@@ -71,7 +71,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
         holder.progressBar.setProgress(percentage_value);   // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText("56k");
+        holder.total_amount_textview.setText(productEnglish.getAmountraised());
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

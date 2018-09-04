@@ -186,7 +186,7 @@ LinearLayout benificiarylayout,campain_layout;
                             JSONObject explrObject = jsonArray.getJSONObject(i);
 
                             CategoryItemmodel model=new CategoryItemmodel();
-                            model.setAmount(explrObject.getString("raising_amount"));
+                            model.setAmountraised(explrObject.getString("raising_amount"));
                            model.setCity(explrObject.getString("city"));
                             model.setId(explrObject.getString("id"));
                         model.setTitleoffundraising(explrObject.getString("title"));

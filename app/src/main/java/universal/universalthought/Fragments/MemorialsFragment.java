@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 
 import universal.universalthought.R;
-import universal.universalthought.adapter.CatagoriesAdapter;
 import universal.universalthought.adapter.MemorialsAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -94,7 +93,7 @@ StringRequest getDatafromserver(final int reqcount){
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject explrObject = jsonArray.getJSONObject(i);
                         CategoryItemmodel model=new CategoryItemmodel();
-                        model.setAmount(explrObject.getString("amount"));
+                        model.setAmountraised(explrObject.getString("amount"));
                         model.setCity(explrObject.getString("city"));
                         model.setId(explrObject.getString("id"));
                         model.setTitleoffundraising(explrObject.getString("title_of_fundraising"));

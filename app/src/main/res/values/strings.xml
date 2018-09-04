@@ -55,7 +55,7 @@
     <string name="tax">Universal Thought provides you the option to auto-generate and issue 80G receipts for your INR donations. This will save your time and effort spent in reconciling and issuing on your own.</string>
     <string name="recmd">Recommended dimensions: 75x50; Maximum file size: 500KB; Supported image formats: JPG, JPEG and PNG.</string>
 
-    <array name="amount">
+    <array name="amountraised">
         <item>"Rs"</item>
         <item>"$"</item>
     </array>
