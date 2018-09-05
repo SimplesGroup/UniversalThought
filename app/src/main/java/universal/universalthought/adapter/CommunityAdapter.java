@@ -90,4 +90,8 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
     public int getItemCount() {
         return productEnglishList.size();
     }
+    public void data(List<CategoryItemmodel> lists){
+        this.productEnglishList.addAll(lists);
+        notifyDataSetChanged();
+    }
 }

@@ -33,16 +33,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import universal.universalthought.Listinterface;
 import universal.universalthought.R;
+import universal.universalthought.activity.CheckClass;
 import universal.universalthought.adapter.ArtsMediaAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
-public class ArtsMediaFragment extends Fragment {
+public class ArtsMediaFragment extends Fragment implements Listinterface {
 
     private RecyclerView recyclerView;
-    private ArtsMediaAdapter adapter;
-    private List<CategoryItemmodel> productList;
+    private static ArtsMediaAdapter adapter;
+    private static List<CategoryItemmodel> productList;
     ImageView fundraiser;
     RequestQueue requestqueue;
     int requestcount=1;
@@ -72,13 +74,17 @@ public class ArtsMediaFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         getData();
+        adapter.notifyDataSetChanged();
         // Inflate the layout for this fragment
         return rootView;
     }
 
     private void getData(){
-    requestqueue.add(getDatafromserver(requestcount));
-    requestcount++;
+        CheckClass cls=new CheckClass();
+        cls.jsonmethod(getContext(),"artsmedia",requestcount);
+        productList = cls.jsonmethod(getContext(),"artsmedia",requestcount);
+        requestcount++;
+        adapter.notifyDataSetChanged();
     }
         StringRequest getDatafromserver(final int reqcount){
         StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -143,6 +149,12 @@ public class ArtsMediaFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+    @Override
+    public void List(List<CategoryItemmodel> list) {
+        productList=list;
+        Log.e("Response","listnews"+productList.toString());
+        adapter .data(productList);
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

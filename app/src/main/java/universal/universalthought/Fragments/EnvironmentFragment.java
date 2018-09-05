@@ -15,41 +15,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import universal.universalthought.Listinterface;
 import universal.universalthought.R;
 import universal.universalthought.activity.CheckClass;
-import universal.universalthought.adapter.MemorialsAdapter;
+import universal.universalthought.adapter.AnimalsAdapter;
+import universal.universalthought.adapter.EnvironmentAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
-public class MemorialsFragment extends Fragment implements Listinterface {
+public class EnvironmentFragment extends Fragment implements Listinterface {
 
     private RecyclerView recyclerView;
-    private static MemorialsAdapter adapter;
+    private static EnvironmentAdapter adapter;
     private static List<CategoryItemmodel> productList;
     ImageView fundraiser;
     RequestQueue requestqueue;
     int requestcount=1;
     String url="http://www.simples.in/universalthought/universalthought.php";
-    public MemorialsFragment() {
+    String urls="https://androiddevelopmentnew.000webhostapp.com/listjson.json";
+
+    public EnvironmentFragment() {
         // Required empty public constructor
     }
 
@@ -64,7 +55,7 @@ public class MemorialsFragment extends Fragment implements Listinterface {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_messages, container, false);
         productList = new ArrayList<CategoryItemmodel>();
-        adapter = new MemorialsAdapter(getActivity(), productList);
+        adapter = new EnvironmentAdapter(getActivity(), productList);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         requestqueue= Volley.newRequestQueue(getActivity());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -72,21 +63,33 @@ public class MemorialsFragment extends Fragment implements Listinterface {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
-        getData();
+        getData();;
         adapter.notifyDataSetChanged();
+       /* listJsonInterface=new ListJsonInterface() {
+            @Override
+            public List<CategoryItemmodel> getList(Context context) {
+                return null;
+            }
+        }*/
+//       JsonGet get=new JsonGet();
+//        productList=get.getList(getActivity().getBaseContext(),requestqueue);
+//        Log.e("ARR",productList.toString());
+//        // productList=listJsonInterface.getList(getActivity().getApplicationContext());
+//        adapter.notifyDataSetChanged();
+       // getData();
+
+
         // Inflate the layout for this fragment
         return rootView;
     }
 
     private void getData(){
         CheckClass cls=new CheckClass();
-        cls.jsonmethod(getContext(),"memorials",requestcount);
-        productList = cls.jsonmethod(getContext(),"memorials",requestcount);
+        cls.jsonmethod(getContext(),"environment",requestcount);
+        productList = cls.jsonmethod(getContext(),"environment",requestcount);
         requestcount++;
         adapter.notifyDataSetChanged();
     }
-
 
 
     @Override

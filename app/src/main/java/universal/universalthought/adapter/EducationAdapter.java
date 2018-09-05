@@ -103,4 +103,9 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
     public int getItemCount() {
         return productEnglishList.size();
     }
+
+    public void data(List<CategoryItemmodel> lists){
+       this.productEnglishList.addAll(lists);
+       notifyDataSetChanged();
+    }
 }

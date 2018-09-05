@@ -90,4 +90,10 @@ public class MedicalAdapter extends RecyclerView.Adapter<MedicalAdapter.MyViewHo
     public int getItemCount() {
         return productEnglishList.size();
     }
+
+    public void data(List<CategoryItemmodel> lists){
+        this.productEnglishList.addAll(lists);
+        notifyDataSetChanged();
+    }
+
 }

@@ -33,16 +33,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import universal.universalthought.Listinterface;
 import universal.universalthought.R;
+import universal.universalthought.activity.CheckClass;
 import universal.universalthought.adapter.EmergenciesAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
-public class EmergenciesFragment extends Fragment {
+public class EmergenciesFragment extends Fragment implements Listinterface {
 
     private RecyclerView recyclerView;
-    private EmergenciesAdapter adapter;
-    private List<CategoryItemmodel> productList;
+    private static EmergenciesAdapter adapter;
+    private static List<CategoryItemmodel> productList;
     ImageView fundraiser;
     RequestQueue requestqueue;
     int requestcount=1;
@@ -72,13 +74,17 @@ public class EmergenciesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         getData();
+        adapter.notifyDataSetChanged();
         // Inflate the layout for this fragment
         return rootView;
     }
 
     private void getData(){
-    requestqueue.add(getDatafromserver(requestcount));
-    requestcount++;
+        CheckClass cls=new CheckClass();
+        cls.jsonmethod(getContext(),"emergenicies",requestcount);
+        productList = cls.jsonmethod(getContext(),"emergenicies",requestcount);
+        requestcount++;
+        adapter.notifyDataSetChanged();
     }
 StringRequest getDatafromserver(final int reqcount){
         StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -119,7 +125,7 @@ StringRequest getDatafromserver(final int reqcount){
                 Map<String,String>param=new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","IndividualCategory");
-                param.put("category","medical");
+                param.put("category","emergenicies");
                 param.put("page",String.valueOf(reqcount));
 
 
@@ -143,6 +149,14 @@ StringRequest getDatafromserver(final int reqcount){
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+    @Override
+    public void List(List<CategoryItemmodel> list) {
+        productList=list;
+
+        Log.e("Response","listnews"+productList.toString());
+        adapter.data(productList);
+
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

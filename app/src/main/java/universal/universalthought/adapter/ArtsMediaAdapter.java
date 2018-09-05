@@ -98,4 +98,8 @@ public class ArtsMediaAdapter extends RecyclerView.Adapter<ArtsMediaAdapter.MyVi
     public int getItemCount() {
         return productEnglishList.size();
     }
+    public void data(List<CategoryItemmodel> lists){
+        this.productEnglishList.addAll(lists);
+        notifyDataSetChanged();
+    }
 }

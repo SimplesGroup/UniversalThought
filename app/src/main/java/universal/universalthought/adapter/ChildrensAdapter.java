@@ -100,4 +100,8 @@ public class ChildrensAdapter extends RecyclerView.Adapter<ChildrensAdapter.MyVi
     public int getItemCount() {
         return productEnglishList.size();
     }
+    public void data(List<CategoryItemmodel> lists){
+        this.productEnglishList.addAll(lists);
+        notifyDataSetChanged();
+    }
 }

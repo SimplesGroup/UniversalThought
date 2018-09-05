@@ -28,9 +28,16 @@ import universal.universalthought.Fragments.CommunityFragment;
 import universal.universalthought.Fragments.EducationFragment;
 import universal.universalthought.Fragments.ElderlyFragment;
 import universal.universalthought.Fragments.EmergenciesFragment;
+import universal.universalthought.Fragments.EnvironmentFragment;
+import universal.universalthought.Fragments.HumanRightsFragment;
 import universal.universalthought.Fragments.MedicalFragment;
 import universal.universalthought.Fragments.MemorialsFragment;
+import universal.universalthought.Fragments.OthersFragment;
+import universal.universalthought.Fragments.RuralDevelopmentFragment;
+import universal.universalthought.Fragments.SocialFragment;
 import universal.universalthought.Fragments.SportsFragment;
+import universal.universalthought.Fragments.TechnologyFragment;
+import universal.universalthought.Fragments.WomenFragment;
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.StoriesPage;
 
@@ -113,16 +120,24 @@ if(bundle!=null){
 
     private void setupViewPager(ViewPager viewPager) {
         FeedViewPagerAdapter adapter = new FeedViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new EducationFragment(), "EDUCATION");
-        adapter.addFragment(new EmergenciesFragment(), "EMERGENCIES");
-        adapter.addFragment(new MedicalFragment(), "MEDICAL");
         adapter.addFragment(new AnimalsFragment(), "ANIMALS");
-        adapter.addFragment(new ChildrensFragment(), "CHILDRENS");
-        adapter.addFragment(new SportsFragment(), "SPORTS");
-        adapter.addFragment(new MemorialsFragment(), "MEMORIALS");
-        adapter.addFragment(new CommunityFragment(), "COMMUNITY");
-        adapter.addFragment(new ElderlyFragment(), "ELDERLY");
         adapter.addFragment(new ArtsMediaFragment(), "ARTS & MEDIA");
+        adapter.addFragment(new ChildrensFragment(), "CHILDRENS");
+        adapter.addFragment(new CommunityFragment(), "COMMUNITY");
+        adapter.addFragment(new EducationFragment(), "EDUCATION");
+        adapter.addFragment(new ElderlyFragment(), "ELDERLY");
+        adapter.addFragment(new EmergenciesFragment(), "EMERGENCIES");
+        adapter.addFragment(new EnvironmentFragment(), "ENVIRONMENT");
+        adapter.addFragment(new HumanRightsFragment(), "HUMAN RIGHTS");
+        adapter.addFragment(new MedicalFragment(), "MEDICAL");
+        adapter.addFragment(new MemorialsFragment(), "MEMORIAL");
+        adapter.addFragment(new RuralDevelopmentFragment(), "RURAL DEVELOPMENT");
+        adapter.addFragment(new SocialFragment(), "SOCIAL");
+        adapter.addFragment(new SportsFragment(), "SPORTS");
+        adapter.addFragment(new TechnologyFragment(), "TECHNOLOGY");
+        adapter.addFragment(new WomenFragment(), "WOMEN");
+        adapter.addFragment(new OthersFragment(), "OTHERS");
+
 
         viewPager.setAdapter(adapter);
     }

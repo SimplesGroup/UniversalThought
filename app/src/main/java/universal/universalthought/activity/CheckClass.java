@@ -1,6 +1,8 @@
 package universal.universalthought.activity;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -20,6 +22,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import universal.universalthought.Fragments.AnimalsFragment;
+import universal.universalthought.Fragments.ArtsMediaFragment;
+import universal.universalthought.Fragments.ChildrensFragment;
+import universal.universalthought.Fragments.CommunityFragment;
+import universal.universalthought.Fragments.EducationFragment;
+import universal.universalthought.Fragments.ElderlyFragment;
+import universal.universalthought.Fragments.EmergenciesFragment;
+import universal.universalthought.Fragments.EnvironmentFragment;
+import universal.universalthought.Fragments.HumanRightsFragment;
+import universal.universalthought.Fragments.MedicalFragment;
+import universal.universalthought.Fragments.MemorialsFragment;
+import universal.universalthought.Fragments.OthersFragment;
+import universal.universalthought.Fragments.RuralDevelopmentFragment;
+import universal.universalthought.Fragments.SocialFragment;
+import universal.universalthought.Fragments.SportsFragment;
+import universal.universalthought.Fragments.TechnologyFragment;
+import universal.universalthought.Fragments.WomenFragment;
+import universal.universalthought.Listinterface;
+import universal.universalthought.R;
+import universal.universalthought.adapter.AnimalsAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 /**
@@ -28,11 +50,12 @@ import universal.universalthought.model.CategoryItemmodel;
 
 public class CheckClass {
     String url = "http://www.simples.in/universalthought/universalthought.php";
-    private List<CategoryItemmodel> productList;
+     private static List<CategoryItemmodel> productList=new ArrayList<>();
     RequestQueue requestQueue;
 
+
     public List<CategoryItemmodel> jsonmethod(Context context, final String category, final int reqcount) {
-        productList = new ArrayList<CategoryItemmodel>();
+       // productList = new ArrayList<CategoryItemmodel>();
         requestQueue = Volley.newRequestQueue(context);
 
         StringRequest objectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -43,16 +66,22 @@ public class CheckClass {
                 try {
                     JSONObject jsondata = new JSONObject(response.toString());
                     JSONArray jsonArray = jsondata.getJSONArray("result");
+                    String data=jsonArray.optString(1);
+                    Log.e("Response", "newarray" + data.toString());
 
-                    Log.e("Responsess", "data" + jsonArray.toString());
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject explrObject = jsonArray.getJSONObject(i);
+
+                  JSONArray array =new JSONArray(data.toString());
+
+
+                   for (int i = 0; i < array.length(); i++) {
+                        JSONObject explrObject = array.getJSONObject(i);
+                        Log.e("Response","tets"+explrObject.toString());
 
                         CategoryItemmodel model = new CategoryItemmodel();
                         model.setId(explrObject.getString("id"));
                         model.setUrl(explrObject.getString("url"));
                         model.setTitleoffundraising(explrObject.getString("title"));
-                        Log.e("Data", explrObject.getString("title"));
+                        Log.e("Data",explrObject.getString("title"));
                         model.setPhoto(explrObject.getString("image"));
                         model.setName(explrObject.getString("name"));
                         model.setAmountraised(explrObject.getString("amount_raised"));
@@ -60,7 +89,8 @@ public class CheckClass {
 
                         productList.add(model);
                     }
-                    //  adapter.notifyDataSetChanged();
+                    Modelclass(category);
+
                 } catch (JSONException e) {
 
                 }
@@ -77,7 +107,7 @@ public class CheckClass {
                 Map<String, String> param = new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","alldata");
-                param.put("category","all");
+                param.put("category",category);
                 param.put("type", "");
                 param.put("search_text","");
                 param.put("page",String.valueOf(reqcount));
@@ -89,5 +119,65 @@ public class CheckClass {
 
         return productList;
     }
+    public List<CategoryItemmodel> Modelclass(String qtype){
+        Log.e("Data","list"+productList.toString());
+        if(qtype.equals("animals")){
+            Listinterface listinterface=new AnimalsFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("artsmedia")){
+            Listinterface listinterface=new ArtsMediaFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("childrens")){
+            Listinterface listinterface=new ChildrensFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("community")){
+            Listinterface listinterface=new CommunityFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("education")){
+            Listinterface listinterface=new EducationFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("elderly")){
+            Listinterface listinterface=new ElderlyFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("emergenicies")){
+            Listinterface listinterface=new EmergenciesFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("environment")){
+            Listinterface listinterface=new EnvironmentFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("humanrights")){
+            Listinterface listinterface=new HumanRightsFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("medical")){
+            Listinterface listinterface=new MedicalFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("memorials")){
+            Listinterface listinterface=new MemorialsFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("ruraldevelopment")){
+            Listinterface listinterface=new RuralDevelopmentFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("social")){
+            Listinterface listinterface=new SocialFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("sports")){
+            Listinterface listinterface=new SportsFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("technology")){
+            Listinterface listinterface=new TechnologyFragment();
+            listinterface.List(productList);
+        }else if(qtype.equals("women")){
+            Listinterface listinterface=new WomenFragment();
+            listinterface.List(productList);
+        } else if(qtype.equals("others")){
+            Listinterface listinterface=new OthersFragment();
+            listinterface.List(productList);
+        }
+
+
+
+        return productList;
+    }
+
 
 }

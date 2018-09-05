@@ -89,4 +89,8 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
     public int getItemCount() {
         return productEnglishList.size();
     }
+    public void data(List<CategoryItemmodel> lists){
+        this.productEnglishList.addAll(lists);
+        notifyDataSetChanged();
+    }
 }

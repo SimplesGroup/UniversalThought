@@ -97,4 +97,8 @@ public class MemorialsAdapter extends RecyclerView.Adapter<MemorialsAdapter.MyVi
     public int getItemCount() {
         return productEnglishList.size();
     }
+    public void data(List<CategoryItemmodel> lists){
+        this.productEnglishList.addAll(lists);
+        notifyDataSetChanged();
+    }
 }

@@ -33,17 +33,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import universal.universalthought.Listinterface;
 import universal.universalthought.R;
 import universal.universalthought.activity.CheckClass;
 import universal.universalthought.adapter.EducationAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
-public class EducationFragment extends Fragment {
+public class EducationFragment extends Fragment implements Listinterface {
 
     private RecyclerView recyclerView;
-    private EducationAdapter adapter;
-    private List<CategoryItemmodel> productList;
+    private static EducationAdapter adapter;
+    private static List<CategoryItemmodel> productList;
     ImageView fundraiser;
     RequestQueue requestqueue;
     int requestcount=1;
@@ -71,9 +72,9 @@ public class EducationFragment extends Fragment {
        // recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
        getData();
         adapter.notifyDataSetChanged();
+
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -82,8 +83,10 @@ public class EducationFragment extends Fragment {
         CheckClass cls=new CheckClass();
         cls.jsonmethod(getContext(),"education",requestcount);
         productList = cls.jsonmethod(getContext(),"education",requestcount);
-    requestcount++;
+        requestcount++;
+        adapter.notifyDataSetChanged();
     }
+
 StringRequest getDatafromserver(final int reqcount){
         StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -93,7 +96,6 @@ StringRequest getDatafromserver(final int reqcount){
                     JSONObject jsondata=new JSONObject(response.toString());
                     JSONArray jsonArray=jsondata.getJSONArray("result");
 
-                    Log.e("Responsess","data"+jsonArray.toString());
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject explrObject = jsonArray.getJSONObject(i);
 
@@ -145,6 +147,13 @@ StringRequest getDatafromserver(final int reqcount){
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void List(List<CategoryItemmodel> list) {
+        productList=list;
+        Log.e("Response","listnews"+productList.toString());
+        adapter .data(productList);
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

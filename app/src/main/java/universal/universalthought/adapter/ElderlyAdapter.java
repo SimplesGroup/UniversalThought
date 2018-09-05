@@ -89,4 +89,8 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
     public int getItemCount() {
         return productEnglishList.size();
     }
+    public void data(List<CategoryItemmodel> lists){
+        this.productEnglishList.addAll(lists);
+        notifyDataSetChanged();
+    }
 }

@@ -33,16 +33,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import universal.universalthought.Listinterface;
 import universal.universalthought.R;
+import universal.universalthought.activity.CheckClass;
 import universal.universalthought.adapter.AnimalsAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
-public class AnimalsFragment extends Fragment {
+public class AnimalsFragment extends Fragment implements Listinterface {
 
     private RecyclerView recyclerView;
-    private AnimalsAdapter adapter;
-    private List<CategoryItemmodel> productList;
+    private static AnimalsAdapter adapter;
+    private static List<CategoryItemmodel> productList;
     ImageView fundraiser;
     RequestQueue requestqueue;
     int requestcount=1;
@@ -72,6 +74,8 @@ public class AnimalsFragment extends Fragment {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+        getData();;
+        adapter.notifyDataSetChanged();
        /* listJsonInterface=new ListJsonInterface() {
             @Override
             public List<CategoryItemmodel> getList(Context context) {
@@ -91,63 +95,12 @@ public class AnimalsFragment extends Fragment {
     }
 
     private void getData(){
-    requestqueue.add(getDatafromserver(requestcount));
-    requestcount++;
+        CheckClass cls=new CheckClass();
+        cls.jsonmethod(getContext(),"animals",requestcount);
+        productList = cls.jsonmethod(getContext(),"animals",requestcount);
+        requestcount++;
+        adapter.notifyDataSetChanged();
     }
-StringRequest getDatafromserver(final int reqcount){
-        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("Response",response.toString());
-                try {
-                    JSONObject jsondata=new JSONObject(response.toString());
-                    JSONArray jsonArray=jsondata.getJSONArray("result");
-
-                    Log.e("Response","data"+jsonArray.toString());
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject explrObject = jsonArray.getJSONObject(i);
-                        CategoryItemmodel model=new CategoryItemmodel();
-                        model.setAmountraised(explrObject.getString("amount"));
-                        model.setCity(explrObject.getString("city"));
-                        model.setId(explrObject.getString("id"));
-                        model.setTitleoffundraising(explrObject.getString("title_of_fundraising"));
-                        Log.e("Response",explrObject.getString("title_of_fundraising"));
-                        model.setPhoto(explrObject.getString("fundraiser_photo"));
-                        productList.add(model);
-                    }
-                    adapter.notifyDataSetChanged();
-                }catch (JSONException e){
-
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String,String>param=new HashMap<>();
-                param.put("Key","UniversalThought");
-                param.put("rType","IndividualCategory");
-                param.put("category","medical");
-                param.put("page",String.valueOf(reqcount));
-
-
-                return param;
-
-
-            }
-        };
-    request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 3, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-    requestqueue.add(request);
-        return request;
-}
-
 
 
     @Override
@@ -159,7 +112,12 @@ StringRequest getDatafromserver(final int reqcount){
     public void onDetach() {
         super.onDetach();
     }
-
+    @Override
+    public void List(List<CategoryItemmodel> list) {
+        productList=list;
+        Log.e("Response","listnews"+productList.toString());
+        adapter .data(productList);
+    }
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
