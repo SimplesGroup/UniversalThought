@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@android:id/secondaryProgress">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
         <shape>
-
-            <gradient
-                android:startColor="#751b1b1b"
-                android:endColor="#751b1b1b"
-                android:centerColor="#751b1b1b"
-                />
+            <solid android:color="#751b1b1b" />
+            <size
+                android:height="20dp" />
+             />
         </shape>
     </item>
     <item android:id="@android:id/progress">
-        <rotate>
-            <shape>
-                <gradient
-                    android:startColor="@color/redprogress"
-                    android:endColor="@color/redprogress"
-                    android:centerColor="@color/redprogress"
-                    />
-            </shape>
-        </rotate>
+        <clip>
+            <layer-list>
+                <item>
+                    <color android:color="#00000000" />
+                </item>
+                <item
+                    android:left="0dp"
+                    android:top="0dp"
+                    android:right="0dp"
+                    android:bottom="0dp">
+                    <shape>
+                        <solid android:color="@color/redprogress" />
+
+                    </shape>
+                </item>
+            </layer-list>
+        </clip>
     </item>
 </layer-list>

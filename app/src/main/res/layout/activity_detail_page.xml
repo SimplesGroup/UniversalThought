@@ -68,7 +68,6 @@
     android:layout_height="match_parent" />
                 <TextView
                     android:gravity="center"
-
                     android:layout_marginLeft="10dp"
                     android:textColor="@android:color/white"
                     android:id="@+id/tonated_cost"
@@ -81,7 +80,6 @@
     android:layout_below="@+id/cost_layout"
     android:layout_width="match_parent"
     android:orientation="vertical"
-
     android:layout_marginRight="15dp"
     android:layout_height="match_parent">
     <TextView
@@ -90,7 +88,6 @@
         android:textColor="@android:color/black"
         android:textSize="20dp"
         android:layout_marginLeft="15dp"
-        android:text="Help indias rural graduates achive their dreams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <WebView

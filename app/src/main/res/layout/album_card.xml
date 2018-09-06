@@ -48,7 +48,7 @@
         android:id="@+id/totalamount"
         android:textColor="@color/white"
         android:background="@color/red"
-        android:text="41.0 k"
+
         android:textSize="11sp"
         android:layout_alignTop="@+id/circularProgressBar"
         android:layout_width="wrap_content"
