@@ -73,7 +73,7 @@ public class EducationFragment extends Fragment implements Listinterface {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
        getData();
-        adapter.notifyDataSetChanged();
+      //  adapter.notifyDataSetChanged();
 
         // Inflate the layout for this fragment
         return rootView;

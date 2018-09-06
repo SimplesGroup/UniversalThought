@@ -72,7 +72,7 @@
         android:paddingBottom="0dp"
         android:paddingLeft="@dimen/album_title_padding"
         android:paddingRight="0dp"
-        android:text="Help India's rural graduates achieve their dreams"
+
         android:textSize="@dimen/songs_count" />
 
 

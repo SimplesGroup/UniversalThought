@@ -1,4 +1,4 @@
-package universal.universalthought.Fragments;
+package universal.universalthought.Fragments.Verify;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -15,32 +15,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import universal.universalthought.Listinterface;
 import universal.universalthought.R;
 import universal.universalthought.activity.CheckClass;
-import universal.universalthought.adapter.AnimalsAdapter;
-import universal.universalthought.adapter.SocialAdapter;
+import universal.universalthought.activity.VerifyJsonParser;
+import universal.universalthought.adapter.ArtsMediaAdapter;
+import universal.universalthought.adapter.VerifyAdapters.VerifyArtsMediaAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
-public class SocialFragment extends Fragment implements Listinterface {
+public class VerifyArtsMediaFragment extends Fragment implements Listinterface {
 
     private RecyclerView recyclerView;
-    private static SocialAdapter adapter;
+    private static VerifyArtsMediaAdapter adapter;
     private static List<CategoryItemmodel> productList;
     ImageView fundraiser;
     RequestQueue requestqueue;
     int requestcount=1;
     String url="http://www.simples.in/universalthought/universalthought.php";
-    String urls="https://androiddevelopmentnew.000webhostapp.com/listjson.json";
-
-    public SocialFragment() {
+    public VerifyArtsMediaFragment() {
         // Required empty public constructor
     }
 
@@ -55,7 +66,7 @@ public class SocialFragment extends Fragment implements Listinterface {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_messages, container, false);
         productList = new ArrayList<CategoryItemmodel>();
-        adapter = new SocialAdapter(getActivity(), productList);
+        adapter = new VerifyArtsMediaAdapter(getActivity(), productList);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         requestqueue= Volley.newRequestQueue(getActivity());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -63,33 +74,72 @@ public class SocialFragment extends Fragment implements Listinterface {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-        getData();;
-       // adapter.notifyDataSetChanged();
-       /* listJsonInterface=new ListJsonInterface() {
-            @Override
-            public List<CategoryItemmodel> getList(Context context) {
-                return null;
-            }
-        }*/
-//       JsonGet get=new JsonGet();
-//        productList=get.getList(getActivity().getBaseContext(),requestqueue);
-//        Log.e("ARR",productList.toString());
-//        // productList=listJsonInterface.getList(getActivity().getApplicationContext());
-//        adapter.notifyDataSetChanged();
-       // getData();
 
-
+        getData();
+        adapter.notifyDataSetChanged();
         // Inflate the layout for this fragment
         return rootView;
     }
 
     private void getData(){
-        CheckClass cls=new CheckClass();
-        cls.jsonmethod(getContext(),"social",requestcount);
-        productList = cls.jsonmethod(getContext(),"social",requestcount);
+        VerifyJsonParser cls=new VerifyJsonParser();
+        productList = cls.jsonmethodverify(getContext(),"artsmedia",requestcount);
         requestcount++;
         adapter.notifyDataSetChanged();
     }
+        StringRequest getDatafromserver(final int reqcount){
+        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response",response.toString());
+                try {
+                    JSONObject jsondata=new JSONObject(response.toString());
+                    JSONArray jsonArray=jsondata.getJSONArray("result");
+
+                    Log.e("Response","data"+jsonArray.toString());
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject explrObject = jsonArray.getJSONObject(i);
+                        CategoryItemmodel model=new CategoryItemmodel();
+                        model.setAmountraised(explrObject.getString("amount"));
+                        model.setCity(explrObject.getString("city"));
+                        model.setId(explrObject.getString("id"));
+                        model.setTitleoffundraising(explrObject.getString("title_of_fundraising"));
+                        Log.e("Response",explrObject.getString("title_of_fundraising"));
+                        model.setPhoto(explrObject.getString("fundraiser_photo"));
+                        productList.add(model);
+                    }
+                    adapter.notifyDataSetChanged();
+                }catch (JSONException e){
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String>param=new HashMap<>();
+                param.put("Key","UniversalThought");
+                param.put("rType","IndividualCategory");
+                param.put("category","medical");
+                param.put("page",String.valueOf(reqcount));
+
+
+                return param;
+
+
+            }
+        };
+    request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 3, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+    requestqueue.add(request);
+        return request;
+}
 
 
     @Override
@@ -107,6 +157,7 @@ public class SocialFragment extends Fragment implements Listinterface {
         Log.e("Response","listnews"+productList.toString());
         adapter .data(productList);
     }
+
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;

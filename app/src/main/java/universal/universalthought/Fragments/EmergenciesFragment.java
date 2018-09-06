@@ -74,7 +74,7 @@ public class EmergenciesFragment extends Fragment implements Listinterface {
         recyclerView.setAdapter(adapter);
 
         getData();
-        adapter.notifyDataSetChanged();
+
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -84,7 +84,7 @@ public class EmergenciesFragment extends Fragment implements Listinterface {
         cls.jsonmethod(getContext(),"emergenicies",requestcount);
         productList = cls.jsonmethod(getContext(),"emergenicies",requestcount);
         requestcount++;
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
     }
 StringRequest getDatafromserver(final int reqcount){
         StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

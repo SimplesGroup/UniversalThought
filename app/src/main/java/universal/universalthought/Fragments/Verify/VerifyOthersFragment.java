@@ -1,4 +1,4 @@
-package universal.universalthought.Fragments;
+package universal.universalthought.Fragments.Verify;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -24,15 +24,16 @@ import java.util.List;
 import universal.universalthought.Listinterface;
 import universal.universalthought.R;
 import universal.universalthought.activity.CheckClass;
-import universal.universalthought.adapter.AnimalsAdapter;
-import universal.universalthought.adapter.SocialAdapter;
+import universal.universalthought.activity.VerifyJsonParser;
+import universal.universalthought.adapter.OthersAdapter;
+import universal.universalthought.adapter.VerifyAdapters.VerifyOthersAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
 
-public class SocialFragment extends Fragment implements Listinterface {
+public class VerifyOthersFragment extends Fragment implements Listinterface {
 
     private RecyclerView recyclerView;
-    private static SocialAdapter adapter;
+    private static VerifyOthersAdapter adapter;
     private static List<CategoryItemmodel> productList;
     ImageView fundraiser;
     RequestQueue requestqueue;
@@ -40,7 +41,7 @@ public class SocialFragment extends Fragment implements Listinterface {
     String url="http://www.simples.in/universalthought/universalthought.php";
     String urls="https://androiddevelopmentnew.000webhostapp.com/listjson.json";
 
-    public SocialFragment() {
+    public VerifyOthersFragment() {
         // Required empty public constructor
     }
 
@@ -55,7 +56,7 @@ public class SocialFragment extends Fragment implements Listinterface {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_messages, container, false);
         productList = new ArrayList<CategoryItemmodel>();
-        adapter = new SocialAdapter(getActivity(), productList);
+        adapter = new VerifyOthersAdapter(getActivity(), productList);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         requestqueue= Volley.newRequestQueue(getActivity());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -64,7 +65,7 @@ public class SocialFragment extends Fragment implements Listinterface {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         getData();;
-       // adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
        /* listJsonInterface=new ListJsonInterface() {
             @Override
             public List<CategoryItemmodel> getList(Context context) {
@@ -84,9 +85,8 @@ public class SocialFragment extends Fragment implements Listinterface {
     }
 
     private void getData(){
-        CheckClass cls=new CheckClass();
-        cls.jsonmethod(getContext(),"social",requestcount);
-        productList = cls.jsonmethod(getContext(),"social",requestcount);
+        VerifyJsonParser cls=new VerifyJsonParser();
+        productList = cls.jsonmethodverify(getContext(),"others",requestcount);
         requestcount++;
         adapter.notifyDataSetChanged();
     }

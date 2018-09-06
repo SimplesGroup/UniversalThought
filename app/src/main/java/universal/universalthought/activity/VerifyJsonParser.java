@@ -1,8 +1,6 @@
 package universal.universalthought.activity;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -22,22 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import universal.universalthought.Fragments.AnimalsFragment;
-import universal.universalthought.Fragments.ArtsMediaFragment;
-import universal.universalthought.Fragments.ChildrensFragment;
-import universal.universalthought.Fragments.CommunityFragment;
-import universal.universalthought.Fragments.EducationFragment;
-import universal.universalthought.Fragments.ElderlyFragment;
-import universal.universalthought.Fragments.EmergenciesFragment;
-import universal.universalthought.Fragments.EnvironmentFragment;
-import universal.universalthought.Fragments.HumanRightsFragment;
-import universal.universalthought.Fragments.MedicalFragment;
-import universal.universalthought.Fragments.MemorialsFragment;
-import universal.universalthought.Fragments.OthersFragment;
-import universal.universalthought.Fragments.RuralDevelopmentFragment;
 import universal.universalthought.Fragments.SocialFragment;
-import universal.universalthought.Fragments.SportsFragment;
-import universal.universalthought.Fragments.TechnologyFragment;
 import universal.universalthought.Fragments.Verify.VerifyAnimalsFragment;
 import universal.universalthought.Fragments.Verify.VerifyArtsMediaFragment;
 import universal.universalthought.Fragments.Verify.VerifyChildrensFragment;
@@ -55,24 +38,16 @@ import universal.universalthought.Fragments.Verify.VerifySocialFragment;
 import universal.universalthought.Fragments.Verify.VerifySportsFragment;
 import universal.universalthought.Fragments.Verify.VerifyTechnologyFragment;
 import universal.universalthought.Fragments.Verify.VerifyWomenFragment;
-import universal.universalthought.Fragments.WomenFragment;
 import universal.universalthought.Listinterface;
-import universal.universalthought.R;
-import universal.universalthought.adapter.AnimalsAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
-/**
- * Created by user on 8/30/2018.
- */
-
-public class CheckClass {
+public class VerifyJsonParser  {
     String url = "http://www.simples.in/universalthought/universalthought.php";
-     private static List<CategoryItemmodel> productList=new ArrayList<>();
+    private static List<CategoryItemmodel> productList=new ArrayList<>();
     RequestQueue requestQueue;
 
-
-    public List<CategoryItemmodel> jsonmethod(Context context, final String category, final int reqcount) {
-       // productList = new ArrayList<CategoryItemmodel>();
+    public List<CategoryItemmodel> jsonmethodverify(Context context, final String category, final int reqcount) {
+        // productList = new ArrayList<CategoryItemmodel>();
         requestQueue = Volley.newRequestQueue(context);
 
         StringRequest objectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -87,10 +62,10 @@ public class CheckClass {
                     Log.e("Response", "newarray" + data.toString());
 
 
-                  JSONArray array =new JSONArray(data.toString());
+                    JSONArray array =new JSONArray(data.toString());
 
 
-                   for (int i = 0; i < array.length(); i++) {
+                    for (int i = 0; i < array.length(); i++) {
                         JSONObject explrObject = array.getJSONObject(i);
                         Log.e("Response","tets"+explrObject.toString());
 
@@ -106,8 +81,8 @@ public class CheckClass {
 
                         productList.add(model);
                     }
-                    Modelclass(category);
 
+                    verifyList(category);
                 } catch (JSONException e) {
 
                 }
@@ -136,85 +111,76 @@ public class CheckClass {
 
         return productList;
     }
-
-    public List<CategoryItemmodel> Modelclass(String qtype){
+    public List<CategoryItemmodel>verifyList(String qtype){
         Log.e("Data","list"+productList.toString());
         if(qtype.equals("animals")){
-            Listinterface listinterface=new AnimalsFragment();
-            listinterface.List(productList);
+            Listinterface listinterfaceverify=new VerifyAnimalsFragment();
+            listinterfaceverify.List(productList);
 
         } else if(qtype.equals("artsmedia")){
-            Listinterface listinterface=new ArtsMediaFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyArtsMediaFragment();
+            listinterface1.List(productList);
         } else if(qtype.equals("childrens")){
-            Listinterface listinterface=new ChildrensFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyChildrensFragment();
+            listinterface1.List(productList);
         } else if(qtype.equals("community")){
-            Listinterface listinterface=new CommunityFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyCommunityFragment();
+            listinterface1.List(productList);
         } else if(qtype.equals("education")){
-            Listinterface listinterface=new EducationFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyEducationFragment();
+            listinterface1.List(productList);
         } else if(qtype.equals("elderly")){
-           Listinterface listinterface=new ElderlyFragment();
+            Listinterface listinterface=new VerifyElderlyFragment();
             listinterface.List(productList);
         } else if(qtype.equals("emergenicies")){
-            Listinterface listinterface=new EmergenciesFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyEmergenciesFragment();
+            listinterface1.List(productList);
         } else if(qtype.equals("environment")){
-            Listinterface listinterface=new EnvironmentFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyEnvironmentFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("humanrights")){
-            Listinterface listinterface=new HumanRightsFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyHumanRightsFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("medical")){
-            Listinterface listinterface=new MedicalFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyMedicalFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("memorials")){
-            Listinterface listinterface=new MemorialsFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyMemorialsFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("ruraldevelopment")){
-            Listinterface listinterface=new RuralDevelopmentFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyRuralDevelopmentFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("social")){
             Listinterface listinterface=new SocialFragment();
             listinterface.List(productList);
-
+            Listinterface listinterface1=new VerifySocialFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("sports")){
-            Listinterface listinterface=new SportsFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifySportsFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("technology")){
-            Listinterface listinterface=new TechnologyFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyTechnologyFragment();
+            listinterface1.List(productList);
         }else if(qtype.equals("women")){
-            Listinterface listinterface=new WomenFragment();
-            listinterface.List(productList);
 
+            Listinterface listinterface1=new VerifyWomenFragment();
+            listinterface1.List(productList);
         } else if(qtype.equals("others")){
-            Listinterface listinterface=new OthersFragment();
-            listinterface.List(productList);
-
-        }else {
-            Listinterface listinterfaceverify=new VerifyAnimalsFragment();
-            listinterfaceverify.List(productList);
+            Listinterface listinterface1=new VerifyOthersFragment();
+            listinterface1.List(productList);
         }
-
-
-
         return productList;
     }
-
-
 }

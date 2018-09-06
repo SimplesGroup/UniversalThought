@@ -74,7 +74,7 @@ public class MedicalFragment extends Fragment implements Listinterface {
         recyclerView.setAdapter(adapter);
 
         getData();
-        adapter.notifyDataSetChanged();
+       // adapter.notifyDataSetChanged();
         // Inflate the layout for this fragment
         return rootView;
     }

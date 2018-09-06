@@ -64,7 +64,7 @@ public class EnvironmentFragment extends Fragment implements Listinterface {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         getData();;
-        adapter.notifyDataSetChanged();
+      //  adapter.notifyDataSetChanged();
        /* listJsonInterface=new ListJsonInterface() {
             @Override
             public List<CategoryItemmodel> getList(Context context) {
