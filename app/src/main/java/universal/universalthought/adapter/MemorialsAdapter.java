@@ -77,13 +77,13 @@ public class MemorialsAdapter extends RecyclerView.Adapter<MemorialsAdapter.MyVi
                 mContext.startActivity(i);
             }
         });
-        int    totalcost_value=56658;
-        int   obtainedcost_value=40000;
+        int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
+        int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
         holder.progressBar.setProgress(percentage_value);   // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText("56k");
+        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
         // holder.title.setTypeface(tf);
         // holder.count.setTypeface(tf);
         // holder.quantity.setTypeface(tf);

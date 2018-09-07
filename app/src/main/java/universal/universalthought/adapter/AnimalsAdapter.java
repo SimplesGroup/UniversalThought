@@ -26,7 +26,8 @@ import universal.universalthought.model.CategoryItemmodel;
 public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHolder> {
     private Context mContext;
     private List<CategoryItemmodel> productEnglishList;
-
+    int totalcost_value,obtainedcost_value;
+    int percentage_value;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView quantity;
         public NetworkImageView thumbnail;
@@ -66,13 +67,14 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
         holder.quantity.setText(productEnglish.getTitleoffundraising());
 
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-    int    totalcost_value=56658;
-     int   obtainedcost_value=40000;
+    int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
+     int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
     int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
-       holder.progressBar.setProgress(percentage_value);   // Main Progress
+       holder.progressBar.setProgress(percentage_value);
+       // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText("56k");
+        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +85,6 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
             }
         });
     }
-
-
 
     public int getItemCount() {
         return productEnglishList.size();

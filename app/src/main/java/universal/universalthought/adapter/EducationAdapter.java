@@ -65,13 +65,13 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         // loading album cover using Glide library
         Glide.with(mContext).load(productEnglish.getPhoto()).into(holder.thumbnail);
-        int    totalcost_value=56658;
-        int   obtainedcost_value=40000;
+        int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
+        int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
         holder.progressBar.setProgress(percentage_value);   // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText(productEnglish.getAmountraised());
+        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
