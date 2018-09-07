@@ -117,8 +117,8 @@ public class SignupUserActivity extends Fragment {
                 inputNameDialog.setCancelable(false);
                 inputNameDialog.setDialogTitle("Enter Name");
                 inputNameDialog.show(fragmentManager, "Input Dialog");*/
-                        /*Intent i = new Intent(getActivity(),BasicInformation.class);
-                        startActivity(i);*/
+                        Intent i = new Intent(getActivity(),BasicInformation.class);
+                        startActivity(i);
             }
         });
 
@@ -172,8 +172,8 @@ public class SignupUserActivity extends Fragment {
                 editor.putString(USERID,userid);
                 editor.putString(USERPHONE,phonenum);
                 editor.commit();
-                Log.e("Response",response);
-                Toast.makeText(getActivity(),"clicked"+userid,Toast.LENGTH_LONG).show();
+                Log.e("Responsesignup",response);
+               // Toast.makeText(getActivity(),"clicked"+userid,Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -191,11 +191,12 @@ public class SignupUserActivity extends Fragment {
                 String name=username.getText().toString();
 
                 params.put("Key","UniversalThought");
-                params.put("rType","UserSignUp");
+                params.put("rType","signup");
+                params.put("User","User");
                 params.put("Name",name);
                 params.put("MailId",mail);
                 params.put("Password",pswd);
-                params.put("Mobile",mobile);
+            //    params.put("Mobile",mobile);
 
 
                 return params;

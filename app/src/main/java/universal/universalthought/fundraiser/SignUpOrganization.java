@@ -70,6 +70,7 @@ public class SignUpOrganization extends Fragment {
     TextView txtissues,txttaxrecepit,txtinr,txtfcra,txtfcraregno,txtuploadfund,txt501C,txtein,txtus,txtauth,txtfcraupload;
     View viewstatus,viewfrg,viewissues;
     public View view;
+    EditText username,mailid,password,mobileno;
 
     @Nullable
     public static SignUpOrganization newInstance() {
@@ -120,7 +121,10 @@ public class SignUpOrganization extends Fragment {
         txtauth = (TextView)view.findViewById(R.id.txt_auth);
         txtfcraupload = (TextView)view.findViewById(R.id.txt_fcraupload);
 
-
+        username = (EditText) view.findViewById(R.id.edt_username);
+        mailid = (EditText)view.findViewById(R.id.edt_mail);
+        password = (EditText)view.findViewById(R.id.edt_password);
+        mobileno = (EditText)view.findViewById(R.id.edt_mobileno);
 
         email = (EditText)view.findViewById(R.id.edt_email);
         cntname = (EditText)view.findViewById(R.id.edt_cntname);
@@ -715,15 +719,37 @@ public class SignUpOrganization extends Fragment {
                 int selected=radioGroup.getCheckedRadioButtonId();
                 RadioButton new_radiobutton=(RadioButton)view.findViewById(selected);
                 String fundraisercontactperson =new_radiobutton.getText().toString();
+                String contactperson;
+                if(fundraisercontactperson.equals("Yes")){
+                    contactperson = "1";
+                }
+                else{
+                    contactperson = "2";
+                }
                 //  String benificeryname=beneficaryname.getText().toString();
                 String web=website.getText().toString();
                 String panno=pan.getText().toString();
                 int select=rg80.getCheckedRadioButtonId();
                 RadioButton rg=(RadioButton)view.findViewById(select);
                 String rg80g =rg.getText().toString();
+                String taxs;
+                if(rg80g.equals("Yes")){
+                    taxs ="1";
+                }
+                else{
+                    taxs="2";
+                }
+
                 int funds=raisefunds.getCheckedRadioButtonId();
                 RadioButton rf=(RadioButton)view.findViewById(funds);
-                String raisefund =rg.getText().toString();
+                String raisefund =rf.getText().toString();
+                String fundsraise;
+                if(raisefund.equals("Yes")){
+                    fundsraise="1";
+                }
+                else{
+                    fundsraise="2";
+                }
                 String certficatename=certficate.getText().toString();
                 String orglogo=organisationlogo.getText().toString();
                 String regsection=regsec.getText().toString();
@@ -738,12 +764,27 @@ public class SignUpOrganization extends Fragment {
                 int frgn=foreginfunds.getCheckedRadioButtonId();
                 RadioButton frfunds=(RadioButton)view.findViewById(frgn);
                 String foreignfund =frfunds.getText().toString();
+                String foreign;
+                if(foreignfund.equals("To our FCRA registered organization")){
+                    foreign = "1";
+                }
+                else if(foreignfund.equals("To our 501(c)(3) registered organization in the US")){
+                    foreign = "2";
+                }
+                else{
+                    foreign = "3";
+                }
                 String reg =regnoentity.getText().toString();
                 String empno =ein.getText().toString();
                 String us =regadrus.getText().toString();
                 String auth =authrep.getText().toString();
                 String fcregno =fcraregno.getText().toString();
                 String upfund =uploadfund.getText().toString();
+
+                String mail = mailid.getText().toString();
+                String pswd = password.getText().toString();
+                String mobile = mobileno.getText().toString();
+                String name=username.getText().toString();
 
                 FileBody fileBody=new FileBody(final_file);
                 FileBody fileBody1=new FileBody(final_file);
@@ -756,9 +797,13 @@ public class SignUpOrganization extends Fragment {
 
                 entity.addPart("Key",new StringBody("UniversalThought"));
                 entity.addPart("rType",new StringBody("signup "));
-                entity.addPart("user_id",new StringBody("1"));
+                entity.addPart("User",new StringBody("Organization"));
+                entity.addPart("Name",new StringBody(name));
+                entity.addPart("MailId",new StringBody(mail));
+                entity.addPart("Password",new StringBody(pswd));
+
                 entity.addPart("name_of_organization", new StringBody(organisationname));
-                entity.addPart("fundraiser_contact_person_of_organization", new StringBody(fundraisercontactperson));
+                entity.addPart("contact_person", new StringBody(contactperson));
 
                 Log.e("Checking",fundraisercontactperson);
 
@@ -774,20 +819,20 @@ public class SignUpOrganization extends Fragment {
 
 
                     entity.addPart("pan_number_of_organization", new StringBody(panno));
-                    entity.addPart("tax_exemption_to_donors", new StringBody(rg80g));
-                    entity.addPart("raise_foreign_funds", new StringBody("Yes"));
+                    entity.addPart("tax", new StringBody(taxs));
+                    entity.addPart("foreign_funds", new StringBody(fundsraise));
                     Log.e("Checking",rg80g);
                     if(rg80g.equals("Yes")){
                         Log.e("Checking","1");
-                        entity.addPart("tax_certificate",fileBody);
-                        entity.addPart("organization_logo",fileBody);
+                        entity.addPart("inputGroupFile01",fileBody);
+                        entity.addPart("logo",fileBody);
                         entity.addPart("organization_type",new StringBody(orgtype));
                         entity.addPart("registration_section",new StringBody(regsection));
                         entity.addPart("registration_number",new StringBody(regnumber));
                         entity.addPart("registration_address",new StringBody(registrationaddress));
                         entity.addPart("contact_email_for_finance_department",new StringBody(cntctmail));
                         entity.addPart("contact_phone_for_finance_department",new StringBody(phone));
-                        entity.addPart("issue_tax_receipts_to_donors",new StringBody(taxrecept));
+                        entity.addPart("tax_receipts",new StringBody(taxrecept));
 
                     }
                     else{
@@ -797,11 +842,11 @@ public class SignUpOrganization extends Fragment {
                     if(raisefund.equals("Yes")){
                         Log.e("Checking","3");
                         Log.e("Checking",foreignfund);
-                        entity.addPart("foreign_funds_raised_to_transferred",new StringBody("1"));
-                        if(foreignfund.equals("1")){
+                        entity.addPart("transferred",new StringBody(foreign));
+                        if(foreign.equals("1")){
                             entity.addPart("fcra_registration_number",new StringBody(fcregno));
                             entity.addPart("fcra_certificate",new StringBody(upfund));
-                        }else if(foreignfund.equals("To our 501(c)(3) registered organization in the US")){
+                        }else if(foreign.equals("2")){
                             entity.addPart("registered_name_of_c3_entity",new StringBody(reg));
                             entity.addPart("employer_identification_number",new StringBody(empno));
                             entity.addPart("registered_address_united_states",new StringBody(us));
