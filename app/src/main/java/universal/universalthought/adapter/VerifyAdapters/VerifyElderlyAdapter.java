@@ -19,6 +19,7 @@ import java.util.List;
 import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.Detailpage;
 import universal.universalthought.R;
+import universal.universalthought.activity.VerifyQuestionActivity;
 import universal.universalthought.model.CategoryItemmodel;
 
 public class VerifyElderlyAdapter extends RecyclerView.Adapter<VerifyElderlyAdapter.MyViewHolder> {
@@ -63,28 +64,29 @@ public class VerifyElderlyAdapter extends RecyclerView.Adapter<VerifyElderlyAdap
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
         holder.quantity.setText(productEnglish.getTitleoffundraising());
-        int    totalcost_value=56658;
-        int   obtainedcost_value=40000;
+        int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
+        int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
-        holder.progressBar.setProgress(percentage_value);   // Main Progress
+        holder.progressBar.setProgress(percentage_value);
+        // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText("56k");
+        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
 
         holder.overflow.setText("Verify");
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext,Detailpage.class);
-
+                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
+                i.putExtra("ID", productEnglish.getId());
+                mContext.startActivity(i);
+            }
+        });
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
                 i.putExtra("ID", productEnglish.getId());
                 mContext.startActivity(i);
             }

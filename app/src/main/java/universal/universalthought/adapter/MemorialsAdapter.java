@@ -84,6 +84,14 @@ public class MemorialsAdapter extends RecyclerView.Adapter<MemorialsAdapter.MyVi
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
         holder.total_amount_textview.setText(productEnglish.getRaisingamount());
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,Detailpage.class);
+                i.putExtra("ID", productEnglish.getId());
+                mContext.startActivity(i);
+            }
+        });
         // holder.title.setTypeface(tf);
         // holder.count.setTypeface(tf);
         // holder.quantity.setTypeface(tf);

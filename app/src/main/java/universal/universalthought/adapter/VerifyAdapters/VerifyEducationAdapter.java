@@ -18,6 +18,7 @@ import java.util.List;
 
 import universal.universalthought.Detailpage;
 import universal.universalthought.R;
+import universal.universalthought.activity.VerifyQuestionActivity;
 import universal.universalthought.model.CategoryItemmodel;
 
 public class VerifyEducationAdapter extends RecyclerView.Adapter<VerifyEducationAdapter.MyViewHolder> {
@@ -71,27 +72,28 @@ public class VerifyEducationAdapter extends RecyclerView.Adapter<VerifyEducation
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         // loading album cover using Glide library
         Glide.with(mContext).load(productEnglish.getPhoto()).into(holder.thumbnail);
-        int    totalcost_value=56658;
-        int   obtainedcost_value=40000;
+        int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
+        int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
-        holder.progressBar.setProgress(percentage_value);   // Main Progress
+        holder.progressBar.setProgress(percentage_value);
+        // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText(productEnglish.getAmountraised());
-       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
-            }
-        });*/
+        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
+        holder.overflow.setText("Verify");
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext,Detailpage.class);
-
+                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
                 i.putExtra("ID", productEnglish.getId());
-
-                // Log.e("TITLEEEE", productEnglish.getPname());
+                mContext.startActivity(i);
+            }
+        });
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
+                i.putExtra("ID", productEnglish.getId());
                 mContext.startActivity(i);
             }
         });

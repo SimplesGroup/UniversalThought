@@ -32,6 +32,7 @@
 
         <activity android:name=".Detailpage"></activity>
         <activity android:name=".activity.FundraiserActivity"></activity>
+        <activity android:name=".activity.VerifyQuestionActivity"></activity>
         <activity android:name=".fundraiser.BasicInformation"></activity>
         <activity android:name=".fundraiser.FundraiserDetails"></activity>
         <activity android:name=".fundraiser.OrganizationDetails"></activity>

@@ -82,7 +82,14 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
                 mContext.startActivity(i);
             }
         });
-
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,Detailpage.class);
+                i.putExtra("ID", productEnglish.getId());
+                mContext.startActivity(i);
+            }
+        });
     }
 
 

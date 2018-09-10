@@ -18,13 +18,15 @@ import com.android.volley.toolbox.NetworkImageView;
 import java.util.List;
 
 import universal.universalthought.CustomVolleyRequest;
-import universal.universalthought.Detailpage;
 import universal.universalthought.R;
+import universal.universalthought.activity.Dialogs;
+import universal.universalthought.activity.VerifyQuestionActivity;
 import universal.universalthought.model.CategoryItemmodel;
 
 public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdapter.MyViewHolder> {
     private Context mContext;
     private List<CategoryItemmodel> productEnglishList;
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,32 +45,39 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
         holder.quantity.setText(productEnglish.getTitleoffundraising());
 
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-        int    totalcost_value=56658;
-        int   obtainedcost_value=40000;
+        int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
+        int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
-        holder.progressBar.setProgress(percentage_value);   // Main Progress
+        holder.progressBar.setProgress(percentage_value);
+        // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText("56k");
+        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
         holder.overflow.setText("Verify");
+
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
+                i.putExtra("ID", productEnglish.getId());
+                mContext.startActivity(i);
+            }
+        });
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-            }
-        });
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(mContext,Detailpage.class);
-                i.putExtra("ID", productEnglish.getId());
-                mContext.startActivity(i);
+                Dialogs dialogs=new Dialogs();
+                dialogs.dialog(mContext);
+
+
             }
         });
     }
     public VerifyAnimalsAdapter(Context mContext, List<CategoryItemmodel> productEnglishList) {
         this.mContext = mContext;
         this.productEnglishList = productEnglishList;
+
     }
     @Override
     public int getItemCount() {

@@ -19,6 +19,7 @@ import java.util.List;
 import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.Detailpage;
 import universal.universalthought.R;
+import universal.universalthought.activity.VerifyQuestionActivity;
 import universal.universalthought.model.CategoryItemmodel;
 
 public class VerifyMemorialsAdapter extends RecyclerView.Adapter<VerifyMemorialsAdapter.MyViewHolder> {
@@ -61,12 +62,7 @@ public class VerifyMemorialsAdapter extends RecyclerView.Adapter<VerifyMemorials
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
         final CategoryItemmodel productEnglish = productEnglishList.get(position);
         holder.overflow.setText("Verify");
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         Log.e("SIZE", productEnglish.getTitleoffundraising());
         // holder.title.setText(productEnglish.getPname());
         // holder.count.setText("Rs." + productEnglish.getPprice());
@@ -75,22 +71,28 @@ public class VerifyMemorialsAdapter extends RecyclerView.Adapter<VerifyMemorials
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext,Detailpage.class);
-
+                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
                 i.putExtra("ID", productEnglish.getId());
                 mContext.startActivity(i);
             }
         });
-        int    totalcost_value=56658;
-        int   obtainedcost_value=40000;
+        holder.overflow.setText("Verify");
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
+                i.putExtra("ID", productEnglish.getId());
+                mContext.startActivity(i);
+            }
+        });
+        int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
+        int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
-        holder.progressBar.setProgress(percentage_value);   // Main Progress
+        holder.progressBar.setProgress(percentage_value);
+        // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText("56k");
-        // holder.title.setTypeface(tf);
-        // holder.count.setTypeface(tf);
-        // holder.quantity.setTypeface(tf);
+        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
     }
 
 
