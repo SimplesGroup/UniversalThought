@@ -75,6 +75,17 @@ public class VerifyWomenAdapter extends RecyclerView.Adapter<VerifyWomenAdapter.
         holder.progressBar.setMax(100);
         holder.total_amount_textview.setText(productEnglish.getRaisingamount());
 
+
+
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(mContext,Detailpage.class);
+                i.putExtra("ID", productEnglish.getId());
+                mContext.startActivity(i);
+            }
+        });
+
         holder.overflow.setText("Verify");
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
