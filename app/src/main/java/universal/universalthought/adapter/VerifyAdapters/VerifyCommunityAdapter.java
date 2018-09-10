@@ -19,6 +19,7 @@ import java.util.List;
 import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.Detailpage;
 import universal.universalthought.R;
+import universal.universalthought.activity.Dialogs;
 import universal.universalthought.activity.VerifyQuestionActivity;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -85,9 +86,8 @@ public class VerifyCommunityAdapter extends RecyclerView.Adapter<VerifyCommunity
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(mContext,VerifyQuestionActivity.class);
-                i.putExtra("ID", productEnglish.getId());
-                mContext.startActivity(i);
+                Dialogs dialogs=new Dialogs();
+                dialogs.dialog(mContext);
             }
         });
 
