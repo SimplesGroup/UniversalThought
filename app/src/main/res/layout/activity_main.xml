@@ -34,17 +34,7 @@
 
 
 
-        <ImageButton
-            android:id="@+id/btn_help"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:background="#C22400"
-            android:text="HELP"
-            android:gravity="center"
-            android:src="@mipmap/helpwhite"
-            android:textColor="@android:color/white"
-            android:layout_weight="1"
-            />
+
 
         <ImageButton
             android:id="@+id/btn_stories"
@@ -57,7 +47,17 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             />
-
+        <ImageButton
+            android:id="@+id/btn_help"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:background="#C22400"
+            android:text="HELP"
+            android:gravity="center"
+            android:src="@mipmap/helpwhite"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"
+            />
         <ImageButton
             android:id="@+id/btn_verify"
             android:layout_width="0dp"

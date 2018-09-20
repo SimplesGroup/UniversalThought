@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import universal.universalthought.R;
 import universal.universalthought.fundraiser.BasicInformation;
+import universal.universalthought.fundraiser.StoriesFragment;
 import universal.universalthought.fundraiser.StoriesPage;
 
 
@@ -53,13 +54,11 @@ public class MainActivity extends AppCompatActivity  {
         menu_butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Fragment selectedfrag=null;
                 selectedfrag=MenuFragment.newInstance();
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.container_body, selectedfrag);
                 transaction.commit();
-
                 menu_butt.setBackgroundResource(R.color.white);
                 help_butt.setBackgroundResource(R.color.footerbackred);
                 story_butt.setBackgroundResource(R.color.footerbackred);
@@ -71,8 +70,6 @@ public class MainActivity extends AppCompatActivity  {
                 verify_butt.setImageResource(R.mipmap.verifywhite);
                 fundraiser_butt.setImageResource(R.mipmap.fundrraiserwhite);
 
-
-
             }
         });
 help_butt.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +80,6 @@ help_butt.setOnClickListener(new View.OnClickListener() {
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container_body, selectedfrag);
         transaction.commit();
-
         menu_butt.setBackgroundResource(R.color.footerbackred);
         help_butt.setBackgroundResource(R.color.white);
         story_butt.setBackgroundResource(R.color.footerbackred);
@@ -106,7 +102,6 @@ verify_butt.setOnClickListener(new View.OnClickListener() {
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container_body, selectedfrag);
         transaction.commit();
-
         menu_butt.setBackgroundResource(R.color.footerbackred);
         help_butt.setBackgroundResource(R.color.footerbackred);
         story_butt.setBackgroundResource(R.color.footerbackred);
@@ -124,11 +119,10 @@ story_butt.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         Fragment selectedfrag=null;
-        selectedfrag= StoriesPage.newInstance();
+        selectedfrag= StoriesFragment.newInstance();
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container_body, selectedfrag);
         transaction.commit();
-
         menu_butt.setBackgroundResource(R.color.footerbackred);
         help_butt.setBackgroundResource(R.color.footerbackred);
         story_butt.setBackgroundResource(R.color.white);
@@ -152,16 +146,17 @@ fundraiser_butt.setOnClickListener( new View.OnClickListener() {
 
 
         Fragment selectedFragment = null;
-        selectedFragment = TabsFragment.newInstance();
+        selectedFragment = StoriesFragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container_body, selectedFragment);
         transaction.commit();
         menu_butt.setBackgroundResource(R.color.footerbackred);
-        help_butt.setBackgroundResource(R.color.white);
-        story_butt.setBackgroundResource(R.color.footerbackred);
+        help_butt.setBackgroundResource(R.color.footerbackred);
+        help_butt.setBackgroundResource(R.color.footerbackred);
+        story_butt.setBackgroundResource(R.color.white);
         verify_butt.setBackgroundResource(R.color.footerbackred);
         fundraiser_butt.setBackgroundResource(R.color.footerbackred);
-        help_butt.setImageResource(R.mipmap.helpred);
+        story_butt.setImageResource(R.mipmap.storyred);
       /*  mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("");*/
        /* mCoordinator = (CoordinatorLayout) findViewById(R.id.root_coordinator);

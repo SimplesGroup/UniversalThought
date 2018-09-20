@@ -32,7 +32,8 @@
     android:id="@+id/progressbar"
     android:layout_below="@+id/thumbnail"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
     <ProgressBar
         android:id="@+id/circularProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -42,6 +43,7 @@
         android:layout_height="22dp"
         android:indeterminate="false"
         android:secondaryProgress="100"
+
         android:progressDrawable="@drawable/horizontalpiechart" />
     <TextView
         android:padding="3dp"
