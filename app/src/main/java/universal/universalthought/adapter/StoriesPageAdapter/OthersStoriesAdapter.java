@@ -38,11 +38,12 @@ public class OthersStoriesAdapter extends RecyclerView.Adapter<OthersStoriesAdap
 
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
-            overflow = (Button) view.findViewById(R.id.overflow);
+           // overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
             pb = (RelativeLayout)view.findViewById(R.id.progressbar);
             pb.setVisibility(View.GONE);
+          //  overflow.setVisibility(View.GONE);
         }
     }
     public OthersStoriesAdapter(Context mContext, List<CategoryItemmodel> productEnglishList) {
@@ -52,7 +53,7 @@ public class OthersStoriesAdapter extends RecyclerView.Adapter<OthersStoriesAdap
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.album_card, parent, false);
+                .inflate(R.layout.storiesadapter, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -85,14 +86,14 @@ public class OthersStoriesAdapter extends RecyclerView.Adapter<OthersStoriesAdap
                 mContext.startActivity(i);
             }
         });
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext,Detailpage.class);
                 i.putExtra("ID", productEnglish.getId());
                 mContext.startActivity(i);
             }
-        });
+        });*/
     }
 
 
