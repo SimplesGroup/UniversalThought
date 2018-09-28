@@ -49,8 +49,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.android.support:multidex:1.0.0'
     /*  compile 'org.apache.httpcomponents:httpcore:4.4.1'
-        compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.3'
-        compile 'com.android.support:multidex:1.0.3'
-        compile files('libs/httpclient-4.5.5.jar')*/
+                compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.3'
+                compile 'com.android.support:multidex:1.0.3'
+                compile files('libs/httpclient-4.5.5.jar')*/
 }
 apply plugin: 'com.google.gms.google-services'

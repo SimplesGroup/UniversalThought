@@ -53,7 +53,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import universal.universalthought.Manifest;
 import universal.universalthought.R;
 /**
  * Created by Sandhiya on 1/25/2018.
