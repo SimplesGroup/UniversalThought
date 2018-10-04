@@ -119,6 +119,7 @@ if(bundle!=null){
 
 
     private void setupViewPager(ViewPager viewPager) {
+
         FeedViewPagerAdapter adapter = new FeedViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new AnimalsFragment(), "ANIMALS");
         adapter.addFragment(new ArtsMediaFragment(), "ARTS & MEDIA");

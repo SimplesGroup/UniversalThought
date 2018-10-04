@@ -176,6 +176,7 @@ LinearLayout benificiarylayout,campain_layout;
         StringRequest request=new StringRequest(Request.Method.POST, urltest, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 Log.e("Response",response.toString());
                 try {
                     JSONObject jsondata=new JSONObject(response.toString());
@@ -201,7 +202,6 @@ LinearLayout benificiarylayout,campain_layout;
                             totalcost_value=Integer.valueOf(explrObject.getString("raising_amount"));
                             obtainedcost_value=Integer.valueOf(explrObject.getString("amount_raised"));
                             percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
-
                             percentage.setText(percentage_value+"%");
                             Resources res = getResources();
                             Drawable drawable = res.getDrawable(R.drawable.piechart);
