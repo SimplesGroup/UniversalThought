@@ -8,7 +8,9 @@
     <uses-permission android:name="android.permission.READ_SMS" />
 <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission  android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -27,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityWeb"/>
+        <activity android:name=".MainActivitywebnew"/>
         <activity android:name=".activity.MainActivity"></activity>
 
         <activity android:name=".Detailpage"></activity>
