@@ -30,7 +30,7 @@ public class VerifyMemorialsAdapter extends RecyclerView.Adapter<VerifyMemorials
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView quantity;
         public NetworkImageView thumbnail;
-        Button overflow;
+       // Button overflow;
         ProgressBar progressBar;
         TextView total_amount_textview;
 
@@ -40,7 +40,7 @@ public class VerifyMemorialsAdapter extends RecyclerView.Adapter<VerifyMemorials
             // count = (TextView) view.findViewById(R.id.count);
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
-            overflow = (Button) view.findViewById(R.id.overflow);
+           // overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
@@ -62,7 +62,7 @@ public class VerifyMemorialsAdapter extends RecyclerView.Adapter<VerifyMemorials
         String splash = "fonts/LATO-MEDIUM.TTF";
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
         final CategoryItemmodel productEnglish = productEnglishList.get(position);
-        holder.overflow.setText("Verify");
+      //  holder.overflow.setText("Verify");
 
         Log.e("SIZE", productEnglish.getTitleoffundraising());
         // holder.title.setText(productEnglish.getPname());
@@ -77,14 +77,14 @@ public class VerifyMemorialsAdapter extends RecyclerView.Adapter<VerifyMemorials
                 mContext.startActivity(i);
             }
         });
-        holder.overflow.setText("Verify");
+        /*holder.overflow.setText("Verify");
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialogs dialogs=new Dialogs();
                 dialogs.dialog(mContext);
             }
-        });
+        });*/
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);

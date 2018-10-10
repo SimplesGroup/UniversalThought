@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,8 +29,9 @@ public class AnimalsStoriesAdapter extends RecyclerView.Adapter<AnimalsStoriesAd
     int totalcost_value,obtainedcost_value;
     int percentage_value;
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView quantity;
+        public TextView quantity,username,createdate,likecount,commentcount;
         public NetworkImageView thumbnail;
+        public ImageView userimage;
         Button overflow;
         ProgressBar progressBar;
         TextView total_amount_textview;
@@ -38,12 +40,17 @@ public class AnimalsStoriesAdapter extends RecyclerView.Adapter<AnimalsStoriesAd
             super(view);
 
             quantity = (TextView) view.findViewById(R.id.kg);
+            username = (TextView) view.findViewById(R.id.name);
+            createdate = (TextView) view.findViewById(R.id.date);
+            likecount = (TextView) view.findViewById(R.id.alltab_likescount);
+            commentcount = (TextView) view.findViewById(R.id.alltab_commentscount);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
+            userimage = (ImageView) view.findViewById(R.id.thum);
           //  overflow = (Button) view.findViewById(R.id.overflow);
-            progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
-            total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
-            pb = (RelativeLayout)view.findViewById(R.id.progressbar);
-           pb.setVisibility(View.GONE);
+           // progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
+          //  total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
+           // pb = (RelativeLayout)view.findViewById(R.id.progressbar);
+         //   pb.setVisibility(View.GONE);
 
         }
     }
@@ -68,16 +75,12 @@ public class AnimalsStoriesAdapter extends RecyclerView.Adapter<AnimalsStoriesAd
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
         holder.quantity.setText(productEnglish.getTitleoffundraising());
-
+        holder.username.setText(productEnglish.getName());
+      //  holder.likecount.setText(productEnglish.getLikecount());
+        //holder.commentcount.setText(productEnglish.getCommentcount());
+      //  holder.createdate.setText(productEnglish.getDate());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-   /* int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
-     int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
-    int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
-       holder.progressBar.setProgress(percentage_value);
-       // Main Progress
-        //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
-        holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText(productEnglish.getRaisingamount());*/
+  //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,14 +91,7 @@ public class AnimalsStoriesAdapter extends RecyclerView.Adapter<AnimalsStoriesAd
             }
         });
 
-       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mContext,Detailpage.class);
-                i.putExtra("ID", productEnglish.getId());
-                mContext.startActivity(i);
-            }
-        });*/
+
     }
 
     public int getItemCount() {

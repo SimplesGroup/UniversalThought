@@ -29,7 +29,7 @@ public class VerifyEducationAdapter extends RecyclerView.Adapter<VerifyEducation
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView quantity;
         public ImageView thumbnail;
-        Button overflow;
+       // Button overflow;
         ProgressBar progressBar;
         TextView total_amount_textview;
         public MyViewHolder(View view) {
@@ -38,7 +38,7 @@ public class VerifyEducationAdapter extends RecyclerView.Adapter<VerifyEducation
             // count = (TextView) view.findViewById(R.id.count);
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (Button) view.findViewById(R.id.overflow);
+           // overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
@@ -60,13 +60,13 @@ public class VerifyEducationAdapter extends RecyclerView.Adapter<VerifyEducation
         String splash = "fonts/LATO-MEDIUM.TTF";
 ////        final Typeface tf = Typeface.createFromAsset(mContext.getAssets(), splash);
         final CategoryItemmodel productEnglish = productEnglishList.get(position);
-        holder.overflow.setText("Verify");
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+        //holder.overflow.setText("Verify");
+       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        });*/
         Log.e("SIZE", productEnglish.getTitleoffundraising());
         // holder.title.setText(productEnglish.getPname());
         // holder.count.setText("Rs." + productEnglish.getPprice());
@@ -81,7 +81,7 @@ public class VerifyEducationAdapter extends RecyclerView.Adapter<VerifyEducation
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
         holder.total_amount_textview.setText(productEnglish.getRaisingamount());
-        holder.overflow.setText("Verify");
+       // holder.overflow.setText("Verify");
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,13 +90,13 @@ public class VerifyEducationAdapter extends RecyclerView.Adapter<VerifyEducation
                 mContext.startActivity(i);
             }
         });
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+        /*holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialogs dialogs=new Dialogs();
                 dialogs.dialog(mContext);
             }
-        });
+        });*/
 
         // holder.title.setTypeface(tf);
         // holder.count.setTypeface(tf);

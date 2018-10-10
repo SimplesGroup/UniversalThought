@@ -5,7 +5,47 @@ package universal.universalthought.model;
  */
 
 public class CategoryItemmodel {
-    String id,titleoffundraising,photo, amountraised,city,formoneid,raisingamount,name,url;
+    String id,titleoffundraising,photo, amountraised,city,formoneid,raisingamount,name,url,date,likecount,commentcount,uimage,liketype;
+
+    public String getLiketype() {
+        return liketype;
+    }
+
+    public void setLiketype(String liketype) {
+        this.liketype = liketype;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getLikecount() {
+        return likecount;
+    }
+
+    public void setLikecount(String likecount) {
+        this.likecount = likecount;
+    }
+
+    public String getCommentcount() {
+        return commentcount;
+    }
+
+    public void setCommentcount(String commentcount) {
+        this.commentcount = commentcount;
+    }
+
+    public String getUimage() {
+        return uimage;
+    }
+
+    public void setUimage(String uimage) {
+        this.uimage = uimage;
+    }
 
     public String getFormoneid() {
         return formoneid;

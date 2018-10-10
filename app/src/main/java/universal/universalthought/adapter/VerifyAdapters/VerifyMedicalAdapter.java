@@ -30,7 +30,7 @@ public class VerifyMedicalAdapter extends RecyclerView.Adapter<VerifyMedicalAdap
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView quantity;
         public NetworkImageView thumbnail;
-        Button overflow;
+      //  Button overflow;
         ProgressBar progressBar;
         TextView total_amount_textview;
 
@@ -40,7 +40,7 @@ public class VerifyMedicalAdapter extends RecyclerView.Adapter<VerifyMedicalAdap
             // count = (TextView) view.findViewById(R.id.count);
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
-            overflow = (Button) view.findViewById(R.id.overflow);
+          //  overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
@@ -64,7 +64,7 @@ public class VerifyMedicalAdapter extends RecyclerView.Adapter<VerifyMedicalAdap
         final CategoryItemmodel productEnglish = productEnglishList.get(position);
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
         Log.e("SIZE", productEnglish.getTitleoffundraising());
-        holder.overflow.setText("Verify");
+      //  holder.overflow.setText("Verify");
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,13 +73,13 @@ public class VerifyMedicalAdapter extends RecyclerView.Adapter<VerifyMedicalAdap
                 mContext.startActivity(i);
             }
         });
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialogs dialogs=new Dialogs();
                 dialogs.dialog(mContext);
             }
-        });
+        });*/
         holder.quantity.setText(productEnglish.getTitleoffundraising());
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
 

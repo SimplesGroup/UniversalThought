@@ -68,10 +68,10 @@ public class ArtsMediaStoriesFragment extends Fragment implements Listinterface 
         adapter = new ArtsMediaStoriesAdapter(getActivity(), productList);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         requestqueue= Volley.newRequestQueue(getActivity());
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+      //  recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+      //  recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
         getData();

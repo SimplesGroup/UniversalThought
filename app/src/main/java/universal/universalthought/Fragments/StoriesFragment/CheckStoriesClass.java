@@ -78,7 +78,13 @@ public class CheckStoriesClass {
                         model.setId(explrObject.getString("id"));
                         model.setUrl(explrObject.getString("url"));
                         model.setTitleoffundraising(explrObject.getString("title"));
-                        Log.e("Data",explrObject.getString("title"));
+                        //model.setDate(explrObject.getString("create_date"));
+                    //  model.setLikecount(explrObject.getString("like_count"));
+                    //  model.setCommentcount(explrObject.getString("comment_count"));
+                    //    model.setUimage(explrObject.getString("uimg"));
+                    //    model.setLiketype(explrObject.getString("like_type"));
+                       // Log.e("Datatitle",explrObject.getString("create_date"));
+                        Log.e("Datatitle",explrObject.getString("name"));
                         model.setPhoto(explrObject.getString("image"));
                         model.setName(explrObject.getString("name"));
 
@@ -103,6 +109,7 @@ public class CheckStoriesClass {
                 Map<String, String> param = new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","stories_alldata");
+                param.put("user_id","1");
                 param.put("category",category);
                 param.put("search_text","");
                 param.put("page",String.valueOf(reqcount));

@@ -30,7 +30,7 @@ public class VerifyEmergenciesAdapter extends RecyclerView.Adapter<VerifyEmergen
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView quantity;
         public NetworkImageView thumbnail;
-        Button overflow;
+    //    Button overflow;
         ProgressBar progressBar;
         TextView total_amount_textview;
 
@@ -40,7 +40,7 @@ public class VerifyEmergenciesAdapter extends RecyclerView.Adapter<VerifyEmergen
             // count = (TextView) view.findViewById(R.id.count);
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
-            overflow = (Button) view.findViewById(R.id.overflow);
+          //  overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
@@ -69,7 +69,7 @@ public class VerifyEmergenciesAdapter extends RecyclerView.Adapter<VerifyEmergen
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         // loading album cover using Glide library
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-        holder.overflow.setText("Verify");
+      //  holder.overflow.setText("Verify");
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,13 +78,13 @@ public class VerifyEmergenciesAdapter extends RecyclerView.Adapter<VerifyEmergen
                 mContext.startActivity(i);
             }
         });
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialogs dialogs=new Dialogs();
                 dialogs.dialog(mContext);
             }
-        });
+        });*/
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);

@@ -124,6 +124,7 @@ public class CheckClass {
                 Map<String, String> param = new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","alldata");
+                param.put("user_id","1");
                 param.put("category",category);
                 param.put("type", "");
                 param.put("search_text","");

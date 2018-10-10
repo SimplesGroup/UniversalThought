@@ -53,7 +53,7 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
         holder.total_amount_textview.setText(productEnglish.getRaisingamount());
-        holder.overflow.setText("Verify");
+//        holder.overflow.setText("Verify");
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,7 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
                 mContext.startActivity(i);
             }
         });
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+      /*  holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -72,7 +72,7 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
 
 
             }
-        });
+        });*/
     }
     public VerifyAnimalsAdapter(Context mContext, List<CategoryItemmodel> productEnglishList) {
         this.mContext = mContext;
@@ -97,7 +97,7 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
             super(itemView);
             quantity = (TextView) itemView.findViewById(R.id.kg);
             thumbnail = (NetworkImageView) itemView.findViewById(R.id.thumbnail);
-            overflow = (Button) itemView.findViewById(R.id.overflow);
+         //   overflow = (Button) itemView.findViewById(R.id.overflow);
             progressBar=(ProgressBar)itemView.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)itemView.findViewById(R.id.totalamount);
         }

@@ -39,7 +39,7 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
             // count = (TextView) view.findViewById(R.id.count);
             quantity = (TextView) view.findViewById(R.id.kg);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
-            overflow = (Button) view.findViewById(R.id.overflow);
+            //overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
@@ -82,14 +82,14 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
                 mContext.startActivity(i);
             }
         });
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+        /*holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext,Detailpage.class);
                 i.putExtra("ID", productEnglish.getId());
                 mContext.startActivity(i);
             }
-        });
+        });*/
     }
 
 
