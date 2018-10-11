@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,7 +18,6 @@ import java.util.List;
 import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.Detailpage;
 import universal.universalthought.R;
-import universal.universalthought.activity.Dialogs;
 import universal.universalthought.activity.VerifyQuestionActivity;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -36,7 +34,7 @@ public class VerifyWomenAdapter extends RecyclerView.Adapter<VerifyWomenAdapter.
         public MyViewHolder(View view) {
             super(view);
 
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
           //  overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);

@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
     int totalcost_value,obtainedcost_value;
     int percentage_value;
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView quantity;
+        public TextView title,likecount,commentcount,bname;
         public NetworkImageView thumbnail;
         Button overflow;
         ProgressBar progressBar;
@@ -37,9 +35,11 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
         public MyViewHolder(View view) {
             super(view);
 
-            quantity = (TextView) view.findViewById(R.id.kg);
+            title = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
-           // overflow = (Button) view.findViewById(R.id.overflow);
+          likecount = (TextView)view.findViewById(R.id.alltab_likescount);
+          commentcount = (TextView)view.findViewById(R.id.alltab_commentscount);
+          bname = (TextView)view.findViewById(R.id.name);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
@@ -60,27 +60,29 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         String splash = "fonts/LATO-MEDIUM.TTF";
 
-        final CategoryItemmodel productEnglish = productEnglishList.get(position);
+        final CategoryItemmodel model = productEnglishList.get(position);
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
-        Log.e("SIZE", productEnglish.getTitleoffundraising());
+        Log.e("SIZE", model.getTitleoffundraising());
 
-        holder.quantity.setText(productEnglish.getTitleoffundraising());
-
-        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-    int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
-     int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
+        holder.title.setText(model.getTitleoffundraising());
+        //holder.likecount.setText(model.getLikecount());
+       // holder.commentcount.setText(model.getCommentcount());
+       // holder.bname.setText(model.getBeneficiaryname());
+        holder.thumbnail.setImageUrl(model.getPhoto(),imageLoader);
+    int    totalcost_value = Integer.parseInt(model.getRaisingamount());
+     int   obtainedcost_value= Integer.parseInt(model.getAmountraised());
     int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);
        holder.progressBar.setProgress(percentage_value);
        // Main Progress
         //percentage_circularbar.setSecondaryProgress(50); // Secondary Progress
         holder.progressBar.setMax(100);
-        holder.total_amount_textview.setText(productEnglish.getRaisingamount());
+        holder.total_amount_textview.setText(model.getRaisingamount());
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(mContext,Detailpage.class);
-                i.putExtra("ID", productEnglish.getId());
+                i.putExtra("ID", model.getId());
                 mContext  .startActivity(i);
             }
         });
@@ -89,7 +91,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext,Detailpage.class);
-                i.putExtra("ID", productEnglish.getId());
+                i.putExtra("ID", model.getId());
                 mContext.startActivity(i);
             }
         });*/

@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.MyViewHold
         public MyViewHolder(View view) {
             super(view);
 
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
            // overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);

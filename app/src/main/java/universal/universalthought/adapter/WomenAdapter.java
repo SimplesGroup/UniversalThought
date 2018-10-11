@@ -34,7 +34,7 @@ public class WomenAdapter extends RecyclerView.Adapter<WomenAdapter.MyViewHolder
         public MyViewHolder(View view) {
             super(view);
 
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
            // overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);

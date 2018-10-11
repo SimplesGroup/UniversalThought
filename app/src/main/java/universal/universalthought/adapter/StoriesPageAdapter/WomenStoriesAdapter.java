@@ -38,7 +38,7 @@ public class WomenStoriesAdapter extends RecyclerView.Adapter<WomenStoriesAdapte
         public MyViewHolder(View view) {
             super(view);
 
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             username = (TextView) view.findViewById(R.id.name);
             createdate = (TextView) view.findViewById(R.id.date);
             likecount = (TextView) view.findViewById(R.id.alltab_likescount);

@@ -19,7 +19,6 @@ import java.util.List;
 
 import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.R;
-import universal.universalthought.activity.Dialogs;
 import universal.universalthought.activity.VerifyQuestionActivity;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -95,7 +94,7 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
         TextView total_amount_textview;
         public MyViewHolder(View itemView) {
             super(itemView);
-            quantity = (TextView) itemView.findViewById(R.id.kg);
+            quantity = (TextView) itemView.findViewById(R.id.title);
             thumbnail = (NetworkImageView) itemView.findViewById(R.id.thumbnail);
          //   overflow = (Button) itemView.findViewById(R.id.overflow);
             progressBar=(ProgressBar)itemView.findViewById(R.id.circularProgressBar);

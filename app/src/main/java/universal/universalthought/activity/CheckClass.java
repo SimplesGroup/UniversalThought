@@ -98,9 +98,15 @@ public class CheckClass {
                         model.setId(explrObject.getString("id"));
                         model.setUrl(explrObject.getString("url"));
                         model.setTitleoffundraising(explrObject.getString("title"));
+                       model.setName(explrObject.getString("name"));
+                      // model.setBeneficiaryname(explrObject.getString("beneficiary_name"));
+                      // model.setDate(explrObject.getString("create_date"));
+                       //model.setLikecount(explrObject.getString("like_count"));
+                      // model.setCommentcount(explrObject.getString("comment_count"));
+                           //model.setUimage(explrObject.getString("uimg"));
+                        //   model.setLiketype(explrObject.getString("like_type"));
                         Log.e("Data",explrObject.getString("title"));
                         model.setPhoto(explrObject.getString("image"));
-                        model.setName(explrObject.getString("name"));
                         model.setAmountraised(explrObject.getString("amount_raised"));
                         model.setRaisingamount(explrObject.getString("raising_amount"));
 

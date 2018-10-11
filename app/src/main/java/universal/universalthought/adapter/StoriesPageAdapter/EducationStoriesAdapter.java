@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class EducationStoriesAdapter extends RecyclerView.Adapter<EducationStori
         RelativeLayout pb;
         public MyViewHolder(View view) {
             super(view);
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             username = (TextView) view.findViewById(R.id.name);
             createdate = (TextView) view.findViewById(R.id.date);
             likecount = (TextView) view.findViewById(R.id.alltab_likescount);
@@ -95,7 +94,7 @@ public class EducationStoriesAdapter extends RecyclerView.Adapter<EducationStori
         });*/
         // holder.title.setTypeface(tf);
         // holder.count.setTypeface(tf);
-        // holder.quantity.setTypeface(tf);
+        // holder.title.setTypeface(tf);
     }
 
 

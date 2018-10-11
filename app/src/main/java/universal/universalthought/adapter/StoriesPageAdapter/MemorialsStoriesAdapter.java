@@ -38,7 +38,7 @@ public class MemorialsStoriesAdapter extends RecyclerView.Adapter<MemorialsStori
 
         public MyViewHolder(View view) {
             super(view);
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             username = (TextView) view.findViewById(R.id.name);
             createdate = (TextView) view.findViewById(R.id.date);
             likecount = (TextView) view.findViewById(R.id.alltab_likescount);
@@ -102,7 +102,7 @@ public class MemorialsStoriesAdapter extends RecyclerView.Adapter<MemorialsStori
         });*/
         // holder.title.setTypeface(tf);
         // holder.count.setTypeface(tf);
-        // holder.quantity.setTypeface(tf);
+        // holder.title.setTypeface(tf);
     }
 
 

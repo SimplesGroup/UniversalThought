@@ -25,7 +25,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
     private List<CategoryItemmodel> productEnglishList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView quantity;
+        public TextView title,likecount,commentcount,bname;
         public ImageView thumbnail;
         Button overflow;
         ProgressBar progressBar;
@@ -34,7 +34,10 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
             super(view);
             //   title = (TextView) view.findViewById(R.id.profile);
             // count = (TextView) view.findViewById(R.id.count);
-            quantity = (TextView) view.findViewById(R.id.kg);
+            title = (TextView) view.findViewById(R.id.title);
+            likecount = (TextView)view.findViewById(R.id.alltab_likescount);
+            commentcount = (TextView)view.findViewById(R.id.alltab_commentscount);
+            bname = (TextView)view.findViewById(R.id.name);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
          //   overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
@@ -62,8 +65,10 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
         Log.e("SIZE", productEnglish.getTitleoffundraising());
         // holder.title.setText(productEnglish.getPname());
         // holder.count.setText("Rs." + productEnglish.getPprice());
-        holder.quantity.setText(productEnglish.getTitleoffundraising());
-        // loading album cover using Glide library
+        holder.title.setText(productEnglish.getTitleoffundraising());
+        //  holder.likecount.setText(productEnglish.getLikecount());
+        //  holder.commentcount.setText(productEnglish.getCommentcount());
+        //  holder.bname.setText(productEnglish.getBeneficiaryname());
         Glide.with(mContext).load(productEnglish.getPhoto()).into(holder.thumbnail);
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
@@ -99,7 +104,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
         });*/
         // holder.title.setTypeface(tf);
         // holder.count.setTypeface(tf);
-        // holder.quantity.setTypeface(tf);
+        // holder.title.setTypeface(tf);
     }
 
 

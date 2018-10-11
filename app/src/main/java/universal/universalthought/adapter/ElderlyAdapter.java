@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
     private List<CategoryItemmodel> productEnglishList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView quantity;
+        public TextView title,likecount,commentcount,bname;
         public NetworkImageView thumbnail;
         Button overflow;
         ProgressBar progressBar;
@@ -37,8 +35,11 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
             super(view);
             //   title = (TextView) view.findViewById(R.id.profile);
             // count = (TextView) view.findViewById(R.id.count);
-            quantity = (TextView) view.findViewById(R.id.kg);
+            title = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
+            likecount = (TextView)view.findViewById(R.id.alltab_likescount);
+            commentcount = (TextView)view.findViewById(R.id.alltab_commentscount);
+            bname = (TextView)view.findViewById(R.id.name);
             //overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
@@ -64,7 +65,10 @@ public class ElderlyAdapter extends RecyclerView.Adapter<ElderlyAdapter.MyViewHo
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
-        holder.quantity.setText(productEnglish.getTitleoffundraising());
+        holder.title.setText(productEnglish.getTitleoffundraising());
+        //  holder.likecount.setText(productEnglish.getLikecount());
+        //  holder.commentcount.setText(productEnglish.getCommentcount());
+        //  holder.bname.setText(productEnglish.getBeneficiaryname());
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);

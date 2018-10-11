@@ -8,15 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import universal.universalthought.CustomVolleyRequest;
@@ -42,7 +39,7 @@ ImageLoader imageLoader;
             super(view);
          //   title = (TextView) view.findViewById(R.id.profile);
            // count = (TextView) view.findViewById(R.id.count);
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
             overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
@@ -107,7 +104,7 @@ holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
 
        // holder.title.setTypeface(tf);
        // holder.count.setTypeface(tf);
-       // holder.quantity.setTypeface(tf);
+       // holder.title.setTypeface(tf);
     }
 
     /**

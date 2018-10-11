@@ -39,7 +39,7 @@ public class AnimalsStoriesAdapter extends RecyclerView.Adapter<AnimalsStoriesAd
         public MyViewHolder(View view) {
             super(view);
 
-            quantity = (TextView) view.findViewById(R.id.kg);
+            quantity = (TextView) view.findViewById(R.id.title);
             username = (TextView) view.findViewById(R.id.name);
             createdate = (TextView) view.findViewById(R.id.date);
             likecount = (TextView) view.findViewById(R.id.alltab_likescount);
@@ -76,11 +76,11 @@ public class AnimalsStoriesAdapter extends RecyclerView.Adapter<AnimalsStoriesAd
 
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         holder.username.setText(productEnglish.getName());
-      //  holder.likecount.setText(productEnglish.getLikecount());
-        //holder.commentcount.setText(productEnglish.getCommentcount());
-      //  holder.createdate.setText(productEnglish.getDate());
+        holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.createdate.setText(productEnglish.getDate());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-  //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
+        //holder.userimage.setImageUrl(productEnglish.getUimage(),imageLoader);
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

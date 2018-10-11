@@ -30,7 +30,7 @@ public class CatagoriesStoriesAdapter extends RecyclerView.Adapter<CatagoriesSto
     private List<CategoryItemmodel> productEnglishList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView quantity;
+        public TextView title,likecount,commentcount,bname;
         public NetworkImageView thumbnail;
         Button overflow;
         ProgressBar progressBar;
@@ -39,9 +39,12 @@ public class CatagoriesStoriesAdapter extends RecyclerView.Adapter<CatagoriesSto
         public MyViewHolder(View view) {
             super(view);
 
-            quantity = (TextView) view.findViewById(R.id.kg);
+            title = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
             overflow = (Button) view.findViewById(R.id.overflow);
+            likecount = (TextView)view.findViewById(R.id.alltab_likescount);
+            commentcount = (TextView)view.findViewById(R.id.alltab_commentscount);
+            bname = (TextView)view.findViewById(R.id.name);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
         }
@@ -67,9 +70,11 @@ public class CatagoriesStoriesAdapter extends RecyclerView.Adapter<CatagoriesSto
         Log.e("SIZE", productEnglish.getTitleoffundraising());
         // holder.title.setText(productEnglish.getPname());
         // holder.count.setText("Rs." + productEnglish.getPprice());
-        holder.quantity.setText(productEnglish.getTitleoffundraising());
+        holder.title.setText(productEnglish.getTitleoffundraising());
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-
+        holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.bname.setText(productEnglish.getBeneficiaryname());
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);

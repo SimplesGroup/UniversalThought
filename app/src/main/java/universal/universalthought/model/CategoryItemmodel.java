@@ -5,13 +5,21 @@ package universal.universalthought.model;
  */
 
 public class CategoryItemmodel {
-    String id,titleoffundraising,photo, amountraised,city,formoneid,raisingamount,name,url,date,likecount,commentcount,uimage,liketype;
+    String id,titleoffundraising,photo, amountraised,city,formoneid,raisingamount,name,url,date,likecount,commentcount,uimage,beneficiaryname;
+     int liketype;
+    public String getBeneficiaryname() {
+        return beneficiaryname;
+    }
 
-    public String getLiketype() {
+    public void setBeneficiaryname(String beneficiaryname) {
+        this.beneficiaryname = beneficiaryname;
+    }
+
+    public int getLiketype() {
         return liketype;
     }
 
-    public void setLiketype(String liketype) {
+    public void setLiketype(int liketype) {
         this.liketype = liketype;
     }
 

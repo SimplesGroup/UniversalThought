@@ -83,7 +83,7 @@
                 android:background="#000000"
                 />
             <TextView
-                android:id="@+id/kg"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="5dp"
-                android:layout_below="@+id/kg"
+                android:layout_below="@+id/title"
                 android:clickable="true"
                 android:scaleType="fitXY" />
 

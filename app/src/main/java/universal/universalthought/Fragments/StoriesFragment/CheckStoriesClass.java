@@ -75,18 +75,26 @@ public class CheckStoriesClass {
                         Log.e("Response","tets"+explrObject.toString());
 
                         CategoryItemmodel model = new CategoryItemmodel();
+
+
+
                         model.setId(explrObject.getString("id"));
                         model.setUrl(explrObject.getString("url"));
-                        model.setTitleoffundraising(explrObject.getString("title"));
-                        //model.setDate(explrObject.getString("create_date"));
-                    //  model.setLikecount(explrObject.getString("like_count"));
-                    //  model.setCommentcount(explrObject.getString("comment_count"));
-                    //    model.setUimage(explrObject.getString("uimg"));
-                    //    model.setLiketype(explrObject.getString("like_type"));
+
+                       model.setTitleoffundraising(explrObject.getString("title"));
+                       model.setPhoto(explrObject.getString("image"));
+                       model.setName(explrObject.getString("name"));
+                      String date=explrObject.getString("create_date");
+                     //   model.setDate(explrObject.getString("create_date"));
+                      // Log.e("Datatitle",explrObject.getString("uimg"));
+                     // model.setLikecount(explrObject.getString("like_count"));
+
+                    // model.setCommentcount(explrObject.getString("comment_count"));
+                       // model.setUimage(explrObject.getString("uimg"));
+                      // model.setLiketype(explrObject.getInt("like_type"));
                        // Log.e("Datatitle",explrObject.getString("create_date"));
-                        Log.e("Datatitle",explrObject.getString("name"));
-                        model.setPhoto(explrObject.getString("image"));
-                        model.setName(explrObject.getString("name"));
+
+
 
 
                         productList.add(model);

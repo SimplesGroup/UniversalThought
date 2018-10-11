@@ -28,7 +28,7 @@ public class ChildrensStoriesAdapter extends RecyclerView.Adapter<ChildrensStori
     private List<CategoryItemmodel> productEnglishList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView quantity,username,createdate,likecount,commentcount;
+        public TextView title,username,createdate,likecount,commentcount,bname;
         public NetworkImageView thumbnail;
         public ImageView userimage;
         Button overflow;
@@ -38,11 +38,12 @@ public class ChildrensStoriesAdapter extends RecyclerView.Adapter<ChildrensStori
 
         public MyViewHolder(View view) {
             super(view);
-            quantity = (TextView) view.findViewById(R.id.kg);
+            title = (TextView) view.findViewById(R.id.title);
             username = (TextView) view.findViewById(R.id.name);
             createdate = (TextView) view.findViewById(R.id.date);
             likecount = (TextView) view.findViewById(R.id.alltab_likescount);
             commentcount = (TextView) view.findViewById(R.id.alltab_commentscount);
+            bname = (TextView)view.findViewById(R.id.name);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
             userimage = (ImageView) view.findViewById(R.id.thum);
         }
@@ -66,8 +67,11 @@ public class ChildrensStoriesAdapter extends RecyclerView.Adapter<ChildrensStori
         final CategoryItemmodel productEnglish = productEnglishList.get(position);
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
         Log.e("SIZE", productEnglish.getTitleoffundraising());
-        holder.quantity.setText(productEnglish.getTitleoffundraising());
+        holder.title.setText(productEnglish.getTitleoffundraising());
         holder.username.setText(productEnglish.getName());
+        holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.bname.setText(productEnglish.getBeneficiaryname());
         //  holder.likecount.setText(productEnglish.getLikecount());
         //holder.commentcount.setText(productEnglish.getCommentcount());
         //  holder.createdate.setText(productEnglish.getDate());
@@ -93,7 +97,7 @@ public class ChildrensStoriesAdapter extends RecyclerView.Adapter<ChildrensStori
         });*/
         // holder.title.setTypeface(tf);
         // holder.count.setTypeface(tf);
-        // holder.quantity.setTypeface(tf);
+        // holder.title.setTypeface(tf);
     }
 
 
