@@ -46,7 +46,7 @@ import universal.universalthought.model.CategoryItemmodel;
  */
 
 public class CheckStoriesClass {
-    String url = "http://www.simples.in/universalthought/universalthought.php";
+    String url = "http://universalthought.org/universalthought.php";
      private static List<CategoryItemmodel> productList=new ArrayList<>();
     RequestQueue requestQueue;
 
@@ -85,14 +85,14 @@ public class CheckStoriesClass {
                        model.setPhoto(explrObject.getString("image"));
                        model.setName(explrObject.getString("name"));
                       String date=explrObject.getString("create_date");
-                     //   model.setDate(explrObject.getString("create_date"));
-                      // Log.e("Datatitle",explrObject.getString("uimg"));
-                     // model.setLikecount(explrObject.getString("like_count"));
+                      model.setDate(explrObject.getString("create_date"));
+                      Log.e("Datatitle",explrObject.getString("uimg"));
+                      model.setLikecount(explrObject.getString("like_count"));
 
-                    // model.setCommentcount(explrObject.getString("comment_count"));
-                       // model.setUimage(explrObject.getString("uimg"));
-                      // model.setLiketype(explrObject.getInt("like_type"));
-                       // Log.e("Datatitle",explrObject.getString("create_date"));
+                     model.setCommentcount(explrObject.getString("comment_count"));
+                       model.setUimage(explrObject.getString("uimg"));
+                       model.setLiketype(explrObject.getInt("like_type"));
+                        Log.e("Datatitle",explrObject.getString("create_date"));
 
 
 

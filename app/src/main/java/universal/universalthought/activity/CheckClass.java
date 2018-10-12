@@ -66,7 +66,7 @@ import universal.universalthought.model.CategoryItemmodel;
  */
 
 public class CheckClass {
-    String url = "http://www.simples.in/universalthought/universalthought.php";
+    String url = "http://universalthought.org/universalthought.php";
      private static List<CategoryItemmodel> productList=new ArrayList<>();
     RequestQueue requestQueue;
 
@@ -78,7 +78,6 @@ public class CheckClass {
         StringRequest objectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Data", response.toString());
 
                 try {
                     JSONObject jsondata = new JSONObject(response.toString());
@@ -90,6 +89,7 @@ public class CheckClass {
                   JSONArray array =new JSONArray(data.toString());
 
 
+
                    for (int i = 0; i < array.length(); i++) {
                         JSONObject explrObject = array.getJSONObject(i);
                         Log.e("Response","tets"+explrObject.toString());
@@ -99,12 +99,12 @@ public class CheckClass {
                         model.setUrl(explrObject.getString("url"));
                         model.setTitleoffundraising(explrObject.getString("title"));
                        model.setName(explrObject.getString("name"));
-                      // model.setBeneficiaryname(explrObject.getString("beneficiary_name"));
-                      // model.setDate(explrObject.getString("create_date"));
-                       //model.setLikecount(explrObject.getString("like_count"));
-                      // model.setCommentcount(explrObject.getString("comment_count"));
-                           //model.setUimage(explrObject.getString("uimg"));
-                        //   model.setLiketype(explrObject.getString("like_type"));
+                      model.setBeneficiaryname(explrObject.getString("beneficiary_name"));
+                       model.setDate(explrObject.getString("create_date"));
+                       model.setLikecount(explrObject.getString("like_count"));
+                      model.setCommentcount(explrObject.getString("comment_count"));
+                          model.setUimage(explrObject.getString("uimg"));
+                       model.setLiketype(explrObject.getInt("like_type"));
                         Log.e("Data",explrObject.getString("title"));
                         model.setPhoto(explrObject.getString("image"));
                         model.setAmountraised(explrObject.getString("amount_raised"));
