@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class ChildrensStoriesAdapter extends RecyclerView.Adapter<ChildrensStori
             createdate = (TextView) view.findViewById(R.id.date);
             likecount = (TextView) view.findViewById(R.id.alltab_likescount);
             commentcount = (TextView) view.findViewById(R.id.alltab_commentscount);
-            bname = (TextView)view.findViewById(R.id.name);
+          //  bname = (TextView)view.findViewById(R.id.name);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
             userimage = (ImageView) view.findViewById(R.id.thum);
         }
@@ -71,13 +73,17 @@ public class ChildrensStoriesAdapter extends RecyclerView.Adapter<ChildrensStori
         holder.username.setText(productEnglish.getName());
         holder.likecount.setText(productEnglish.getLikecount());
         holder.commentcount.setText(productEnglish.getCommentcount());
-        holder.bname.setText(productEnglish.getBeneficiaryname());
+       // holder.bname.setText(productEnglish.getBeneficiaryname());
         //  holder.likecount.setText(productEnglish.getLikecount());
         //holder.commentcount.setText(productEnglish.getCommentcount());
         //  holder.createdate.setText(productEnglish.getDate());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
-
+        Glide.with(mContext).load(productEnglish.getUimage())
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.userimage);
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

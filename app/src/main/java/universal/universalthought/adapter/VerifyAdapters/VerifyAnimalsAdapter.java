@@ -42,7 +42,9 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
         holder.quantity.setText(productEnglish.getTitleoffundraising());
-
+        holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.bname.setText(productEnglish.getBeneficiaryname());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
@@ -87,7 +89,7 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
         notifyDataSetChanged();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView quantity;
+        public TextView quantity,likecount,commentcount,bname;
         public NetworkImageView thumbnail;
         Button overflow;
         ProgressBar progressBar;
@@ -96,6 +98,9 @@ public class VerifyAnimalsAdapter extends RecyclerView.Adapter<VerifyAnimalsAdap
             super(itemView);
             quantity = (TextView) itemView.findViewById(R.id.title);
             thumbnail = (NetworkImageView) itemView.findViewById(R.id.thumbnail);
+            likecount = (TextView)itemView.findViewById(R.id.alltab_likescount);
+            commentcount = (TextView)itemView.findViewById(R.id.alltab_commentscount);
+            bname = (TextView)itemView.findViewById(R.id.name);
          //   overflow = (Button) itemView.findViewById(R.id.overflow);
             progressBar=(ProgressBar)itemView.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)itemView.findViewById(R.id.totalamount);

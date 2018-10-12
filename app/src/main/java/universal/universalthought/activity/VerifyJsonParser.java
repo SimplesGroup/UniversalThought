@@ -42,7 +42,7 @@ import universal.universalthought.Listinterface;
 import universal.universalthought.model.CategoryItemmodel;
 
 public class VerifyJsonParser  {
-    String url = "http://www.simples.in/universalthought/universalthought.php";
+    String url = "http://universalthought.org/universalthought.php";
     private static List<CategoryItemmodel> productList=new ArrayList<>();
     RequestQueue requestQueue;
 
@@ -76,6 +76,13 @@ public class VerifyJsonParser  {
                         Log.e("Data",explrObject.getString("title"));
                         model.setPhoto(explrObject.getString("image"));
                         model.setName(explrObject.getString("name"));
+                        model.setDate(explrObject.getString("create_date"));
+                        Log.e("Datatitle",explrObject.getString("uimg"));
+                        model.setLikecount(explrObject.getString("like_count"));
+
+                        model.setCommentcount(explrObject.getString("comment_count"));
+                        model.setUimage(explrObject.getString("uimg"));
+                        model.setLiketype(explrObject.getInt("like_type"));
                         model.setAmountraised(explrObject.getString("amount_raised"));
                         model.setRaisingamount(explrObject.getString("raising_amount"));
 

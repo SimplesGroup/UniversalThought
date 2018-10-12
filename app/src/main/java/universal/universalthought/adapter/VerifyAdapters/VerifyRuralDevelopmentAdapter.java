@@ -25,7 +25,7 @@ public class VerifyRuralDevelopmentAdapter extends RecyclerView.Adapter<VerifyRu
     private List<CategoryItemmodel> productEnglishList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView quantity;
+        public TextView quantity,likecount,commentcount,bname;
         public NetworkImageView thumbnail;
      //   Button overflow;
         ProgressBar progressBar;
@@ -35,6 +35,9 @@ public class VerifyRuralDevelopmentAdapter extends RecyclerView.Adapter<VerifyRu
 
             quantity = (TextView) view.findViewById(R.id.title);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
+            likecount = (TextView)view.findViewById(R.id.alltab_likescount);
+            commentcount = (TextView)view.findViewById(R.id.alltab_commentscount);
+            bname = (TextView)view.findViewById(R.id.name);
          //   overflow = (Button) view.findViewById(R.id.overflow);
             progressBar=(ProgressBar)view.findViewById(R.id.circularProgressBar);
             total_amount_textview=(TextView)view.findViewById(R.id.totalamount);
@@ -61,7 +64,9 @@ public class VerifyRuralDevelopmentAdapter extends RecyclerView.Adapter<VerifyRu
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
         holder.quantity.setText(productEnglish.getTitleoffundraising());
-
+        holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.bname.setText(productEnglish.getBeneficiaryname());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());

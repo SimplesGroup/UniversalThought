@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -81,6 +83,11 @@ public class ElderlyStoriesAdapter extends RecyclerView.Adapter<ElderlyStoriesAd
                 mContext.startActivity(i);
             }
         });
+        Glide.with(mContext).load(productEnglish.getUimage())
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.userimage);
         /*holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
