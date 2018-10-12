@@ -67,9 +67,9 @@ public class EmergenciesStoriesAdapter extends RecyclerView.Adapter<EmergenciesS
         Log.e("SIZE", productEnglish.getTitleoffundraising());
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         holder.username.setText(productEnglish.getName());
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.createdate.setText(productEnglish.getDate());
+          holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.createdate.setText(productEnglish.getDate());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
 

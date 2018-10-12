@@ -70,9 +70,9 @@ public class MemorialsStoriesAdapter extends RecyclerView.Adapter<MemorialsStori
         // holder.count.setText("Rs." + productEnglish.getPprice());
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         holder.username.setText(productEnglish.getName());
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.createdate.setText(productEnglish.getDate());
+          holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.createdate.setText(productEnglish.getDate());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
 

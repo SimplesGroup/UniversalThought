@@ -68,9 +68,9 @@ public class ArtsMediaAdapter extends RecyclerView.Adapter<ArtsMediaAdapter.MyVi
 
         holder.title.setText(productEnglish.getTitleoffundraising());
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-      //  holder.likecount.setText(productEnglish.getLikecount());
-      //  holder.commentcount.setText(productEnglish.getCommentcount());
-      //  holder.bname.setText(productEnglish.getBeneficiaryname());
+       holder.likecount.setText(productEnglish.getLikecount());
+       holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.bname.setText(productEnglish.getBeneficiaryname());
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
         int    percentage_value=(int) ((obtainedcost_value*100)/totalcost_value);

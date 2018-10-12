@@ -67,9 +67,9 @@ public class MedicalAdapter extends RecyclerView.Adapter<MedicalAdapter.MyViewHo
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
         holder.title.setText(productEnglish.getTitleoffundraising());
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //  holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.bname.setText(productEnglish.getBeneficiaryname());
+          holder.likecount.setText(productEnglish.getLikecount());
+          holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.bname.setText(productEnglish.getBeneficiaryname());
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

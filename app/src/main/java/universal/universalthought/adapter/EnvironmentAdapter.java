@@ -65,9 +65,9 @@ public class EnvironmentAdapter extends RecyclerView.Adapter<EnvironmentAdapter.
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
         holder.title.setText(productEnglish.getTitleoffundraising());
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //  holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.bname.setText(productEnglish.getBeneficiaryname());
+          holder.likecount.setText(productEnglish.getLikecount());
+          holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.bname.setText(productEnglish.getBeneficiaryname());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());

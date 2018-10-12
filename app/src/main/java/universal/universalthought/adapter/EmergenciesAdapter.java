@@ -70,9 +70,9 @@ public class EmergenciesAdapter extends RecyclerView.Adapter<EmergenciesAdapter.
         holder.title.setText(productEnglish.getTitleoffundraising());
         // loading album cover using Glide library
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //  holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.bname.setText(productEnglish.getBeneficiaryname());
+          holder.likecount.setText(productEnglish.getLikecount());
+          holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.bname.setText(productEnglish.getBeneficiaryname());
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

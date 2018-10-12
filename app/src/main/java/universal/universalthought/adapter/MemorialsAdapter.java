@@ -68,9 +68,9 @@ public class MemorialsAdapter extends RecyclerView.Adapter<MemorialsAdapter.MyVi
         // holder.title.setText(productEnglish.getPname());
         // holder.count.setText("Rs." + productEnglish.getPprice());
         holder.title.setText(productEnglish.getTitleoffundraising());
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //  holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.bname.setText(productEnglish.getBeneficiaryname());
+          holder.likecount.setText(productEnglish.getLikecount());
+          holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.bname.setText(productEnglish.getBeneficiaryname());
        holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

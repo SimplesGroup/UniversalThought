@@ -72,9 +72,9 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
         holder.progressBar.setMax(100);
         holder.total_amount_textview.setText(productEnglish.getRaisingamount());
         holder.title.setText(productEnglish.getTitleoffundraising());
-      //  holder.likecount.setText(productEnglish.getLikecount());
-      //  holder.commentcount.setText(productEnglish.getCommentcount());
-      //  holder.bname.setText(productEnglish.getBeneficiaryname());
+        holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.bname.setText(productEnglish.getBeneficiaryname());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

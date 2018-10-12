@@ -66,9 +66,9 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.MyVi
         // holder.title.setText(productEnglish.getPname());
         // holder.count.setText("Rs." + productEnglish.getPprice());
         holder.title.setText(productEnglish.getTitleoffundraising());
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //  holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.bname.setText(productEnglish.getBeneficiaryname());
+          holder.likecount.setText(productEnglish.getLikecount());
+          holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.bname.setText(productEnglish.getBeneficiaryname());
         Glide.with(mContext).load(productEnglish.getPhoto()).into(holder.thumbnail);
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());

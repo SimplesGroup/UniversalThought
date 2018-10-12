@@ -69,9 +69,9 @@ public class WomenStoriesAdapter extends RecyclerView.Adapter<WomenStoriesAdapte
 
         holder.quantity.setText(productEnglish.getTitleoffundraising());
         holder.username.setText(productEnglish.getName());
-        //  holder.likecount.setText(productEnglish.getLikecount());
-        //holder.commentcount.setText(productEnglish.getCommentcount());
-        //  holder.createdate.setText(productEnglish.getDate());
+          holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+          holder.createdate.setText(productEnglish.getDate());
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
 

@@ -65,9 +65,9 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
         Log.e("SIZE", model.getTitleoffundraising());
 
         holder.title.setText(model.getTitleoffundraising());
-        //holder.likecount.setText(model.getLikecount());
-       // holder.commentcount.setText(model.getCommentcount());
-       // holder.bname.setText(model.getBeneficiaryname());
+        holder.likecount.setText(model.getLikecount());
+        holder.commentcount.setText(model.getCommentcount());
+        holder.bname.setText(model.getBeneficiaryname());
         holder.thumbnail.setImageUrl(model.getPhoto(),imageLoader);
     int    totalcost_value = Integer.parseInt(model.getRaisingamount());
      int   obtainedcost_value= Integer.parseInt(model.getAmountraised());

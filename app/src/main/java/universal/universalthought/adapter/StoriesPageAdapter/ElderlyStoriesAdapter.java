@@ -67,7 +67,11 @@ public class ElderlyStoriesAdapter extends RecyclerView.Adapter<ElderlyStoriesAd
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
 
-
+        holder.quantity.setText(productEnglish.getTitleoffundraising());
+        holder.username.setText(productEnglish.getName());
+        holder.likecount.setText(productEnglish.getLikecount());
+        holder.commentcount.setText(productEnglish.getCommentcount());
+        holder.createdate.setText(productEnglish.getDate());
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
