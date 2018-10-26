@@ -42,6 +42,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import universal.universalthought.Util.Config;
 import universal.universalthought.fundraiser.DonatePage;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -60,8 +61,6 @@ public class Detailpage extends AppCompatActivity {
     ImageLoader imageLoader;
     int totalcost_value,obtainedcost_value;
     int percentage_value;
-String url="http://www.simples.in/universalthought/universalthought.php";
-String urltest="http://www.simples.in/universalthought/universalthought.php";
     RequestQueue requestQueue;
     String post_id;
     String text;
@@ -74,7 +73,10 @@ String urltest="http://www.simples.in/universalthought/universalthought.php";
 LinearLayout benificiarylayout,campain_layout;
     /** declaration end of campaign organizer **/
 
-
+    LinearLayout comment_layouts;
+    EditText comment_edit;
+    ImageButton comment_post;
+    ImageView like_button,comment_button,share_button;
 
 
     @Override
@@ -113,6 +115,12 @@ LinearLayout benificiarylayout,campain_layout;
         campaign_organizer_textview_location.setText("Coimbatore,TamilNadu");
         benificiary_name_textview.setText("Beneficiary: universal");*/
 
+        comment_layouts=(LinearLayout)findViewById(R.id.comment_layout);
+        comment_edit=(EditText)findViewById(R.id.edit_comment);
+        comment_post=(ImageButton)findViewById(R.id.button_post);
+        like_button=(ImageView)findViewById(R.id.button_likes);
+        comment_button=(ImageView)findViewById(R.id.button_comment);
+        share_button=(ImageView)findViewById(R.id.button_share);
 
         Intent in=getIntent();
         post_id=in.getStringExtra("ID");
@@ -136,9 +144,18 @@ LinearLayout benificiarylayout,campain_layout;
                 startActivity(i);
             }
         });
-       /* text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." +
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-*/
+
+        comment_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(comment_layouts.getVisibility()==View.VISIBLE){
+                    comment_layouts.setVisibility(View.GONE);
+                }else if(comment_layouts.getVisibility()==View.GONE){
+                    comment_layouts.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         webView_details_about_page.getSettings().setLoadsImagesAutomatically(true);
         webView_details_about_page.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView_details_about_page.getSettings().setAllowFileAccess(true);
@@ -173,7 +190,7 @@ LinearLayout benificiarylayout,campain_layout;
 
 
     private void getdata(){
-        StringRequest request=new StringRequest(Request.Method.POST, urltest, new Response.Listener<String>() {
+        StringRequest request=new StringRequest(Request.Method.POST, Config.url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -194,7 +211,7 @@ LinearLayout benificiarylayout,campain_layout;
 
                         model.setPhoto(explrObject.getString("fundraiser_photo"));
 
-                        text=explrObject.getString("story_of_fundraising");
+                        text=explrObject.getString("description");
                         total_cost.setText(explrObject.getString("raising_amount"));
                         currentdonated_cost.setText("Raised of Rs,"+explrObject.getString("amount_raised")+"goal");
                         title.setText(explrObject.getString("title"));
@@ -246,7 +263,7 @@ LinearLayout benificiarylayout,campain_layout;
                 Map<String,String>param=new HashMap<>();
                 param.put("Key","UniversalThought");
                 param.put("rType","DetailPage");
-                param.put("id","286");
+                param.put("id",post_id);
 
                 return param;
 

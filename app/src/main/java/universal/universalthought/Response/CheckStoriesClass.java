@@ -1,4 +1,4 @@
-package universal.universalthought.Fragments.StoriesFragment;
+package universal.universalthought.Response;
 
 import android.content.Context;
 import android.util.Log;
@@ -35,10 +35,28 @@ import universal.universalthought.Fragments.OthersFragment;
 import universal.universalthought.Fragments.RuralDevelopmentFragment;
 import universal.universalthought.Fragments.SocialFragment;
 import universal.universalthought.Fragments.SportsFragment;
+import universal.universalthought.Fragments.StoriesFragment.AnimalsStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.ArtsMediaStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.ChildrensStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.CommunityStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.EducationStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.ElderlyStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.EmergenciesStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.EnvironmentStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.HumanRightsStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.MedicalStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.MemorialsStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.OthersStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.RuralDevelopmentStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.SocialStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.SportsStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.TechnologyStoriesFragment;
+import universal.universalthought.Fragments.StoriesFragment.WomenStoriesFragment;
 import universal.universalthought.Fragments.TechnologyFragment;
 import universal.universalthought.Fragments.Verify.VerifyAnimalsFragment;
 import universal.universalthought.Fragments.WomenFragment;
 import universal.universalthought.Listinterface;
+import universal.universalthought.Util.Config;
 import universal.universalthought.model.CategoryItemmodel;
 
 /**
@@ -46,7 +64,7 @@ import universal.universalthought.model.CategoryItemmodel;
  */
 
 public class CheckStoriesClass {
-    String url = "http://universalthought.org/universalthought.php";
+
      private static List<CategoryItemmodel> productList=new ArrayList<>();
     RequestQueue requestQueue;
 
@@ -55,7 +73,7 @@ public class CheckStoriesClass {
        // productList = new ArrayList<CategoryItemmodel>();
         requestQueue = Volley.newRequestQueue(context);
 
-        StringRequest objectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest objectRequest = new StringRequest(Request.Method.POST, Config.url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e("Data", response.toString());

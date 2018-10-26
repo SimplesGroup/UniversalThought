@@ -3,12 +3,16 @@ package universal.universalthought.adapter.StoriesPageAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +26,7 @@ import java.util.List;
 
 import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.Detailpage;
+import universal.universalthought.Detailstorypage;
 import universal.universalthought.R;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -37,6 +42,10 @@ public class ArtsMediaStoriesAdapter extends RecyclerView.Adapter<ArtsMediaStori
         ProgressBar progressBar;
         TextView total_amount_textview;
         RelativeLayout pb;
+        LinearLayout comment_layout;
+        EditText comment_edit;
+        ImageButton comment_post;
+        ImageView like_button,comment_button,share_button;
         public MyViewHolder(View view) {
             super(view);
             quantity = (TextView) view.findViewById(R.id.title);
@@ -46,6 +55,12 @@ public class ArtsMediaStoriesAdapter extends RecyclerView.Adapter<ArtsMediaStori
             commentcount = (TextView) view.findViewById(R.id.alltab_commentscount);
             thumbnail = (NetworkImageView) view.findViewById(R.id.thumbnail);
             userimage = (ImageView) view.findViewById(R.id.thum);
+            comment_layout=(LinearLayout)view.findViewById(R.id.comment_layout);
+            comment_edit=(EditText)view.findViewById(R.id.edit_comment);
+            comment_post=(ImageButton)view.findViewById(R.id.button_post);
+            like_button=(ImageView)view.findViewById(R.id.button_likes);
+            comment_button=(ImageView)view.findViewById(R.id.button_comment);
+            share_button=(ImageView)view.findViewById(R.id.button_share);
         }
     }
     public ArtsMediaStoriesAdapter(Context mContext, List<CategoryItemmodel> productEnglishList) {
@@ -68,11 +83,24 @@ public class ArtsMediaStoriesAdapter extends RecyclerView.Adapter<ArtsMediaStori
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
         Log.e("SIZE", productEnglish.getTitleoffundraising());
 
-        holder.quantity.setText(productEnglish.getTitleoffundraising());
-        holder.username.setText(productEnglish.getName());
-          holder.likecount.setText(productEnglish.getLikecount());
-        holder.commentcount.setText(productEnglish.getCommentcount());
-          holder.createdate.setText(productEnglish.getDate());
+        holder.quantity.setText(Html.fromHtml(productEnglish.getTitleoffundraising()));
+        holder.username.setText(Html.fromHtml(productEnglish.getName()));
+        if(productEnglish.getLikecount().equals("1")){
+            holder.likecount.setText(Html.fromHtml(productEnglish.getLikecount()+"&nbsp;"+"Like"));
+        }else if(productEnglish.getLikecount().equals("0")){
+
+        }else {
+            holder.likecount.setText(Html.fromHtml(productEnglish.getLikecount()+"&nbsp;"+"Likes"));
+        }
+        if(productEnglish.getCommentcount().equals("1")){
+            holder.commentcount.setText(Html.fromHtml(productEnglish.getCommentcount()+"&nbsp;"+"Comment"));
+        }else if(productEnglish.getCommentcount().equals("0")){
+
+        }else {
+            holder.commentcount.setText(Html.fromHtml(productEnglish.getCommentcount()+"&nbsp;"+"Comments"));
+        }
+
+        holder.createdate.setText(Html.fromHtml(productEnglish.getDate()));
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
 
@@ -84,13 +112,27 @@ public class ArtsMediaStoriesAdapter extends RecyclerView.Adapter<ArtsMediaStori
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext,Detailpage.class);
+                Intent i = new Intent(mContext,Detailstorypage.class);
 
                 i.putExtra("ID", productEnglish.getId());
                 mContext.startActivity(i);
             }
         });
 
+        holder.comment_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.comment_layout.getVisibility()==View.VISIBLE){
+                    holder.comment_layout.setVisibility(View.GONE);
+                }else if(holder.comment_layout.getVisibility()==View.GONE){
+                    holder.comment_layout.setVisibility(View.VISIBLE);
+
+                }else {
+                    holder.comment_layout.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

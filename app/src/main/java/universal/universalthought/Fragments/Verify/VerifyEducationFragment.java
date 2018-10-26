@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,9 +34,7 @@ import java.util.Map;
 
 import universal.universalthought.Listinterface;
 import universal.universalthought.R;
-import universal.universalthought.activity.CheckClass;
 import universal.universalthought.activity.VerifyJsonParser;
-import universal.universalthought.adapter.EducationAdapter;
 import universal.universalthought.adapter.VerifyAdapters.VerifyEducationAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 

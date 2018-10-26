@@ -54,12 +54,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Sandhiya" />
+                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date"
+
                 android:id="@+id/date"
                 android:layout_gravity="left"
                />
@@ -168,7 +168,6 @@
                         android:layout_marginRight="10dp"
                         android:gravity="right|center"
                         android:textSize="12dp"
-                        android:text="1K comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -180,11 +179,35 @@
                         android:layout_marginRight="5dp"
                         android:layout_alignParentRight="true"
                         android:textSize="12dp"
-                        android:text="1K Like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/comment_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <EditText
+                    android:layout_marginLeft="4dp"
+                    android:background="@drawable/edittextbox"
+                    android:id="@+id/edit_comment"
+                    android:layout_weight=".80"
+                    android:layout_width="0dp"
+                    android:textSize="14dp"
+                    android:paddingLeft="3dp"
+                    android:hint="Write a comment..."
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#4c4c4c"
+                    android:layout_height="40dp" />
+                <ImageButton
+                    android:layout_weight=".20"
+                    android:id="@+id/button_post"
+                    android:src="@mipmap/post"
+                    android:background="@android:color/transparent"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp" />
             </LinearLayout>
         </LinearLayout>
 

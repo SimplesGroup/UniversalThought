@@ -33,6 +33,7 @@
         <activity android:name=".activity.MainActivity"></activity>
 
         <activity android:name=".Detailpage"></activity>
+        <activity android:name=".Detailstorypage"/>
         <activity android:name=".activity.FundraiserActivity"></activity>
         <activity android:name=".activity.VerifyQuestionActivity"></activity>
         <activity android:name=".fundraiser.BasicInformation"></activity>

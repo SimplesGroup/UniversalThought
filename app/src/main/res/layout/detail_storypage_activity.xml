@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:paddingBottom="60dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="match_parent"
+                android:minHeight="270dp"
+                android:maxHeight="330dp"
+                android:id="@+id/detail_image"
+
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_alignTop="@+id/detail_image"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/imagebutton_back"
+                    android:src="@mipmap/backarrow"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/imagebutton_verified"
+                    android:src="@mipmap/verified"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/cost_layout"
+                android:layout_below="@+id/detail_image"
+                android:background="#C22400"
+                android:minHeight="48dp"
+                android:layout_marginRight="65dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:id="@+id/total_cost"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:textSize="17dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/tonated_cost"
+                    android:textSize="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/cost_layout"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginRight="15dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/title_item"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <WebView
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/wwebview_detail_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </WebView>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/campain_layout"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:background="#b3b2b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:background="@android:color/transparent"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="2dp"
+                            android:layout_alignParentLeft="true"
+                            android:gravity="left"
+                            android:textSize="17sp"
+                            android:text=" Campain Organizer"
+                            android:id="@+id/organizer_campainname"
+                            android:textColor="#666666"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageButton
+                            android:layout_marginRight="4dp"
+                            android:layout_alignParentRight="true"
+                            android:src="@android:drawable/ic_dialog_email"
+                            android:background="@android:color/transparent"
+                            android:id="@+id/contact_organizer"
+                            android:scaleType="centerCrop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp">
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="15dp"
+                        android:background="@android:color/transparent"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:background="@android:color/transparent"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_marginLeft="5dp"
+                                android:id="@+id/campainorganizerlogo"
+                                android:scaleType="centerCrop"
+                                android:background="@android:color/transparent"
+
+                                android:layout_width="60dp"
+                                android:layout_height="60dp" />
+                        </LinearLayout>
+                        <RelativeLayout
+                            android:layout_marginLeft="9dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:id="@+id/campain_organaizername"
+                                android:textColor="#666666"
+                                android:textSize="17sp"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+
+                                android:layout_marginTop="7dp"
+                                android:layout_below="@+id/campain_organaizername"
+                                android:id="@+id/campain_date"
+                                android:textColor="#666666"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="7dp"
+                                android:text="|"
+                                android:layout_toRightOf="@+id/campain_date"
+                                android:layout_marginTop="7dp"
+                                android:layout_below="@+id/campain_organaizername"
+                                android:id="@+id/campain_centerdivider"
+                                android:textColor="#979797"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+
+                                android:layout_toRightOf="@+id/campain_centerdivider"
+                                android:layout_marginTop="7dp"
+                                android:layout_below="@+id/campain_organaizername"
+                                android:id="@+id/campain_location"
+                                android:textColor="#666666"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="15dp"
+                    android:padding="7dp"
+                    android:id="@+id/benificiary_layout"
+                    android:orientation="vertical"
+                    android:background="#b3b2b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="17sp"
+                        android:text="Beneficiary:"
+                        android:id="@+id/benificiary_name"
+                        android:textColor="#666666"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+                        <LinearLayout
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight=".30"
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/button_likes"
+                                android:layout_width="0dp"
+                                android:background="@android:color/transparent"
+                                android:src="@mipmap/likeblack"
+                                android:layout_weight=".10"
+                                android:layout_height="22dp"/>
+                            <ImageView
+                                android:id="@+id/button_comment"
+                                android:layout_width="0dp"
+                                android:background="@android:color/transparent"
+                                android:src="@mipmap/commentblack"
+                                android:layout_weight=".10"
+                                android:layout_height="22dp"
+                                />
+                            <ImageView
+                                android:id="@+id/button_share"
+                                android:layout_width="0dp"
+                                android:background="@android:color/transparent"
+                                android:src="@mipmap/shareblack"
+                                android:layout_weight=".10"
+                                android:layout_height="22dp"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight=".20"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_gravity="right"
+                            android:layout_weight=".41"
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+
+                                android:layout_marginTop="5dp"
+                                android:id="@+id/alltab_commentscount"
+                                android:textColor="@android:color/black"
+                                android:layout_marginRight="10dp"
+                                android:gravity="right|center"
+                                android:textSize="12dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+
+                                android:id="@+id/alltab_likescount"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@android:color/black"
+                                android:gravity="right|center"
+                                android:layout_marginRight="5dp"
+                                android:layout_alignParentRight="true"
+                                android:textSize="12dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/comment_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+                        <EditText
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/edittextbox"
+                            android:id="@+id/edit_comment"
+                            android:layout_weight=".90"
+                            android:layout_width="0dp"
+                            android:textSize="14dp"
+                            android:paddingLeft="3dp"
+                            android:hint="Write a comment..."
+                            android:textColor="@android:color/black"
+                            android:textColorHint="#4c4c4c"
+                            android:layout_height="40dp" />
+                        <ImageButton
+                            android:layout_weight=".10"
+                            android:id="@+id/button_post"
+                            android:src="@mipmap/post"
+                            android:background="@android:color/transparent"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/bottom_layout"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageButton
+            android:id="@+id/imagebutton_rupees"
+            android:layout_alignParentLeft="true"
+            android:background="#C22400"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@mipmap/rupeesymbol"
+            android:layout_height="match_parent" />
+        <EditText
+            android:paddingLeft="4dp"
+            android:layout_weight="2"
+            android:inputType="number"
+            android:background="#ffffff"
+            android:hint="Enter Amount"
+            android:textColorHint="#FFDEDCDC"
+            android:textSize="16dp"
+            android:id="@+id/editext_donation_cost"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <Button
+            android:background="#C22400"
+            android:layout_alignParentRight="true"
+            android:id="@+id/button_helpnow"
+            android:textColor="@android:color/white"
+            android:text="HELP NOW"
+            android:padding="3dp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</RelativeLayout>

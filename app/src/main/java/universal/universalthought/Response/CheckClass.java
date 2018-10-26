@@ -1,4 +1,4 @@
-package universal.universalthought.activity;
+package universal.universalthought.Response;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
@@ -58,6 +58,7 @@ import universal.universalthought.Fragments.Verify.VerifyWomenFragment;
 import universal.universalthought.Fragments.WomenFragment;
 import universal.universalthought.Listinterface;
 import universal.universalthought.R;
+import universal.universalthought.Util.Config;
 import universal.universalthought.adapter.AnimalsAdapter;
 import universal.universalthought.model.CategoryItemmodel;
 
@@ -66,7 +67,7 @@ import universal.universalthought.model.CategoryItemmodel;
  */
 
 public class CheckClass {
-    String url = "http://universalthought.org/universalthought.php";
+
      private static List<CategoryItemmodel> productList=new ArrayList<>();
     RequestQueue requestQueue;
 
@@ -75,7 +76,7 @@ public class CheckClass {
        // productList = new ArrayList<CategoryItemmodel>();
         requestQueue = Volley.newRequestQueue(context);
 
-        StringRequest objectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest objectRequest = new StringRequest(Request.Method.POST, Config.url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
