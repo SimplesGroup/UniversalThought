@@ -23,7 +23,7 @@ public class Likeclass {
     RequestQueue requestQueue;
     private String like_story,like_fundraiser;
 
-    public String StoryLike(Context context, final String userid, final String storyid, final String extraid){
+    public String StoryLike(Context context, final String userid, final String storyid, final int extraid){
         requestQueue= Volley.newRequestQueue(context);
         StringRequest storylike_request=new StringRequest(Request.Method.POST, Config.url, new Response.Listener<String>() {
             @Override
@@ -50,7 +50,7 @@ public class Likeclass {
                 param.put("Key","UniversalThought");
                 param.put("rType","story_like");
                 param.put("user_id",userid);
-                param.put("like_type",extraid);
+                param.put("like_type",String.valueOf(extraid));
                 param.put("story_id", storyid);
                 return param;
             }
@@ -60,7 +60,7 @@ public class Likeclass {
     }
 
 
-    public String FundraiserLike(Context context, final String userid, final String fundid, final String extraid){
+    public String FundraiserLike(Context context, final String userid, final String fundid, final int extraid){
         requestQueue= Volley.newRequestQueue(context);
         StringRequest fundraiser_request=new StringRequest(Request.Method.POST, Config.url, new Response.Listener<String>() {
             @Override
@@ -87,7 +87,7 @@ public class Likeclass {
                 param.put("Key","UniversalThought");
                 param.put("rType","fundraiser_like");
                 param.put("user_id",userid);
-                param.put("like_type",extraid);
+                param.put("like_type",String.valueOf(extraid));
                 param.put("fundraiser_id", fundid);
                 return param;
             }
