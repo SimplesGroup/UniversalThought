@@ -110,6 +110,13 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.MyViewHold
         }else {
             holder.commentcount.setText(Html.fromHtml(productEnglish.getCommentcount()+"&nbsp;"+"Comments"));
         }
+        if(productEnglish.getLiketype()==0){
+            holder.like_button.setImageResource(R.mipmap.likeblack);
+        }else if(productEnglish.getLiketype()==1) {
+            holder.like_button.setImageResource(R.mipmap.heartfullred);
+        }else {
+
+        }
         holder.bname.setText(Html.fromHtml(productEnglish.getBeneficiaryname()));
         int    totalcost_value = Integer.parseInt(productEnglish.getRaisingamount());
         int   obtainedcost_value= Integer.parseInt(productEnglish.getAmountraised());
@@ -178,6 +185,7 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.MyViewHold
                 String data=null;
                 if(productEnglish.getLiketype()==0){
                     data  =     likeclass.FundraiserLike(mContext,userid,productEnglish.getId(),1);
+                    holder.like_button.setImageResource(R.mipmap.heartfullred);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val+1;
                     if(result==1){
@@ -190,6 +198,7 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.MyViewHold
 
                 }else if(productEnglish.getLiketype()==1){
                     data  =     likeclass.FundraiserLike(mContext,userid,productEnglish.getId(),0);
+                    holder.like_button.setImageResource(R.mipmap.likeblack);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val-1;
                     if(result==1){

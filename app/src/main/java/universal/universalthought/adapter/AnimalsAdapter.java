@@ -112,7 +112,13 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
             holder.commentcount.setText(Html.fromHtml(model.getCommentcount()+"&nbsp;"+"Comments"));
         }
 
+        if(model.getLiketype()==0){
+            holder.like_button.setImageResource(R.mipmap.likeblack);
+        }else if(model.getLiketype()==1) {
+            holder.like_button.setImageResource(R.mipmap.heartfullred);
+        }else {
 
+        }
         holder.bname.setText(Html.fromHtml(model.getBeneficiaryname()));
 
         holder.thumbnail.setImageUrl(model.getPhoto(),imageLoader);
@@ -183,6 +189,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
                 String data=null;
                 if(model.getLiketype()==0){
                     data  =     likeclass.FundraiserLike(mContext,userid,model.getId(),1);
+                    holder.like_button.setImageResource(R.mipmap.heartfullred);
                     int val=Integer.parseInt(model.getLikecount());
                     int result=val+1;
                     if(result==1){
@@ -195,6 +202,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
 
                 }else if(model.getLiketype()==1){
                     data  =     likeclass.FundraiserLike(mContext,userid,model.getId(),0);
+                    holder.like_button.setImageResource(R.mipmap.likeblack);
                     int val=Integer.parseInt(model.getLikecount());
                     int result=val-1;
                     if(result==1){

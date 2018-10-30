@@ -116,6 +116,13 @@ public class EnvironmentStoriesAdapter extends RecyclerView.Adapter<EnvironmentS
         }
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
+        if(productEnglish.getLiketype()==0){
+            holder.like_button.setImageResource(R.mipmap.likeblack);
+        }else if(productEnglish.getLiketype()==1) {
+            holder.like_button.setImageResource(R.mipmap.heartfullred);
+        }else {
+
+        }
         Glide.with(mContext).load(productEnglish.getUimage())
                 .thumbnail(0.5f)
                 .crossFade()
@@ -179,6 +186,7 @@ public class EnvironmentStoriesAdapter extends RecyclerView.Adapter<EnvironmentS
                 String data=null;
                 if(productEnglish.getLiketype()==0){
                     data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),1);
+                    holder.like_button.setImageResource(R.mipmap.heartfullred);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val+1;
                     if(result==1){
@@ -191,6 +199,7 @@ public class EnvironmentStoriesAdapter extends RecyclerView.Adapter<EnvironmentS
 
                 }else if(productEnglish.getLiketype()==1){
                     data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),0);
+                    holder.like_button.setImageResource(R.mipmap.likeblack);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val-1;
                     if(result==1){

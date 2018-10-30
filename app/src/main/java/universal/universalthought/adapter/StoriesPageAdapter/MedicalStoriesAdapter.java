@@ -117,6 +117,13 @@ public class MedicalStoriesAdapter extends RecyclerView.Adapter<MedicalStoriesAd
         }else {
             holder.commentcount.setText(Html.fromHtml(productEnglish.getCommentcount()+"&nbsp;"+"Comments"));
         }
+        if(productEnglish.getLiketype()==0){
+            holder.like_button.setImageResource(R.mipmap.likeblack);
+        }else if(productEnglish.getLiketype()==1) {
+            holder.like_button.setImageResource(R.mipmap.heartfullred);
+        }else {
+
+        }
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
         Glide.with(mContext).load(productEnglish.getUimage())
@@ -183,6 +190,7 @@ public class MedicalStoriesAdapter extends RecyclerView.Adapter<MedicalStoriesAd
                 String data=null;
                 if(productEnglish.getLiketype()==0){
                     data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),1);
+                    holder.like_button.setImageResource(R.mipmap.heartfullred);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val+1;
                     if(result==1){
@@ -195,6 +203,7 @@ public class MedicalStoriesAdapter extends RecyclerView.Adapter<MedicalStoriesAd
 
                 }else if(productEnglish.getLiketype()==1){
                     data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),0);
+                    holder.like_button.setImageResource(R.mipmap.likeblack);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val-1;
                     if(result==1){

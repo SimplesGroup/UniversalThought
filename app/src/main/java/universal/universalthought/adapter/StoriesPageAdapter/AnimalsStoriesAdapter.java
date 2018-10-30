@@ -133,7 +133,7 @@ public class AnimalsStoriesAdapter extends RecyclerView.Adapter<AnimalsStoriesAd
         }
 
         if(productEnglish.getLiketype()==0){
-            holder.like_button.setImageResource(R.mipmap.heart);
+            holder.like_button.setImageResource(R.mipmap.likeblack);
         }else if(productEnglish.getLiketype()==1) {
             holder.like_button.setImageResource(R.mipmap.heartfullred);
         }else {

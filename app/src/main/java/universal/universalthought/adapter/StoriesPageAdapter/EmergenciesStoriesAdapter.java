@@ -115,7 +115,13 @@ public class EmergenciesStoriesAdapter extends RecyclerView.Adapter<EmergenciesS
         }else {
             holder.commentcount.setText(Html.fromHtml(productEnglish.getCommentcount()+"&nbsp;"+"Comments"));
         }
+        if(productEnglish.getLiketype()==0){
+            holder.like_button.setImageResource(R.mipmap.likeblack);
+        }else if(productEnglish.getLiketype()==1) {
+            holder.like_button.setImageResource(R.mipmap.heartfullred);
+        }else {
 
+        }
         holder.createdate.setText(Html.fromHtml(productEnglish.getDate()));
         holder.thumbnail.setImageUrl(productEnglish.getPhoto(),imageLoader);
         //      holder.userimage.setImageURI(productEnglish.getUimage(),imageLoader);
@@ -183,6 +189,7 @@ public class EmergenciesStoriesAdapter extends RecyclerView.Adapter<EmergenciesS
                 String data=null;
                 if(productEnglish.getLiketype()==0){
                     data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),1);
+                    holder.like_button.setImageResource(R.mipmap.heartfullred);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val+1;
                     if(result==1){
@@ -195,6 +202,7 @@ public class EmergenciesStoriesAdapter extends RecyclerView.Adapter<EmergenciesS
 
                 }else if(productEnglish.getLiketype()==1){
                     data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),0);
+                    holder.like_button.setImageResource(R.mipmap.likeblack);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val-1;
                     if(result==1){

@@ -118,6 +118,13 @@ public class TechnologyAdapter extends RecyclerView.Adapter<TechnologyAdapter.My
         }else {
             holder.commentcount.setText(Html.fromHtml(productEnglish.getCommentcount()+"&nbsp;"+"Comments"));
         }
+        if(productEnglish.getLiketype()==0){
+            holder.like_button.setImageResource(R.mipmap.likeblack);
+        }else if(productEnglish.getLiketype()==1) {
+            holder.like_button.setImageResource(R.mipmap.heartfullred);
+        }else {
+
+        }
         holder.bname.setText(Html.fromHtml(productEnglish.getBeneficiaryname()));
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +184,7 @@ public class TechnologyAdapter extends RecyclerView.Adapter<TechnologyAdapter.My
                 String data=null;
                 if(productEnglish.getLiketype()==0){
                     data  =     likeclass.FundraiserLike(mContext,userid,productEnglish.getId(),1);
+                    holder.like_button.setImageResource(R.mipmap.heartfullred);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val+1;
                     if(result==1){
@@ -189,6 +197,7 @@ public class TechnologyAdapter extends RecyclerView.Adapter<TechnologyAdapter.My
 
                 }else if(productEnglish.getLiketype()==1){
                     data  =     likeclass.FundraiserLike(mContext,userid,productEnglish.getId(),0);
+                    holder.like_button.setImageResource(R.mipmap.likeblack);
                     int val=Integer.parseInt(productEnglish.getLikecount());
                     int result=val-1;
                     if(result==1){
