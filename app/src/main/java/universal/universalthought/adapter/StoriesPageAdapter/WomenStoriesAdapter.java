@@ -30,6 +30,7 @@ import universal.universalthought.Detailpage;
 import universal.universalthought.Detailstorypage;
 import universal.universalthought.R;
 import universal.universalthought.Response.Comment;
+import universal.universalthought.Response.Likeclass;
 import universal.universalthought.model.CategoryItemmodel;
 
 public class WomenStoriesAdapter extends RecyclerView.Adapter<WomenStoriesAdapter.MyViewHolder> {
@@ -160,6 +161,56 @@ public class WomenStoriesAdapter extends RecyclerView.Adapter<WomenStoriesAdapte
 
                 }
 
+            }
+        });
+        holder.share_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, productEnglish.getUrl());
+                mContext.startActivity(sharingIntent);
+            }
+        });
+        holder.like_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Likeclass likeclass=new Likeclass();
+                String data=null;
+                if(productEnglish.getLiketype()==0){
+                    data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),1);
+                    int val=Integer.parseInt(productEnglish.getLikecount());
+                    int result=val+1;
+                    if(result==1){
+                        holder.likecount.setText(Html.fromHtml(result+"&nbsp;"+"Like"));
+                    }else if(result==0){
+
+                    }else {
+                        holder.likecount.setText(Html.fromHtml(result+"&nbsp;"+"Likes"));
+                    }
+
+                }else if(productEnglish.getLiketype()==1){
+                    data  =     likeclass.StoryLike(mContext,userid,productEnglish.getId(),0);
+                    int val=Integer.parseInt(productEnglish.getLikecount());
+                    int result=val-1;
+                    if(result==1){
+                        holder.likecount.setText(Html.fromHtml(result+"&nbsp;"+"Like"));
+                    }else if(result==0){
+
+                    }else {
+                        holder.likecount.setText(Html.fromHtml(result+"&nbsp;"+"Likes"));
+                    }
+                }
+
+            /*try {
+                JSONArray array=new JSONArray(data.toString());
+                for(int i=0;i<array.length();i++){
+                    JSONObject object=array.getJSONObject(i);
+
+                }
+            }catch (JSONException e){
+
+            }*/
             }
         });
         /*holder.overflow.setOnClickListener(new View.OnClickListener() {
