@@ -2,6 +2,7 @@ package universal.universalthought.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -24,6 +25,7 @@ import java.util.List;
 import universal.universalthought.CustomVolleyRequest;
 import universal.universalthought.Detailpage;
 import universal.universalthought.R;
+import universal.universalthought.Response.Comment;
 import universal.universalthought.model.CategoryItemmodel;
 
 public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHolder> {
@@ -31,6 +33,12 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
     private List<CategoryItemmodel> productEnglishList;
     int totalcost_value,obtainedcost_value;
     int percentage_value;
+    SharedPreferences sharedpreferences;
+    public static final String mypreference = "mypref";
+    public static final String MYUSERID= "myprofileid";
+    public static final String USERNAME= "myprofilename";
+    public static final String USERIMAGE= "myprofileimage";
+    public static final String USERMAILID= "myprofileemail";
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title,likecount,commentcount,bname;
         public NetworkImageView thumbnail;
@@ -74,6 +82,14 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
 
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         String splash = "fonts/LATO-MEDIUM.TTF";
+
+        sharedpreferences = mContext.getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+        final String userid=sharedpreferences.getString(MYUSERID,"");
+        String username=sharedpreferences.getString(USERNAME,"");
+        String userimage=sharedpreferences.getString(USERIMAGE,"");
+        String useremail=sharedpreferences.getString(USERMAILID,"");
+
 
         final CategoryItemmodel model = productEnglishList.get(position);
         ImageLoader imageLoader= CustomVolleyRequest.getInstance(mContext).getImageLoader();
@@ -126,6 +142,26 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.MyViewHo
 
                 }else {
                     holder.comment_layout.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+        holder.comment_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Comment comment=new Comment();
+                comment.UploadCommentfundraiser(mContext,userid,holder.comment_edit.getText().toString(),model.getId());
+
+                holder.comment_layout.setVisibility(View.GONE);
+                int commentscount=Integer.parseInt(model.getCommentcount());
+                int total=commentscount+1;
+                if(total>1) {
+                    holder.commentcount.setText(Html.fromHtml(total+"&nbsp;"+"Comments"));
+                }else if(total==1){
+                    holder.commentcount.setText(Html.fromHtml(total+"&nbsp;"+"Comment"));
+                }
+                else {
+
                 }
 
             }
